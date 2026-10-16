@@ -40,20 +40,24 @@
         #stage-wrapper {
             position: fixed;
             inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100vw;
+            height: 100vh;
             overflow: hidden;
+            background: #050302;
         }
 
         #stage {
-            position: relative;
+            position: absolute;
+            left: 50%;
+            top: 50%;
             width: 1920px;
             height: 1080px;
             overflow: hidden;
             background: #090604;
             transform-origin: center center;
+            transform: translate(-50%, -50%) scale(1);
             box-shadow: 0 0 90px rgba(0, 0, 0, 0.95);
+            flex-shrink: 0;
         }
 
         canvas#westCanvas {
@@ -95,7 +99,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 72px;
+            height: 74px;
             z-index: 24;
             background:
                 repeating-linear-gradient(90deg, transparent 0px, transparent 140px, rgba(0, 0, 0, 0.45) 140px, rgba(0, 0, 0, 0.45) 142px),
@@ -113,53 +117,28 @@
         .banner-inner {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             height: 100%;
-            padding: 0 44px;
+            padding: 0 40px;
             box-sizing: border-box;
-        }
-
-        .banner-side-badge {
-            font-family: 'Rye', serif;
-            font-size: 16px;
-            letter-spacing: 2.2px;
-            color: #ffd866;
-            background: rgba(22, 9, 3, 0.75);
-            border: 1.5px solid #d49324;
-            border-radius: 999px;
-            padding: 4px 18px;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 0 12px rgba(255, 195, 50, 0.25);
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
-            white-space: nowrap;
         }
 
         .banner-center-content {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 2px;
             white-space: nowrap;
         }
 
-        .plaque-title-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .star-icon {
-            color: var(--gold-bright);
-            font-size: 26px;
-            text-shadow: 0 0 18px var(--amber), 0 3px 6px rgba(0, 0, 0, 0.9);
-            filter: drop-shadow(0 0 8px #ffb300);
-        }
-
         .plaque-title {
             font-family: 'Rye', serif;
-            font-size: 34px;
+            font-size: 32px;
             color: #fff9db;
-            letter-spacing: 3px;
+            letter-spacing: 3.5px;
             text-transform: uppercase;
+            line-height: 1;
             text-shadow:
                 0 1px 0 #ffe680,
                 0 2px 0 #d98818,
@@ -169,27 +148,22 @@
             white-space: nowrap;
         }
 
-        .plaque-subbadge {
+        .banner-datetime {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            font-size: 14.5px;
-            letter-spacing: 2px;
+            font-size: 15px;
+            letter-spacing: 3px;
             color: #ffd866;
-            background: rgba(24, 9, 2, 0.88);
-            border: 1.5px solid #d49324;
-            border-radius: 999px;
-            padding: 1px 18px;
-            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9), 0 0 14px rgba(255, 195, 50, 0.35);
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
             text-transform: uppercase;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
             white-space: nowrap;
         }
 
         /* Top Screen Epic Western Countdown Stage (Positioned on Left Under Banner) */
         .countdown-stage {
             position: absolute;
-            top: 86px;
-            left: 44px;
+            top: 88px;
+            left: 40px;
             transform: none;
             z-index: 18;
             display: flex;
@@ -204,9 +178,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            border-radius: 22px;
-            padding: 10px 28px;
+            gap: 12px;
+            border-radius: 20px;
+            padding: 8px 20px;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             white-space: nowrap;
@@ -219,9 +193,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 175px;
-            border-radius: 14px;
-            padding: 6px 16px;
+            min-width: 136px;
+            border-radius: 12px;
+            padding: 5px 12px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             transition: background 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -231,19 +205,19 @@
 
         .cd-digits {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 96px;
-            line-height: 0.9;
-            letter-spacing: 4px;
+            font-size: 78px;
+            line-height: 0.92;
+            letter-spacing: 3px;
             white-space: nowrap;
             transition: color 0.7s ease, text-shadow 0.7s ease;
         }
 
         .cd-label {
             font-family: 'Rye', serif;
-            font-size: 19px;
-            letter-spacing: 2.5px;
+            font-size: 16px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-top: 4px;
+            margin-top: 3px;
             white-space: nowrap;
             transition: color 0.7s ease, text-shadow 0.7s ease;
         }
@@ -255,10 +229,10 @@
 
         .cd-sep {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 96px;
+            font-size: 78px;
             line-height: 1;
             animation: blinkColon 1s steps(1, start) infinite;
-            padding-bottom: 20px;
+            padding-bottom: 12px;
             white-space: nowrap;
             transition: color 0.7s ease, text-shadow 0.7s ease;
         }
@@ -399,12 +373,12 @@
         /* Huge Western Frontier Billboard in the Distance (Right Hand Side, Angled South-West) */
         .promo-wrap {
             position: absolute;
-            top: 86px;
-            right: 36px;
+            top: 88px;
+            right: 38px;
             left: auto;
             transform-origin: right center;
-            transform: perspective(1200px) rotateY(-11deg) rotateX(1deg);
-            width: 850px;
+            transform: perspective(1200px) rotateY(-8deg);
+            width: 780px;
             z-index: 12;
             pointer-events: none;
         }
@@ -510,8 +484,8 @@
             border: 2px solid #140702;
             box-shadow: 3px 0 8px rgba(0,0,0,0.7);
         }
-        .stilt-leg.leg-left { left: 140px; }
-        .stilt-leg.leg-right { left: 560px; }
+        .stilt-leg.leg-left { left: 120px; }
+        .stilt-leg.leg-right { left: 520px; }
 
         .stilt-cross {
             position: absolute;
@@ -521,10 +495,10 @@
             transform-origin: left center;
         }
         .stilt-cross.cross-1 {
-            top: 60px; left: 145px; width: 440px; transform: rotate(20deg);
+            top: 60px; left: 125px; width: 420px; transform: rotate(20deg);
         }
         .stilt-cross.cross-2 {
-            top: 220px; left: 145px; width: 440px; transform: rotate(-20deg);
+            top: 220px; left: 125px; width: 420px; transform: rotate(-20deg);
         }
 
         .stilt-footing {
@@ -536,8 +510,8 @@
             border-radius: 50%;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
         }
-        .stilt-footing.foot-left { left: 123px; }
-        .stilt-footing.foot-right { left: 543px; }
+        .stilt-footing.foot-left { left: 103px; }
+        .stilt-footing.foot-right { left: 503px; }
 
         .promo-saloon-card.transitioning {
             opacity: 0;
@@ -757,19 +731,13 @@
             <canvas id="westCanvas" width="1920" height="1080"></canvas>
             <div class="western-vignette"></div>
 
-            <!-- Full-Width Top Western Title Banner (Spanning 100% Page Width) -->
+            <!-- Full-Width Top Western Title Banner (Title, Date & Time Only) -->
             <div class="saloon-header-banner" id="saloonHeaderBanner">
                 <div class="banner-inner">
-                    <div class="banner-side-badge left-badge">★ REDWOOD SALOON ★</div>
                     <div class="banner-center-content">
-                        <div class="plaque-title-row">
-                            <span class="star-icon">🤠</span>
-                            <span class="plaque-title" id="countdownHeaderTitle">WILD WEST N.Y.E. KARAOKE PARTY!</span>
-                            <span class="star-icon">🎤</span>
-                        </div>
-                        <div class="plaque-subbadge">★ WEDNESDAY 31ST DECEMBER • FROM 8PM TILL LATE • COASTERS TAVERN REDWOOD ★</div>
+                        <div class="plaque-title" id="countdownHeaderTitle">WILD WEST N.Y.E. KARAOKE PARTY!</div>
+                        <div class="banner-datetime">WEDNESDAY 31ST DECEMBER • 8:00 PM TILL LATE</div>
                     </div>
-                    <div class="banner-side-badge right-badge">★ NYE COUNTDOWN 2027 ★</div>
                 </div>
             </div>
 
@@ -930,8 +898,9 @@
 
         function resizeStage() {
             const stage = document.getElementById('stage');
+            if (!stage) return;
             const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-            stage.style.transform = `scale(${scale})`;
+            stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
         }
         window.addEventListener('resize', resizeStage);
         resizeStage();
@@ -3272,7 +3241,7 @@
             // 15. Render Foreground Crossroads Directional Signpost (Z-index 14, in front of billboard stilts)
             if (fgCtx) {
                 fgCtx.clearRect(0, 0, 1920, 1080);
-                drawTrailSignpost(fgCtx, 1680, 995, timeSec);
+                drawTrailSignpost(fgCtx, 1540, 980, timeSec);
             }
 
             requestAnimationFrame(renderScene);
