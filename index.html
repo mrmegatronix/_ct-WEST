@@ -166,21 +166,20 @@
             white-space: nowrap;
         }
 
+        /* Glass UI Countdown Board with Adaptive Light/Dark Theme */
         .countdown-board {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 16px;
-            background: linear-gradient(180deg, rgba(56, 28, 12, 0.94) 0%, rgba(30, 15, 6, 0.96) 100%);
-            border: 4.5px solid var(--gold);
-            border-radius: 20px;
+            border-radius: 22px;
             padding: 10px 28px;
-            box-shadow:
-                0 16px 45px rgba(0, 0, 0, 0.8),
-                0 0 45px rgba(255, 165, 20, 0.35),
-                inset 0 2px 0 rgba(255, 235, 160, 0.45);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             white-space: nowrap;
+            transition: background 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        border-color 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        box-shadow 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .cd-unit {
@@ -188,11 +187,13 @@
             flex-direction: column;
             align-items: center;
             min-width: 175px;
-            background: radial-gradient(circle at 50% 25%, rgba(92, 48, 20, 0.95), rgba(34, 17, 7, 0.98));
-            border: 2px solid rgba(255, 195, 75, 0.68);
             border-radius: 14px;
             padding: 6px 16px;
-            box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        border-color 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        box-shadow 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .cd-digits {
@@ -200,22 +201,18 @@
             font-size: 96px;
             line-height: 0.9;
             letter-spacing: 4px;
-            color: #ffffff;
-            text-shadow:
-                0 0 24px rgba(255, 180, 20, 0.85),
-                0 5px 12px rgba(0, 0, 0, 0.95);
             white-space: nowrap;
+            transition: color 0.7s ease, text-shadow 0.7s ease;
         }
 
         .cd-label {
             font-family: 'Rye', serif;
             font-size: 19px;
-            color: var(--gold-bright);
             letter-spacing: 2.5px;
             text-transform: uppercase;
             margin-top: 4px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
             white-space: nowrap;
+            transition: color 0.7s ease, text-shadow 0.7s ease;
         }
 
         @keyframes blinkColon {
@@ -227,11 +224,98 @@
             font-family: 'Bebas Neue', sans-serif;
             font-size: 96px;
             line-height: 1;
-            color: var(--gold-bright);
-            text-shadow: 0 0 24px rgba(255, 170, 0, 0.95);
             animation: blinkColon 1s steps(1, start) infinite;
             padding-bottom: 20px;
             white-space: nowrap;
+            transition: color 0.7s ease, text-shadow 0.7s ease;
+        }
+
+        /* Glass UI Adaptive Dark Theme (Sunset / Night / Dawn) -> Light Text */
+        .countdown-board.theme-dark {
+            background: rgba(22, 11, 5, 0.58);
+            border: 3px solid rgba(255, 204, 51, 0.55);
+            box-shadow:
+                0 16px 45px rgba(0, 0, 0, 0.8),
+                0 0 35px rgba(255, 175, 35, 0.28),
+                inset 0 1px 0 rgba(255, 240, 180, 0.35);
+        }
+        .countdown-board.theme-dark .cd-unit {
+            background: rgba(45, 22, 9, 0.65);
+            border: 1.5px solid rgba(255, 204, 51, 0.42);
+            box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.75);
+        }
+        .countdown-board.theme-dark .cd-digits {
+            color: #ffffff;
+            text-shadow:
+                0 0 24px rgba(255, 180, 20, 0.85),
+                0 5px 12px rgba(0, 0, 0, 0.95);
+        }
+        .countdown-board.theme-dark .cd-label {
+            color: var(--gold-bright);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+        }
+        .countdown-board.theme-dark .cd-sep {
+            color: var(--gold-bright);
+            text-shadow: 0 0 24px rgba(255, 170, 0, 0.95);
+        }
+
+        /* Glass UI Adaptive Light Theme (Daylight / Bright Sky) -> Dark Text */
+        .countdown-board.theme-light {
+            background: rgba(255, 255, 255, 0.45);
+            border: 3px solid rgba(255, 255, 255, 0.85);
+            box-shadow:
+                0 16px 45px rgba(0, 0, 0, 0.22),
+                0 0 30px rgba(255, 255, 255, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+        }
+        .countdown-board.theme-light .cd-unit {
+            background: rgba(255, 255, 255, 0.58);
+            border: 1.5px solid rgba(255, 255, 255, 0.95);
+            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.45), 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        .countdown-board.theme-light .cd-digits {
+            color: #1a0c04;
+            text-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.85),
+                0 3px 8px rgba(0, 0, 0, 0.35);
+        }
+        .countdown-board.theme-light .cd-label {
+            color: #632d0c;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+        }
+        .countdown-board.theme-light .cd-sep {
+            color: #8c420e;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+        }
+
+        /* Countdown Subheading ("Countdown until 2027!") */
+        .countdown-subheading {
+            margin-top: 8px;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 4px 28px;
+            border-radius: 999px;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            white-space: nowrap;
+            transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .countdown-subheading.theme-dark {
+            background: rgba(22, 11, 5, 0.65);
+            border: 2px solid rgba(255, 204, 51, 0.55);
+            color: #ffe685;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        .countdown-subheading.theme-light {
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            color: #1a0c04;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.95);
         }
 
         /* Midnight Celebration Overlay Banner */
@@ -630,6 +714,7 @@
                         <div class="cd-label">SECONDS</div>
                     </div>
                 </div>
+                <div class="countdown-subheading theme-dark" id="countdownSubheading">Countdown until 2027!</div>
             </div>
 
             <!-- Huge Western Frontier Billboard in the Distance (Right Side, Angled South-West) -->
@@ -1245,11 +1330,11 @@
             });
         }
 
-        // Campfire Embers
+        // Campfire Embers (Centered at x=960)
         const embers = [];
         for (let i = 0; i < 45; i++) {
             embers.push({
-                x: 1380 + (Math.random() - 0.5) * 36,
+                x: 960 + (Math.random() - 0.5) * 36,
                 y: 815 - Math.random() * 90,
                 vx: (Math.random() - 0.5) * 18,
                 vy: 28 + Math.random() * 42,
@@ -1853,8 +1938,8 @@
             drawCactus(ctx, 105, 810, 1.08, "#2d5a27");
             drawCactus(ctx, 275, 782, 0.58, "#38582b");
             drawCactus(ctx, 680, 785, 0.64, "#38582b");
-            drawCactus(ctx, 940, 785, 0.62, "#325026");
-            drawCactus(ctx, 1110, 788, 0.72, "#2d5a27");
+            drawCactus(ctx, 755, 788, 0.62, "#325026");
+            drawCactus(ctx, 1140, 788, 0.72, "#2d5a27");
             drawCactus(ctx, 1265, 794, 0.76, "#2d5a27");
             drawCactus(ctx, 1530, 798, 0.88, "#285223");
             drawCactus(ctx, 1630, 808, 1.12, "#2d5a27");
@@ -1891,9 +1976,9 @@
             ctx.stroke();
             ctx.restore();
 
-            // Wooden Wagon Wheel Leaning Against Rock (x=1220)
+            // Wooden Wagon Wheel Leaning Against Rock (x=805, y=802)
             ctx.save();
-            ctx.translate(1220, 800);
+            ctx.translate(805, 802);
             ctx.strokeStyle = "#783d1d";
             ctx.lineWidth = 6;
             ctx.beginPath();
@@ -1909,9 +1994,9 @@
             }
             ctx.restore();
 
-            // Campfire Cowboy Strumming Acoustic Guitar on Log (x=1312, y=812)
+            // Campfire Cowboy Strumming Acoustic Guitar on Log (x=892, y=812)
             ctx.save();
-            ctx.translate(1312, 812);
+            ctx.translate(892, 812);
             const strumBob = Math.sin(timeSec * 6) * 2.5;
             ctx.fillStyle = "#3d1e0c";
             // Log seat
@@ -1945,8 +2030,8 @@
             ctx.stroke();
             ctx.restore();
 
-            // Campfire Glow & Dancing Flames (x=1380, y=815)
-            const fireX = 1380;
+            // Campfire Glow & Dancing Flames (Centered in middle: x=960, y=815)
+            const fireX = 960;
             const fireGlow = ctx.createRadialGradient(fireX, baseY - 12, 6, fireX, baseY - 12, 260);
             fireGlow.addColorStop(0, "rgba(255, 175, 45, 0.78)");
             fireGlow.addColorStop(0.5, "rgba(245, 95, 20, 0.36)");
@@ -2181,6 +2266,25 @@
             ctx.restore();
         }
 
+        // Adaptive Glass UI Theme for Clock (Dark text when sky is bright, light text when sky is dark)
+        let lastThemeWasBright = null;
+        function updateClockAdaptiveTheme(env) {
+            const isBright = env.sunElevation > 0.1 || (env.starAlpha === 0 && env.phaseLabel.includes('DAY'));
+            if (isBright === lastThemeWasBright) return;
+            lastThemeWasBright = isBright;
+
+            const board = document.querySelector('.countdown-board');
+            const sub = document.getElementById('countdownSubheading');
+            if (board) {
+                board.classList.toggle('theme-light', isBright);
+                board.classList.toggle('theme-dark', !isBright);
+            }
+            if (sub) {
+                sub.classList.toggle('theme-light', isBright);
+                sub.classList.toggle('theme-dark', !isBright);
+            }
+        }
+
         // Main 60FPS Animation Loop
         let lastTime = performance.now();
         let autoFireworkTimer = 0;
@@ -2197,6 +2301,7 @@
 
             // 1. Dynamic Sky Gradient for Redwood, Christchurch
             const env = getSkyEnvironment(nowDate);
+            updateClockAdaptiveTheme(env);
 
             const skyGrad = ctx.createLinearGradient(0, 0, 0, 795);
             skyGrad.addColorStop(0, env.topCol);
