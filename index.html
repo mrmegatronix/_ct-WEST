@@ -943,7 +943,8 @@
         const tumbleweeds = [
             { x: -80, y: 830, r: 28, vx: 115, rot: 0, bouncePhase: 0 },
             { x: -650, y: 855, r: 22, vx: 145, rot: 1.2, bouncePhase: 2.1 },
-            { x: -1250, y: 842, r: 32, vx: 98, rot: 0.4, bouncePhase: 4.0 }
+            { x: -1250, y: 842, r: 32, vx: 98, rot: 0.4, bouncePhase: 4.0 },
+            { x: -1750, y: 868, r: 25, vx: 130, rot: 2.5, bouncePhase: 1.1 }
         ];
 
         // Steam Train ("The Redwood Express") on Distant Trestle Bridge
@@ -960,9 +961,41 @@
             stride: 0
         };
 
+        // Galloping Overland Stagecoach (Left to Right)
+        const stagecoach = {
+            x: -380,
+            speed: 128,
+            wheelRot: 0,
+            stride: 0,
+            dust: []
+        };
+
+        // Darting Desert Roadrunner (Left to Right with bursts of speed)
+        const roadrunner = {
+            x: -140,
+            y: 895,
+            speed: 225,
+            legPhase: 0
+        };
+
+        // Shooting Stars / Meteors
+        const shootingStars = [];
+
+        // Swirling Prairie Dust Gusts & Fireflies
+        const fireflies = [];
+        for (let i = 0; i < 28; i++) {
+            fireflies.push({
+                x: Math.random() * 1920,
+                y: 660 + Math.random() * 260,
+                phase: Math.random() * Math.PI * 2,
+                speedX: 12 + Math.random() * 20,
+                speedY: 8 + Math.random() * 14
+            });
+        }
+
         // Campfire Embers
         const embers = [];
-        for (let i = 0; i < 35; i++) {
+        for (let i = 0; i < 45; i++) {
             embers.push({
                 x: 1380 + (Math.random() - 0.5) * 36,
                 y: 815 - Math.random() * 90,
@@ -1129,7 +1162,7 @@
             ctx.restore();
         }
 
-        // Draw Coasters Western Saloon, Windmill, Water Tower & Hitching Post
+        // Draw Coasters Western Saloon, Windmill, Water Tower, Stagecoach & Hitching Post
         function drawSaloonAndTown(ctx, timeSec, isNight) {
             const baseY = 795;
 
@@ -1157,6 +1190,14 @@
             ctx.fillRect(0, -34, 78, 34);
             ctx.fillRect(52, -48, 12, 16); // Smokestack
             ctx.fillRect(-5, -44, 28, 22); // Cab
+            // Spinning Locomotive Drive Wheels
+            ctx.strokeStyle = "#5c3317";
+            ctx.lineWidth = 2;
+            for (let w = 8; w <= 56; w += 22) {
+                ctx.beginPath();
+                ctx.arc(w, -6, 7, 0, Math.PI * 2);
+                ctx.stroke();
+            }
             // Tender & 3 Lit Passenger Coaches
             for (let c = 1; c <= 3; c++) {
                 const cx = -c * 92;
@@ -1249,9 +1290,94 @@
             }
             ctx.restore();
 
-            // 6. Coasters Western Saloon Building (Left-Center, x=430)
+            // 6. Western Water Tower with Perched Blinking Barn Owl & Swaying Lantern (x=860)
+            ctx.save();
+            ctx.translate(860, baseY);
+            ctx.strokeStyle = "#140904";
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(-34, 0); ctx.lineTo(-20, -125);
+            ctx.moveTo(34, 0);  ctx.lineTo(20, -125);
+            ctx.moveTo(0, 0);   ctx.lineTo(0, -125);
+            ctx.moveTo(-29, -45); ctx.lineTo(29, -45);
+            ctx.moveTo(-24, -85); ctx.lineTo(24, -85);
+            ctx.stroke();
+            // Water Tank Barrel & Conical Roof
+            ctx.fillStyle = "#1b0d06";
+            ctx.fillRect(-38, -195, 76, 70);
+            ctx.beginPath();
+            ctx.moveTo(-44, -195);
+            ctx.lineTo(0, -222);
+            ctx.lineTo(44, -195);
+            ctx.closePath();
+            ctx.fill();
+            // Water Spout Pipe
+            ctx.strokeStyle = "#291408";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(38, -145);
+            ctx.lineTo(64, -135);
+            ctx.stroke();
+            // Swaying Lantern Under Water Tank
+            const lanternSway = Math.sin(timeSec * 2.8) * 0.25;
+            ctx.save();
+            ctx.translate(64, -135);
+            ctx.rotate(lanternSway);
+            ctx.strokeStyle = "#3b1d0c";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(0, 18);
+            ctx.stroke();
+            ctx.fillStyle = "#ffbb33";
+            ctx.beginPath();
+            ctx.arc(0, 22, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+            // Perched Barn Owl on Water Tower Roof Peak
+            ctx.save();
+            ctx.translate(18, -214);
+            ctx.fillStyle = "#0b0502";
+            ctx.beginPath();
+            ctx.ellipse(0, 0, 7, 11, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(0, -10, 6, 0, Math.PI * 2);
+            ctx.fill();
+            // Blinking Amber Owl Eyes
+            if (Math.sin(timeSec * 1.9) > -0.82) {
+                ctx.fillStyle = "#ffcc00";
+                ctx.beginPath();
+                ctx.arc(-2.5, -10, 1.6, 0, Math.PI * 2);
+                ctx.arc(2.5, -10, 1.6, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.restore();
+            ctx.restore();
+
+            // 7. Coasters Western Saloon Building (Left-Center, x=430)
             ctx.save();
             ctx.translate(430, baseY);
+
+            // Sweeping Karaoke Party Stage Searchlights from Saloon Roof
+            [-95, 95].forEach((bx, idx) => {
+                const beamAngle = Math.sin(timeSec * (1.2 + idx * 0.4) + idx * 2) * 0.38;
+                ctx.save();
+                ctx.translate(bx, -230);
+                ctx.rotate(beamAngle);
+                const spotGrad = ctx.createLinearGradient(0, 0, 0, -420);
+                spotGrad.addColorStop(0, idx === 0 ? "rgba(255, 204, 51, 0.24)" : "rgba(255, 65, 145, 0.22)");
+                spotGrad.addColorStop(1, "rgba(255, 204, 51, 0)");
+                ctx.fillStyle = spotGrad;
+                ctx.beginPath();
+                ctx.moveTo(-8, 0);
+                ctx.lineTo(-85, -420);
+                ctx.lineTo(85, -420);
+                ctx.lineTo(8, 0);
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            });
 
             // Warm Ground Spill Glow from Saloon Porch
             const porchGlow = ctx.createRadialGradient(0, 5, 10, 0, 5, 220);
@@ -1296,10 +1422,10 @@
 
             // Floating Animated Musical Notes Drifting Up from Saloon Roof
             const noteGlyphs = ["♪", "♫", "♬", "♩"];
-            for (let n = 0; n < 5; n++) {
-                const noteCycle = ((timeSec * 0.55 + n * 0.2) % 1);
-                const nx = -75 + n * 38 + Math.sin(timeSec * 3.2 + n * 1.4) * 18;
-                const ny = -235 - noteCycle * 115;
+            for (let n = 0; n < 7; n++) {
+                const noteCycle = ((timeSec * 0.55 + n * 0.15) % 1);
+                const nx = -95 + n * 32 + Math.sin(timeSec * 3.2 + n * 1.4) * 18;
+                const ny = -235 - noteCycle * 130;
                 const nAlpha = Math.sin(noteCycle * Math.PI) * 0.92;
                 ctx.fillStyle = n % 2 === 0
                     ? `rgba(255, 204, 51, ${nAlpha})`
@@ -1333,11 +1459,12 @@
             ctx.fillRect(57, -68, 48, 40);
 
             // Vintage Karaoke Singer & Microphone Silhouette Inside Left Saloon Window
+            const singerBob = Math.sin(timeSec * 8) * 2.5;
             ctx.fillStyle = "#170b05";
             ctx.beginPath();
-            ctx.arc(-85, -52, 7, 0, Math.PI * 2); // Singer head
+            ctx.arc(-85, -52 + singerBob, 7, 0, Math.PI * 2); // Singer head
             ctx.fill();
-            ctx.fillRect(-91, -45, 12, 17); // Singer torso
+            ctx.fillRect(-91, -45 + singerBob, 12, 17); // Singer torso
             // Mic Stand & Retro Mic
             ctx.strokeStyle = "#170b05";
             ctx.lineWidth = 2;
@@ -1348,6 +1475,27 @@
             ctx.beginPath();
             ctx.arc(-74, -54, 3.5, 0, Math.PI * 2);
             ctx.fill();
+
+            // Line-Dancing Cowboys Silhouette Inside Right Saloon Window
+            const danceHop = Math.abs(Math.sin(timeSec * 9.5)) * 4;
+            const armRaise = Math.sin(timeSec * 9.5) * 6;
+            ctx.fillStyle = "#170b05";
+            [70, 90].forEach((dx, di) => {
+                ctx.beginPath();
+                ctx.arc(dx, -52 - danceHop, 6, 0, Math.PI * 2);
+                ctx.fill();
+                // Stetson hat brim
+                ctx.fillRect(dx - 9, -56 - danceHop, 18, 2.5);
+                ctx.fillRect(dx - 5, -46 - danceHop, 10, 18);
+                ctx.strokeStyle = "#170b05";
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.moveTo(dx - 5, -42 - danceHop);
+                ctx.lineTo(dx - 11, -48 - danceHop + (di === 0 ? armRaise : -armRaise));
+                ctx.moveTo(dx + 5, -42 - danceHop);
+                ctx.lineTo(dx + 11, -48 - danceHop - (di === 0 ? armRaise : -armRaise));
+                ctx.stroke();
+            });
 
             // Swinging Batwing Saloon Doors
             const doorSwing = Math.sin(timeSec * 2.5) * 4;
@@ -1406,7 +1554,7 @@
             ctx.restore();
         }
 
-        // Draw Animated Campfire & Cowboy Silhouette (Right Foreground x=1380)
+        // Draw Animated Campfire, Guitarist Cowboy, Rattlesnake & Signpost
         function drawCampfireAndScene(ctx, timeSec, dt) {
             const baseY = 815;
 
@@ -1422,6 +1570,36 @@
             drawCactus(ctx, 88, 810, 0.92, "#0c0502");
             drawCactus(ctx, 1615, 805, 1.05, "#0c0502");
             drawCactus(ctx, 1835, 825, 0.78, "#090402");
+
+            // Coiled Rattlesnake with Vibrating Tail Rattle Near Left Cactus (x=152, y=818)
+            ctx.save();
+            ctx.translate(152, 818);
+            ctx.fillStyle = "#1a0d05";
+            ctx.beginPath();
+            ctx.ellipse(0, 0, 18, 6, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, -5, 13, 5, 0, 0, Math.PI * 2);
+            ctx.fill();
+            // Raised Snake Head & Flicking Forked Tongue
+            ctx.beginPath();
+            ctx.arc(10, -14, 5, 0, Math.PI * 2);
+            ctx.fill();
+            if (Math.sin(timeSec * 7) > 0.3) {
+                ctx.strokeStyle = "#e6192e";
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(15, -14);
+                ctx.lineTo(23, -15);
+                ctx.stroke();
+            }
+            // Vibrating Tail Rattle
+            const rattleShake = Math.sin(timeSec * 45) * 3.5;
+            ctx.strokeStyle = "#d49b35";
+            ctx.lineWidth = 3.5;
+            ctx.beginPath();
+            ctx.moveTo(-14, -4);
+            ctx.lineTo(-18 + rattleShake, -18);
+            ctx.stroke();
+            ctx.restore();
 
             // Wooden Wagon Wheel Leaning Against Rock (x=1220)
             ctx.save();
@@ -1441,15 +1619,64 @@
             }
             ctx.restore();
 
+            // Campfire Cowboy Strumming Acoustic Guitar on Log (x=1312, y=812)
+            ctx.save();
+            ctx.translate(1312, 812);
+            const strumBob = Math.sin(timeSec * 6) * 2.5;
+            ctx.fillStyle = "#0e0603";
+            // Log seat
+            ctx.beginPath();
+            ctx.roundRect(-24, -14, 38, 14, 5);
+            ctx.fill();
+            // Cowboy torso & legs
+            ctx.fillRect(-12, -44, 16, 32);
+            ctx.fillRect(-2, -24, 18, 8);
+            ctx.fillRect(10, -20, 7, 20);
+            // Head & Stetson Hat nodding to the beat
+            ctx.save();
+            ctx.translate(-4, -52 + strumBob * 0.5);
+            ctx.beginPath();
+            ctx.arc(0, 0, 8, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.ellipse(0, -4, 17, 4, -0.1, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+            // Acoustic Guitar Body & Neck
+            ctx.fillStyle = "#5c2c0e";
+            ctx.beginPath();
+            ctx.ellipse(4, -30 + strumBob * 0.3, 13, 9, -0.25, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = "#3b1b07";
+            ctx.lineWidth = 3.5;
+            ctx.beginPath();
+            ctx.moveTo(12, -33 + strumBob * 0.3);
+            ctx.lineTo(28, -42 + strumBob * 0.3);
+            ctx.stroke();
+            ctx.restore();
+
             // Campfire Glow & Dancing Flames (x=1380, y=815)
             const fireX = 1380;
-            const fireGlow = ctx.createRadialGradient(fireX, baseY - 12, 6, fireX, baseY - 12, 160);
-            fireGlow.addColorStop(0, "rgba(255, 140, 20, 0.55)");
-            fireGlow.addColorStop(0.5, "rgba(230, 60, 10, 0.18)");
+            const fireGlow = ctx.createRadialGradient(fireX, baseY - 12, 6, fireX, baseY - 12, 175);
+            fireGlow.addColorStop(0, "rgba(255, 140, 20, 0.58)");
+            fireGlow.addColorStop(0.5, "rgba(230, 60, 10, 0.2)");
             fireGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
             ctx.fillStyle = fireGlow;
             ctx.beginPath();
-            ctx.arc(fireX, baseY - 12, 160, 0, Math.PI * 2);
+            ctx.arc(fireX, baseY - 12, 175, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Cast-Iron Tripod & Swinging Coffee Kettle Over Campfire
+            ctx.strokeStyle = "#170b05";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(fireX - 36, baseY + 4); ctx.lineTo(fireX, baseY - 58);
+            ctx.moveTo(fireX + 36, baseY + 4); ctx.lineTo(fireX, baseY - 58);
+            ctx.stroke();
+            const kettleSway = Math.sin(timeSec * 3.5) * 3;
+            ctx.fillStyle = "#0e0603";
+            ctx.beginPath();
+            ctx.arc(fireX + kettleSway, baseY - 34, 9, 0, Math.PI * 2);
             ctx.fill();
 
             // Logs
@@ -1490,6 +1717,27 @@
                 ctx.arc(em.x, em.y, em.size, 0, Math.PI * 2);
                 ctx.fill();
             }
+
+            // Swinging Wooden Signpost ("KARAOKE TONIGHT") on Right Foreground (x=1715, y=818)
+            ctx.save();
+            ctx.translate(1715, 818);
+            ctx.fillStyle = "#170b05";
+            ctx.fillRect(-5, -145, 10, 145);
+            ctx.fillRect(-55, -140, 95, 8);
+            const signSwing = Math.sin(timeSec * 2.4) * 0.08;
+            ctx.translate(-15, -132);
+            ctx.rotate(signSwing);
+            ctx.fillStyle = "#2b1508";
+            ctx.strokeStyle = "#b57c24";
+            ctx.lineWidth = 2;
+            ctx.fillRect(-38, 6, 76, 36);
+            ctx.strokeRect(-38, 6, 76, 36);
+            ctx.fillStyle = "#ffcc33";
+            ctx.font = "700 11px 'Chakra Petch', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("NYE KARAOKE", 0, 22);
+            ctx.fillText("AT COASTERS", 0, 35);
+            ctx.restore();
         }
 
         // Main 60FPS Animation Loop
@@ -1516,7 +1764,7 @@
             ctx.fillStyle = skyGrad;
             ctx.fillRect(0, 0, 1920, 800);
 
-            // 2. Stars & Southern Cross (Crux) at Dusk/Night
+            // 2. Stars, Southern Cross (Crux) & Shooting Stars at Dusk/Night
             if (env.starAlpha > 0.02) {
                 for (const st of stars) {
                     const tw = 0.45 + 0.55 * Math.sin(timeSec * st.speed + st.phase);
@@ -1531,6 +1779,35 @@
                     ctx.beginPath();
                     ctx.arc(cs.x, cs.y, cs.r, 0, Math.PI * 2);
                     ctx.fill();
+                }
+                // Spawn & Render Shooting Stars / Meteors
+                if (Math.random() < 0.018 && shootingStars.length < 2) {
+                    shootingStars.push({
+                        x: 250 + Math.random() * 1400,
+                        y: 40 + Math.random() * 220,
+                        vx: -(380 + Math.random() * 240),
+                        vy: 140 + Math.random() * 110,
+                        life: 1.0
+                    });
+                }
+                for (let i = shootingStars.length - 1; i >= 0; i--) {
+                    const ms = shootingStars[i];
+                    ms.x += ms.vx * dt;
+                    ms.y += ms.vy * dt;
+                    ms.life -= 1.4 * dt;
+                    if (ms.life <= 0) {
+                        shootingStars.splice(i, 1);
+                        continue;
+                    }
+                    const tailGrad = ctx.createLinearGradient(ms.x, ms.y, ms.x - ms.vx * 0.16, ms.y - ms.vy * 0.16);
+                    tailGrad.addColorStop(0, `rgba(255, 245, 200, ${ms.life * env.starAlpha})`);
+                    tailGrad.addColorStop(1, "rgba(255, 245, 200, 0)");
+                    ctx.strokeStyle = tailGrad;
+                    ctx.lineWidth = 2.5;
+                    ctx.beginPath();
+                    ctx.moveTo(ms.x, ms.y);
+                    ctx.lineTo(ms.x - ms.vx * 0.16, ms.y - ms.vy * 0.16);
+                    ctx.stroke();
                 }
             }
 
@@ -1625,10 +1902,89 @@
                 ctx.fill();
             }
 
-            // 7. Draw Saloon, Windmill, Coyote & Hitching Post
+            // 7. Draw Saloon, Windmill, Water Tower, Coyote & Hitching Post
             drawSaloonAndTown(ctx, timeSec, env.starAlpha > 0.4);
 
-            // 8. Galloping Cowboy & Mustang Across Midground Trail (y=792)
+            // 8. Galloping Overland Stagecoach & Team (Left to Right across trail)
+            stagecoach.x += stagecoach.speed * dt;
+            stagecoach.wheelRot += dt * 9;
+            stagecoach.stride += dt * 15;
+            if (stagecoach.x > 2350) stagecoach.x = -420;
+
+            ctx.save();
+            const coachBounce = Math.sin(stagecoach.stride * 1.3) * 2.5;
+            ctx.translate(stagecoach.x, 792);
+            // Coach Cabin
+            ctx.fillStyle = "#1b0c05";
+            ctx.beginPath();
+            ctx.roundRect(-48, -48 + coachBounce, 66, 32, 8);
+            ctx.fill();
+            // Glowing Coach Window & Side Lantern
+            ctx.fillStyle = "#ffcc33";
+            ctx.fillRect(-30, -40 + coachBounce, 18, 12);
+            ctx.beginPath();
+            ctx.arc(18, -38 + coachBounce, 4, 0, Math.PI * 2);
+            ctx.fill();
+            // Coach Driver with Whip
+            ctx.fillStyle = "#0e0502";
+            ctx.fillRect(6, -62 + coachBounce, 10, 16);
+            ctx.beginPath();
+            ctx.arc(11, -66 + coachBounce, 5, 0, Math.PI * 2);
+            ctx.fill();
+            // Spinning Spoked Coach Wheels
+            [-34, 8].forEach((wx, wi) => {
+                const wr = wi === 0 ? 15 : 12;
+                ctx.save();
+                ctx.translate(wx, -wr);
+                ctx.rotate(stagecoach.wheelRot);
+                ctx.strokeStyle = "#3b1d0c";
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.arc(0, 0, wr, 0, Math.PI * 2);
+                ctx.stroke();
+                for (let sp = 0; sp < 6; sp++) {
+                    const a = (sp * Math.PI) / 3;
+                    ctx.beginPath();
+                    ctx.moveTo(-Math.cos(a) * wr, -Math.sin(a) * wr);
+                    ctx.lineTo(Math.cos(a) * wr, Math.sin(a) * wr);
+                    ctx.stroke();
+                }
+                ctx.restore();
+            });
+            // Lead Team Horses Pulling Stagecoach
+            [62, 112].forEach((hx, hi) => {
+                const hBob = Math.sin(stagecoach.stride + hi) * 3;
+                const hLeg = Math.cos(stagecoach.stride + hi) * 11;
+                ctx.fillStyle = "#110703";
+                ctx.beginPath();
+                ctx.ellipse(hx, -22 + hBob, 22, 10, 0, 0, Math.PI * 2);
+                ctx.fill();
+                // Head & Neck
+                ctx.beginPath();
+                ctx.moveTo(hx + 16, -26 + hBob);
+                ctx.lineTo(hx + 28, -38 + hBob);
+                ctx.lineTo(hx + 35, -32 + hBob);
+                ctx.lineTo(hx + 20, -18 + hBob);
+                ctx.closePath();
+                ctx.fill();
+                // Legs
+                ctx.strokeStyle = "#110703";
+                ctx.lineWidth = 3.5;
+                ctx.beginPath();
+                ctx.moveTo(hx - 12, -16); ctx.lineTo(hx - 16 - hLeg, 0);
+                ctx.moveTo(hx + 12, -16); ctx.lineTo(hx + 16 + hLeg, 0);
+                ctx.stroke();
+            });
+            // Harness Reins
+            ctx.strokeStyle = "#2b1508";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(16, -54 + coachBounce);
+            ctx.lineTo(125, -32);
+            ctx.stroke();
+            ctx.restore();
+
+            // 9. Galloping Cowboy & Mustang Across Midground Trail (y=792, Right to Left)
             rider.x -= rider.speed * dt;
             rider.stride += dt * 13;
             if (rider.x < -180) rider.x = 2150;
@@ -1658,17 +2014,67 @@
             ctx.moveTo(14, -18);  ctx.lineTo(18 + legSwing, 0);
             ctx.moveTo(20, -18);  ctx.lineTo(24 - legSwing, 0);
             ctx.stroke();
-            // Cowboy rider & Stetson hat
+            // Cowboy rider, Stetson hat & Twirling Lasso Overhead
             ctx.fillRect(-6, -48, 12, 22);
             ctx.beginPath();
             ctx.ellipse(0, -50, 14, 4, 0, 0, Math.PI * 2);
             ctx.fill();
+            ctx.strokeStyle = "#b57c24";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.ellipse(Math.sin(timeSec * 12) * 6, -66, 18, 6, 0.2, 0, Math.PI * 2);
+            ctx.stroke();
             ctx.restore();
 
-            // 9. Draw Campfire, Cacti & Foreground
+            // 10. Draw Campfire, Guitarist, Rattlesnake, Cacti & Foreground
             drawCampfireAndScene(ctx, timeSec, dt);
 
-            // 10. Rolling Tumbleweeds Across Foreground Dust Trail
+            // 11. Scurrying Desert Roadrunner Across Foreground Trail
+            roadrunner.x += roadrunner.speed * dt;
+            roadrunner.legPhase += dt * 32;
+            if (roadrunner.x > 2400) roadrunner.x = -260;
+
+            ctx.save();
+            ctx.translate(roadrunner.x, roadrunner.y);
+            ctx.fillStyle = "#1c0e06";
+            // Streamlined body & long raised tail
+            ctx.beginPath();
+            ctx.ellipse(0, -12, 14, 6, -0.1, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = "#1c0e06";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(-10, -12);
+            ctx.lineTo(-34, -22 + Math.sin(roadrunner.legPhase * 0.5) * 3);
+            ctx.stroke();
+            // Neck, Crest & Beak
+            ctx.beginPath();
+            ctx.moveTo(10, -14);
+            ctx.lineTo(22, -24);
+            ctx.lineTo(32, -22);
+            ctx.stroke();
+            // Blur-speed running legs
+            const rrLeg = Math.sin(roadrunner.legPhase) * 10;
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(0, -8); ctx.lineTo(rrLeg, 0);
+            ctx.moveTo(0, -8); ctx.lineTo(-rrLeg, 0);
+            ctx.stroke();
+            ctx.restore();
+
+            // 12. Drifting Golden Fireflies / Prairie Dust Motes
+            for (const ff of fireflies) {
+                ff.x += ff.speedX * dt;
+                ff.y += Math.sin(timeSec * 2 + ff.phase) * ff.speedY * dt;
+                if (ff.x > 1940) ff.x = -20;
+                const glowAlpha = (0.35 + 0.65 * Math.abs(Math.sin(timeSec * 3 + ff.phase))) * 0.75;
+                ctx.fillStyle = `rgba(255, 215, 90, ${glowAlpha})`;
+                ctx.beginPath();
+                ctx.arc(ff.x, ff.y, 2.2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // 13. Rolling Tumbleweeds Across Foreground Dust Trail
             for (const tw of tumbleweeds) {
                 tw.x += tw.vx * dt;
                 tw.rot += (tw.vx / tw.r) * dt;
@@ -1689,7 +2095,7 @@
                 ctx.restore();
             }
 
-            // 11. Epic Fireworks Display (ONLY when NYE Countdown reaches Midnight)
+            // 14. Epic Fireworks Display (ONLY when NYE Countdown reaches Midnight)
             if (isMidnightFireworksActive) {
                 autoFireworkTimer += dt;
                 if (autoFireworkTimer >= 0.32) {
