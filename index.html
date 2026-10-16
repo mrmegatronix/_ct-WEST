@@ -91,31 +91,65 @@
         }
 
         .saloon-header-plaque {
-            background: linear-gradient(180deg, #5c2f14 0%, #33190a 100%);
-            border: 4px solid var(--gold);
-            border-radius: 999px;
-            padding: 8px 56px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75), 0 0 32px rgba(255, 180, 30, 0.42);
+            background: radial-gradient(ellipse at 50% 25%, #632d13 0%, #3e1908 65%, #240c03 100%);
+            border: 4px solid var(--gold-bright);
+            border-radius: 18px 18px 24px 24px;
+            padding: 8px 48px;
+            box-shadow:
+                0 10px 32px rgba(0, 0, 0, 0.9),
+                0 0 40px rgba(255, 185, 45, 0.45),
+                inset 0 3px 0 rgba(255, 240, 180, 0.65),
+                inset 0 0 16px rgba(0, 0, 0, 0.85);
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 18px;
+            gap: 4px;
             margin-bottom: 8px;
             white-space: nowrap;
+            position: relative;
+        }
+
+        .plaque-title-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .star-icon {
-            color: var(--gold);
-            font-size: 34px;
-            text-shadow: 0 0 14px var(--amber);
+            color: var(--gold-bright);
+            font-size: 32px;
+            text-shadow: 0 0 18px var(--amber), 0 3px 6px rgba(0, 0, 0, 0.9);
+            filter: drop-shadow(0 0 8px #ffb300);
         }
 
         .plaque-title {
             font-family: 'Rye', serif;
-            font-size: 44px;
-            color: var(--gold-bright);
+            font-size: 42px;
+            color: #fff9db;
             letter-spacing: 3.5px;
             text-transform: uppercase;
-            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95);
+            text-shadow:
+                0 1px 0 #ffe680,
+                0 2px 0 #d98818,
+                0 3px 0 #9c5806,
+                0 4px 0 #572d02,
+                0 6px 16px rgba(0, 0, 0, 0.95);
+            white-space: nowrap;
+        }
+
+        .plaque-subbadge {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 900;
+            font-size: 19px;
+            letter-spacing: 3px;
+            color: #ffd866;
+            background: rgba(24, 9, 2, 0.88);
+            border: 1.5px solid #d49324;
+            border-radius: 999px;
+            padding: 2px 26px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9), 0 0 14px rgba(255, 195, 50, 0.35);
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+            text-transform: uppercase;
             white-space: nowrap;
         }
 
@@ -233,12 +267,15 @@
         }
 
         /* Huge Western Frontier Billboard in the Distance */
+        /* Huge Western Frontier Billboard in the Distance (Right Hand Side, Angled South-West) */
         .promo-wrap {
             position: absolute;
-            top: 272px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1760px;
+            top: 292px;
+            right: 28px;
+            left: auto;
+            transform-origin: right top;
+            transform: perspective(1100px) rotateY(-22deg) rotateX(1.5deg);
+            width: 750px;
             z-index: 10;
             pointer-events: none;
         }
@@ -252,7 +289,7 @@
             margin-bottom: -4px;
             position: relative;
             z-index: 12;
-            padding: 0 140px;
+            padding: 0 45px;
         }
 
         .billboard-lamp {
@@ -288,27 +325,28 @@
             top: 14px;
             left: -18px;
             width: 64px;
-            height: 90px;
-            background: radial-gradient(ellipse at 50% 0%, rgba(255, 210, 80, 0.28) 0%, rgba(255, 180, 40, 0.1) 50%, transparent 80%);
+            height: 95px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255, 210, 80, 0.3) 0%, rgba(255, 180, 40, 0.1) 50%, transparent 80%);
             pointer-events: none;
         }
 
         .promo-saloon-card {
             position: relative;
             background: linear-gradient(180deg, #44210d 0%, #301708 50%, #220f04 100%);
-            background-image: repeating-linear-gradient(180deg, transparent, transparent 36px, rgba(14, 6, 2, 0.65) 36px, rgba(14, 6, 2, 0.65) 38px);
+            background-image: repeating-linear-gradient(180deg, transparent, transparent 32px, rgba(14, 6, 2, 0.65) 32px, rgba(14, 6, 2, 0.65) 34px);
             border: 5px solid var(--gold);
-            border-radius: 18px;
-            padding: 18px 40px;
+            border-radius: 16px;
+            padding: 14px 20px;
             box-shadow:
-                0 25px 65px rgba(0, 0, 0, 0.88),
+                0 25px 65px rgba(0, 0, 0, 0.9),
                 0 0 45px rgba(255, 175, 40, 0.35),
                 inset 0 3px 0 rgba(255, 235, 160, 0.45);
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 28px;
+            flex-direction: column;
+            gap: 8px;
             overflow: hidden;
+            height: 290px;
+            box-sizing: border-box;
             transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
@@ -325,34 +363,58 @@
         }
 
         .billboard-stilts {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 140px;
-            height: 48px;
             position: relative;
+            width: 100%;
+            height: 176px;
             z-index: 5;
             margin-top: -2px;
         }
 
         .stilt-leg {
-            width: 16px;
-            height: 48px;
-            background: linear-gradient(90deg, #421f0b 0%, #5e2e13 40%, #2b1306 100%);
-            border: 1.5px solid #1a0b03;
-            box-shadow: 2px 0 6px rgba(0,0,0,0.6);
-            position: relative;
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 176px;
+            background: linear-gradient(90deg, #361706 0%, #5c2c12 40%, #220e03 100%);
+            border: 1.5px solid #140702;
+            box-shadow: 3px 0 8px rgba(0,0,0,0.7);
+        }
+        .stilt-leg.leg-left { left: 70px; }
+        .stilt-leg.leg-mid { left: 365px; }
+        .stilt-leg.leg-right { right: 70px; }
+
+        .stilt-cross {
+            position: absolute;
+            height: 4px;
+            background: #3e1b09;
+            border: 1px solid #190903;
+            transform-origin: left center;
+        }
+        .stilt-cross.cross-1 {
+            top: 25px; left: 75px; width: 290px; transform: rotate(20deg);
+        }
+        .stilt-cross.cross-2 {
+            top: 125px; left: 75px; width: 290px; transform: rotate(-20deg);
+        }
+        .stilt-cross.cross-3 {
+            top: 25px; left: 365px; width: 290px; transform: rotate(20deg);
+        }
+        .stilt-cross.cross-4 {
+            top: 125px; left: 365px; width: 290px; transform: rotate(-20deg);
         }
 
-        .stilt-leg::after {
-            content: '';
+        .stilt-footing {
             position: absolute;
-            top: 10px;
-            left: -12px;
-            width: 40px;
-            height: 3px;
-            background: #361706;
-            transform: rotate(24deg);
+            bottom: -5px;
+            width: 52px;
+            height: 16px;
+            background: #42200e;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
         }
+        .stilt-footing.foot-left { left: 54px; }
+        .stilt-footing.foot-mid { left: 349px; }
+        .stilt-footing.foot-right { right: 54px; }
 
         .promo-saloon-card.transitioning {
             opacity: 0;
@@ -364,28 +426,30 @@
             top: 0;
             left: 0;
             bottom: 0;
-            width: 18px;
+            width: 14px;
             background: repeating-linear-gradient(
                 -45deg,
                 var(--gold),
-                var(--gold) 14px,
-                #6e3513 14px,
-                #6e3513 28px
+                var(--gold) 12px,
+                #6e3513 12px,
+                #6e3513 24px
             );
         }
 
         .promo-content {
-            padding-left: 18px;
+            padding-left: 12px;
             flex: 1;
-            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             overflow: hidden;
         }
 
         .promo-kicker-line {
             display: flex;
             align-items: center;
-            gap: 18px;
-            margin-bottom: 6px;
+            justify-content: space-between;
+            margin-bottom: 2px;
             white-space: nowrap;
         }
 
@@ -393,10 +457,10 @@
             background: var(--gold-bright);
             color: #1a0c04;
             font-family: 'Rye', serif;
-            font-size: 22px;
-            padding: 5px 18px;
-            border-radius: 8px;
-            letter-spacing: 1.8px;
+            font-size: 18px;
+            padding: 3px 14px;
+            border-radius: 6px;
+            letter-spacing: 1.4px;
             text-transform: uppercase;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
             white-space: nowrap;
@@ -404,70 +468,71 @@
 
         .promo-date-tag {
             font-family: 'Chakra Petch', sans-serif;
-            font-size: 26px;
+            font-size: 18px;
             font-weight: 800;
             color: #ffb35c;
-            letter-spacing: 2px;
+            letter-spacing: 1.6px;
             text-transform: uppercase;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .promo-headline {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 76px;
-            letter-spacing: 2.5px;
+            font-size: 46px;
+            letter-spacing: 2px;
             color: #ffffff;
-            line-height: 0.98;
-            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.95), 0 0 22px rgba(255, 175, 40, 0.35);
-            white-space: nowrap;
+            line-height: 1.0;
+            text-shadow: 0 3px 14px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 175, 40, 0.35);
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .promo-subline {
-            font-size: 27px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--gold-bright);
-            letter-spacing: 1.3px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-top: 6px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
-            white-space: nowrap;
+            line-height: 1.15;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .promo-wanted-cta {
-            flex-shrink: 0;
             background: linear-gradient(135deg, #d92332 0%, #8f0e1a 100%);
-            border: 4px solid var(--gold-bright);
-            border-radius: 18px;
-            padding: 18px 34px;
-            text-align: center;
-            box-shadow: 0 12px 32px rgba(217, 35, 50, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-            white-space: nowrap;
+            border: 3px solid var(--gold-bright);
+            border-radius: 12px;
+            padding: 7px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 24px rgba(217, 35, 50, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            margin-top: 4px;
         }
 
         .wanted-top {
             font-family: 'Rye', serif;
-            font-size: 20px;
+            font-size: 16px;
             color: var(--gold-bright);
-            letter-spacing: 2.2px;
+            letter-spacing: 1.8px;
             text-transform: uppercase;
             white-space: nowrap;
         }
 
         .wanted-main {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 56px;
+            font-size: 32px;
             color: #ffffff;
-            letter-spacing: 2.5px;
-            line-height: 0.96;
-            margin-top: 4px;
-            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.85);
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
             white-space: nowrap;
         }
 
@@ -529,9 +594,12 @@
             <!-- Top Western Title & Epic Countdown Board (Days, Hours, Minutes, Seconds) -->
             <div class="countdown-stage" id="countdownStage">
                 <div class="saloon-header-plaque">
-                    <span class="star-icon">🎤</span>
-                    <span class="plaque-title" id="countdownHeaderTitle">WILD WEST KARAOKE NYE COUNTDOWN SHOWDOWN</span>
-                    <span class="star-icon">🤠</span>
+                    <div class="plaque-title-row">
+                        <span class="star-icon">🤠</span>
+                        <span class="plaque-title" id="countdownHeaderTitle">WILD WEST N.Y.E. KARAOKE PARTY!</span>
+                        <span class="star-icon">🎤</span>
+                    </div>
+                    <div class="plaque-subbadge">★ FROM 8PM TILL LATE • COASTERS TAVERN REDWOOD ★</div>
                 </div>
                 <div class="countdown-board">
                     <div class="cd-unit">
@@ -556,13 +624,10 @@
                 </div>
             </div>
 
-            <!-- Huge Western Frontier Billboard in the Distance -->
+            <!-- Huge Western Frontier Billboard in the Distance (Right Side, Angled South-West) -->
             <div class="promo-wrap">
                 <!-- Overhead Gooseneck Lamps -->
                 <div class="billboard-lamps-bar">
-                    <div class="billboard-lamp"><div class="lamp-arm"></div><div class="lamp-shade"></div><div class="lamp-beam"></div></div>
-                    <div class="billboard-lamp"><div class="lamp-arm"></div><div class="lamp-shade"></div><div class="lamp-beam"></div></div>
-                    <div class="billboard-lamp"><div class="lamp-arm"></div><div class="lamp-shade"></div><div class="lamp-beam"></div></div>
                     <div class="billboard-lamp"><div class="lamp-arm"></div><div class="lamp-shade"></div><div class="lamp-beam"></div></div>
                     <div class="billboard-lamp"><div class="lamp-arm"></div><div class="lamp-shade"></div><div class="lamp-beam"></div></div>
                     <div class="billboard-lamp"><div class="lamp-arm"></div><div class="lamp-shade"></div><div class="lamp-beam"></div></div>
@@ -574,26 +639,30 @@
                     <div class="promo-content">
                         <div class="promo-kicker-line">
                             <span class="promo-badge" id="slideBadge">WILD WEST KARAOKE NYE</span>
-                            <span class="promo-date-tag" id="slideDateTag">DECEMBER 31 • COASTERS TAVERN REDWOOD</span>
+                            <span class="promo-date-tag" id="slideDateTag">DECEMBER 31 • FROM 8 PM</span>
                         </div>
                         <div class="promo-headline" id="slideHeadline">SADDLE UP & GRAB THE MIC THIS NEW YEAR'S EVE!</div>
                         <div class="promo-subline" id="slideSubline">NON-STOP KARAOKE • COLD BREWS • BOURBON SPECIALS • MIDNIGHT COUNTDOWN</div>
-                    </div>
-                    <div class="promo-wanted-cta">
-                        <div class="wanted-top" id="slideCtaTop">WANTED ON STAGE</div>
-                        <div class="wanted-main" id="slideCtaMain">BOOK YOUR TABLE</div>
+                        <div class="promo-wanted-cta">
+                            <div class="wanted-top" id="slideCtaTop">WANTED ON STAGE</div>
+                            <div class="wanted-main" id="slideCtaMain">BOOK YOUR TABLE</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Timber Catwalk & Desert Stilts -->
+                <!-- Timber Catwalk & Desert Stilts Ground Anchors -->
                 <div class="billboard-catwalk"></div>
                 <div class="billboard-stilts">
-                    <div class="stilt-leg"></div>
-                    <div class="stilt-leg"></div>
-                    <div class="stilt-leg"></div>
-                    <div class="stilt-leg"></div>
-                    <div class="stilt-leg"></div>
-                    <div class="stilt-leg"></div>
+                    <div class="stilt-leg leg-left"></div>
+                    <div class="stilt-leg leg-mid"></div>
+                    <div class="stilt-leg leg-right"></div>
+                    <div class="stilt-cross cross-1"></div>
+                    <div class="stilt-cross cross-2"></div>
+                    <div class="stilt-cross cross-3"></div>
+                    <div class="stilt-cross cross-4"></div>
+                    <div class="stilt-footing foot-left"></div>
+                    <div class="stilt-footing foot-mid"></div>
+                    <div class="stilt-footing foot-right"></div>
                 </div>
 
                 <div class="slide-footer-bar">
@@ -616,12 +685,12 @@
         // =========================================================================
         const REDWOOD_LAT = -43.4764;
         const REDWOOD_LON = 172.6169;
-        const STORAGE_KEY = 'ct_west_config_v1';
+        const STORAGE_KEY = 'ct_west_config_v2';
 
         const DEFAULT_CONFIG = {
             venueName: "COASTERS TAVERN",
             venueSub: "WILD WEST KARAOKE NYE",
-            countdownTitle: "WILD WEST KARAOKE NYE COUNTDOWN SHOWDOWN",
+            countdownTitle: "WILD WEST N.Y.E. KARAOKE PARTY!",
             targetDateISO: "", // Empty = automatic next Jan 1 00:00:00 local time
             slideDurationSec: 10,
             skyMode: "REALTIME", // REALTIME, SUNRISE, NOON, SUNSET, NIGHT
@@ -896,7 +965,13 @@
         let slideTimer = null;
 
         function applyStaticBranding() {
-            document.getElementById('countdownHeaderTitle').textContent = appConfig.countdownTitle;
+            const titleEl = document.getElementById('countdownHeaderTitle');
+            if (titleEl) {
+                const titleText = (appConfig.countdownTitle && appConfig.countdownTitle !== "WILD WEST KARAOKE NYE COUNTDOWN SHOWDOWN")
+                    ? appConfig.countdownTitle
+                    : "WILD WEST N.Y.E. KARAOKE PARTY!";
+                titleEl.textContent = titleText;
+            }
         }
 
         function renderSlideDots() {
@@ -1538,10 +1613,10 @@
             ctx.restore();
             ctx.restore();
 
-            // 7. Coasters Western Saloon Building (Brought Closer to Front, x=450, baseY=832, scale 1.28x)
+            // 7. Coasters Western Saloon Building (Firmly Grounded at baseY=782, scale 1.20x)
             ctx.save();
-            ctx.translate(450, 832);
-            ctx.scale(1.28, 1.28);
+            ctx.translate(450, 782);
+            ctx.scale(1.20, 1.20);
 
             // Sweeping Karaoke Party Stage Searchlights from Saloon Roof
             [-95, 95].forEach((bx, idx) => {
@@ -1588,21 +1663,43 @@
             ctx.textAlign = "center";
             ctx.fillText("COASTERS SALOON", 0, -193);
 
-            // Glowing Western "KARAOKE" Bulb Marquee Sign Below Pediment (Bigger Text)
-            const neonPulse = 0.82 + Math.sin(timeSec * 6.5) * 0.18;
-            ctx.fillStyle = "#4a1712";
+            // Glowing Western Marquee Sign with Alternating Texts ("KARAOKE STAGE", "WITH DJ CHIC", "FROM 8 PM TILL LATE")
+            const saloonSigns = [
+                { text: "★ KARAOKE STAGE ★", color: "#ff4da6", shadow: "#ff1493" },
+                { text: "♫ WITH DJ CHIC ♫", color: "#38d9a9", shadow: "#00b894" },
+                { text: "★ FROM 8 PM TILL LATE ★", color: "#ffcc00", shadow: "#ff9900" }
+            ];
+            const signPeriod = 3.2;
+            const totalSignTime = saloonSigns.length * signPeriod;
+            const signCycleTime = timeSec % totalSignTime;
+            const signIdx = Math.floor(signCycleTime / signPeriod);
+            const signProgress = signCycleTime % signPeriod;
+            let signAlpha = 1.0;
+            if (signProgress < 0.35) {
+                signAlpha = signProgress / 0.35;
+            } else if (signProgress > signPeriod - 0.35) {
+                signAlpha = (signPeriod - signProgress) / 0.35;
+            }
+            const activeSign = saloonSigns[signIdx];
+            const neonPulse = 0.85 + Math.sin(timeSec * 7) * 0.15;
+
+            ctx.fillStyle = "#42120e";
             ctx.strokeStyle = "#ffcc33";
             ctx.lineWidth = 3;
             ctx.beginPath();
-            ctx.roundRect(-122, -142, 244, 28, 7);
+            ctx.roundRect(-126, -142, 252, 28, 7);
             ctx.fill();
             ctx.stroke();
-            ctx.fillStyle = `rgba(255, 125, 195, ${neonPulse})`;
-            ctx.shadowColor = "#ff2a85";
+
+            ctx.save();
+            ctx.globalAlpha = signAlpha * neonPulse;
+            ctx.fillStyle = activeSign.color;
+            ctx.shadowColor = activeSign.shadow;
             ctx.shadowBlur = 14;
-            ctx.font = "900 19px 'Chakra Petch', sans-serif";
-            ctx.fillText("★ KARAOKE STAGE ★", 0, -121);
-            ctx.shadowBlur = 0;
+            ctx.font = "900 17.5px 'Chakra Petch', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText(activeSign.text, 0, -121);
+            ctx.restore();
 
             // Floating Animated Musical Notes Drifting Up from Saloon Roof
             const noteGlyphs = ["♪", "♫", "♬", "♩"];
@@ -1742,18 +1839,18 @@
         function drawCampfireAndScene(ctx, timeSec, dt) {
             const baseY = 815;
 
-            // Foreground Ground Plane (Bright Warm Frontier Ochre Earth for TV)
-            const groundGrad = ctx.createLinearGradient(0, 785, 0, 1080);
-            groundGrad.addColorStop(0, "#5c3419");
-            groundGrad.addColorStop(0.45, "#472712");
-            groundGrad.addColorStop(1, "#331b0c");
-            ctx.fillStyle = groundGrad;
-            ctx.fillRect(0, 785, 1920, 295);
-
-            // Cacti & Wagon Wheel Silhouettes (Vivid Desert Green)
-            drawCactus(ctx, 88, 810, 0.92, "#2d5a27");
-            drawCactus(ctx, 1615, 805, 1.05, "#2d5a27");
-            drawCactus(ctx, 1835, 825, 0.78, "#254a20");
+            // Desert Cacti Forest Silhouettes (Varied sizes & branches across ridge & foreground)
+            drawCactus(ctx, 45, 815, 0.82, "#244a1e");
+            drawCactus(ctx, 105, 810, 1.08, "#2d5a27");
+            drawCactus(ctx, 275, 782, 0.58, "#38582b");
+            drawCactus(ctx, 680, 785, 0.64, "#38582b");
+            drawCactus(ctx, 940, 785, 0.62, "#325026");
+            drawCactus(ctx, 1110, 788, 0.72, "#2d5a27");
+            drawCactus(ctx, 1265, 794, 0.76, "#2d5a27");
+            drawCactus(ctx, 1530, 798, 0.88, "#285223");
+            drawCactus(ctx, 1630, 808, 1.12, "#2d5a27");
+            drawCactus(ctx, 1840, 820, 0.92, "#244a1e");
+            drawCactus(ctx, 1895, 830, 0.75, "#1c3d18");
 
             // Coiled Rattlesnake with Vibrating Tail Rattle Near Left Cactus (x=72, y=822)
             ctx.save();
@@ -1924,7 +2021,7 @@
 
             // Main Sturdy Vertical Timber Post
             const postW = 28;
-            const postH = 370;
+            const postH = 390;
             const postGrad = ctx.createLinearGradient(-postW / 2, 0, postW / 2, 0);
             postGrad.addColorStop(0, "#421f0a");
             postGrad.addColorStop(0.35, "#683315");
@@ -2061,16 +2158,19 @@
             }
 
             // 1. LEFT AND RIGHT: GRAZING STATIONS (Top plank, bidirectional ◄───►)
-            drawPlank(-300, 0, 350, 52, 'both', '◄ GRAZING STATIONS ►', 0);
+            drawPlank(-320, 0, 320, 48, 'both', '◄ GRAZING STATIONS ►', 0);
 
-            // 2. SOUTH WEST: WATERING HOLE (Plank points Left and tilts downwards, -0.22 rad)
-            drawPlank(-226, -0.22, 270, 50, 'sw', 'WATERING HOLE ↙', -125);
+            // 2. SOUTH WEST: SHERIFF'S OFFICE (Pointing towards town)
+            drawPlank(-255, -0.16, 290, 48, 'sw', '★ SHERIFF\'S OFFICE ◄', -130);
 
-            // 3. SOUTH EAST: GOLD MINE (Plank points Right and tilts downwards, +0.22 rad)
-            drawPlank(-152, 0.22, 235, 50, 'se', 'GOLD MINE ↘', 95);
+            // 3. SOUTH WEST: WATERING HOLE (Plank points Left and tilts downwards, -0.22 rad)
+            drawPlank(-190, -0.22, 270, 48, 'sw', 'WATERING HOLE ↙', -125);
 
-            // 4. SOUTH EAST: OUTHOUSE (Plank points Right and tilts downwards, +0.25 rad)
-            drawPlank(-78, 0.25, 220, 48, 'se', 'OUTHOUSE ↘', 85);
+            // 4. SOUTH EAST: GOLD MINE (Plank points Right and tilts downwards, +0.22 rad)
+            drawPlank(-125, 0.22, 235, 48, 'se', 'GOLD MINE ↘', 95);
+
+            // 5. SOUTH EAST: OUTHOUSE (Plank points Right and tilts downwards, +0.25 rad)
+            drawPlank(-60, 0.25, 220, 46, 'se', 'OUTHOUSE ↘', 85);
 
             ctx.restore();
         }
@@ -2252,10 +2352,26 @@
                 ctx.fill();
             }
 
-            // 7. Draw Saloon, Windmill, Water Tower, Coyote & Hitching Post
+            // 7. Foreground Ground Plane & Trail Path (Drawn BEFORE Saloon & Trail Riders)
+            const groundGrad = ctx.createLinearGradient(0, 780, 0, 1080);
+            groundGrad.addColorStop(0, "#5c3419");
+            groundGrad.addColorStop(0.45, "#472712");
+            groundGrad.addColorStop(1, "#331b0c");
+            ctx.fillStyle = groundGrad;
+            ctx.fillRect(0, 780, 1920, 300);
+
+            // Desert dirt trail road where stagecoach and horseback rider travel
+            const trailGrad = ctx.createLinearGradient(0, 790, 0, 825);
+            trailGrad.addColorStop(0, "rgba(102, 58, 28, 0.45)");
+            trailGrad.addColorStop(0.5, "rgba(75, 40, 18, 0.85)");
+            trailGrad.addColorStop(1, "rgba(102, 58, 28, 0.45)");
+            ctx.fillStyle = trailGrad;
+            ctx.fillRect(0, 790, 1920, 35);
+
+            // 8. Draw Saloon, Windmill, Water Tower, Coyote & Hitching Post
             drawSaloonAndTown(ctx, timeSec, env.starAlpha > 0.4);
 
-            // 8. Galloping Overland Stagecoach & Team (Randomized intervals & speeds)
+            // 9. Galloping Overland Stagecoach & Team (Randomized intervals & speeds along trail)
             if (stagecoach.delayTimer > 0) {
                 stagecoach.delayTimer -= dt;
             } else {
@@ -2271,7 +2387,7 @@
 
             ctx.save();
             const coachBounce = Math.sin(stagecoach.stride * 1.3) * 2.5;
-            ctx.translate(stagecoach.x, 792);
+            ctx.translate(stagecoach.x, 806);
             // Coach Cabin
             ctx.fillStyle = "#3b1c0d";
             ctx.beginPath();
@@ -2342,7 +2458,7 @@
             ctx.stroke();
             ctx.restore();
 
-            // 9. Galloping Cowboy & Mustang Across Midground Trail (Random intervals & speeds)
+            // 10. Galloping Cowboy & Mustang Across Midground Trail (Random intervals & speeds along trail)
             if (rider.delayTimer > 0) {
                 rider.delayTimer -= dt;
             } else {
@@ -2356,7 +2472,7 @@
             }
 
             ctx.save();
-            ctx.translate(rider.x, 785 + Math.sin(rider.stride) * 4);
+            ctx.translate(rider.x, 798 + Math.sin(rider.stride) * 4);
             ctx.fillStyle = "#241107";
             // Horse body
             ctx.beginPath();
