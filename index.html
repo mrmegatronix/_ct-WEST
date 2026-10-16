@@ -65,6 +65,17 @@
             filter: brightness(1.38) contrast(1.06) saturate(1.18);
         }
 
+        canvas#westFgCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1920px;
+            height: 1080px;
+            z-index: 14;
+            display: block;
+            pointer-events: none;
+        }
+
         /* Cinematic Western Vignette & Warm Lantern Frame */
         .western-vignette {
             position: absolute;
@@ -76,25 +87,25 @@
             box-shadow: inset 0 0 0 4px rgba(255, 195, 75, 0.42);
         }
 
-        /* Top Screen Epic Western Countdown Stage */
+        /* Top Screen Epic Western Countdown Stage (Positioned on Left) */
         .countdown-stage {
             position: absolute;
-            top: 12px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 18px;
+            left: 48px;
+            transform: none;
             z-index: 18;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             pointer-events: none;
-            width: 1860px;
+            width: auto;
         }
 
         .saloon-header-plaque {
             background: radial-gradient(ellipse at 50% 25%, #632d13 0%, #3e1908 65%, #240c03 100%);
             border: 4px solid var(--gold-bright);
             border-radius: 18px 18px 24px 24px;
-            padding: 8px 48px;
+            padding: 8px 36px;
             box-shadow:
                 0 10px 32px rgba(0, 0, 0, 0.9),
                 0 0 40px rgba(255, 185, 45, 0.45),
@@ -112,21 +123,21 @@
         .plaque-title-row {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
         }
 
         .star-icon {
             color: var(--gold-bright);
-            font-size: 32px;
+            font-size: 30px;
             text-shadow: 0 0 18px var(--amber), 0 3px 6px rgba(0, 0, 0, 0.9);
             filter: drop-shadow(0 0 8px #ffb300);
         }
 
         .plaque-title {
             font-family: 'Rye', serif;
-            font-size: 42px;
+            font-size: 38px;
             color: #fff9db;
-            letter-spacing: 3.5px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             text-shadow:
                 0 1px 0 #ffe680,
@@ -140,13 +151,13 @@
         .plaque-subbadge {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            font-size: 19px;
-            letter-spacing: 3px;
+            font-size: 18px;
+            letter-spacing: 2.5px;
             color: #ffd866;
             background: rgba(24, 9, 2, 0.88);
             border: 1.5px solid #d49324;
             border-radius: 999px;
-            padding: 2px 26px;
+            padding: 2px 22px;
             box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9), 0 0 14px rgba(255, 195, 50, 0.35);
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
             text-transform: uppercase;
@@ -157,11 +168,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 22px;
+            gap: 16px;
             background: linear-gradient(180deg, rgba(56, 28, 12, 0.94) 0%, rgba(30, 15, 6, 0.96) 100%);
             border: 4.5px solid var(--gold);
-            border-radius: 22px;
-            padding: 12px 42px;
+            border-radius: 20px;
+            padding: 10px 28px;
             box-shadow:
                 0 16px 45px rgba(0, 0, 0, 0.8),
                 0 0 45px rgba(255, 165, 20, 0.35),
@@ -174,17 +185,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 215px;
+            min-width: 175px;
             background: radial-gradient(circle at 50% 25%, rgba(92, 48, 20, 0.95), rgba(34, 17, 7, 0.98));
             border: 2px solid rgba(255, 195, 75, 0.68);
-            border-radius: 16px;
-            padding: 8px 20px;
+            border-radius: 14px;
+            padding: 6px 16px;
             box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.75);
         }
 
         .cd-digits {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 110px;
+            font-size: 96px;
             line-height: 0.9;
             letter-spacing: 4px;
             color: #ffffff;
@@ -196,9 +207,9 @@
 
         .cd-label {
             font-family: 'Rye', serif;
-            font-size: 21px;
+            font-size: 19px;
             color: var(--gold-bright);
-            letter-spacing: 3px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             margin-top: 4px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
@@ -266,17 +277,16 @@
             white-space: nowrap;
         }
 
-        /* Huge Western Frontier Billboard in the Distance */
         /* Huge Western Frontier Billboard in the Distance (Right Hand Side, Angled South-West) */
         .promo-wrap {
             position: absolute;
-            top: 292px;
-            right: 28px;
+            top: 24px;
+            right: 36px;
             left: auto;
-            transform-origin: right top;
-            transform: perspective(1100px) rotateY(-22deg) rotateX(1.5deg);
-            width: 750px;
-            z-index: 10;
+            transform-origin: right center;
+            transform: perspective(1200px) rotateY(-11deg) rotateX(1deg);
+            width: 850px;
+            z-index: 12;
             pointer-events: none;
         }
 
@@ -285,25 +295,25 @@
             display: flex;
             justify-content: space-around;
             width: 100%;
-            height: 20px;
+            height: 22px;
             margin-bottom: -4px;
             position: relative;
-            z-index: 12;
-            padding: 0 45px;
+            z-index: 13;
+            padding: 0 55px;
         }
 
         .billboard-lamp {
             position: relative;
-            width: 28px;
-            height: 20px;
+            width: 32px;
+            height: 22px;
         }
 
         .lamp-arm {
             position: absolute;
             top: 0;
-            left: 12px;
+            left: 14px;
             width: 4px;
-            height: 12px;
+            height: 14px;
             background: #2b1408;
             border-radius: 2px;
         }
@@ -311,22 +321,22 @@
         .lamp-shade {
             position: absolute;
             bottom: 2px;
-            left: 5px;
-            width: 18px;
-            height: 7px;
+            left: 6px;
+            width: 20px;
+            height: 8px;
             background: #4a250e;
             border: 1.5px solid #d49b35;
-            border-radius: 8px 8px 2px 2px;
-            box-shadow: 0 0 10px #ffbb33;
+            border-radius: 9px 9px 2px 2px;
+            box-shadow: 0 0 12px #ffbb33;
         }
 
         .lamp-beam {
             position: absolute;
-            top: 14px;
-            left: -18px;
-            width: 64px;
-            height: 95px;
-            background: radial-gradient(ellipse at 50% 0%, rgba(255, 210, 80, 0.3) 0%, rgba(255, 180, 40, 0.1) 50%, transparent 80%);
+            top: 16px;
+            left: -22px;
+            width: 76px;
+            height: 110px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255, 210, 80, 0.35) 0%, rgba(255, 180, 40, 0.12) 50%, transparent 80%);
             pointer-events: none;
         }
 
@@ -335,24 +345,24 @@
             background: linear-gradient(180deg, #44210d 0%, #301708 50%, #220f04 100%);
             background-image: repeating-linear-gradient(180deg, transparent, transparent 32px, rgba(14, 6, 2, 0.65) 32px, rgba(14, 6, 2, 0.65) 34px);
             border: 5px solid var(--gold);
-            border-radius: 16px;
-            padding: 14px 20px;
+            border-radius: 18px;
+            padding: 16px 24px;
             box-shadow:
                 0 25px 65px rgba(0, 0, 0, 0.9),
                 0 0 45px rgba(255, 175, 40, 0.35),
                 inset 0 3px 0 rgba(255, 235, 160, 0.45);
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
             overflow: hidden;
-            height: 290px;
+            height: 355px;
             box-sizing: border-box;
             transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .billboard-catwalk {
             width: 100%;
-            height: 12px;
+            height: 14px;
             background: linear-gradient(180deg, #5c2c12 0%, #2d1406 100%);
             border: 2px solid #381a08;
             border-top: 2px solid #8f4b1d;
@@ -365,7 +375,7 @@
         .billboard-stilts {
             position: relative;
             width: 100%;
-            height: 176px;
+            height: 370px;
             z-index: 5;
             margin-top: -2px;
         }
@@ -373,48 +383,40 @@
         .stilt-leg {
             position: absolute;
             top: 0;
-            width: 20px;
-            height: 176px;
+            width: 26px;
+            height: 370px;
             background: linear-gradient(90deg, #361706 0%, #5c2c12 40%, #220e03 100%);
-            border: 1.5px solid #140702;
+            border: 2px solid #140702;
             box-shadow: 3px 0 8px rgba(0,0,0,0.7);
         }
-        .stilt-leg.leg-left { left: 70px; }
-        .stilt-leg.leg-mid { left: 365px; }
-        .stilt-leg.leg-right { right: 70px; }
+        .stilt-leg.leg-left { left: 140px; }
+        .stilt-leg.leg-right { left: 560px; }
 
         .stilt-cross {
             position: absolute;
-            height: 4px;
+            height: 6px;
             background: #3e1b09;
             border: 1px solid #190903;
             transform-origin: left center;
         }
         .stilt-cross.cross-1 {
-            top: 25px; left: 75px; width: 290px; transform: rotate(20deg);
+            top: 60px; left: 145px; width: 440px; transform: rotate(20deg);
         }
         .stilt-cross.cross-2 {
-            top: 125px; left: 75px; width: 290px; transform: rotate(-20deg);
-        }
-        .stilt-cross.cross-3 {
-            top: 25px; left: 365px; width: 290px; transform: rotate(20deg);
-        }
-        .stilt-cross.cross-4 {
-            top: 125px; left: 365px; width: 290px; transform: rotate(-20deg);
+            top: 220px; left: 145px; width: 440px; transform: rotate(-20deg);
         }
 
         .stilt-footing {
             position: absolute;
-            bottom: -5px;
-            width: 52px;
-            height: 16px;
+            bottom: -6px;
+            width: 60px;
+            height: 18px;
             background: #42200e;
             border-radius: 50%;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
         }
-        .stilt-footing.foot-left { left: 54px; }
-        .stilt-footing.foot-mid { left: 349px; }
-        .stilt-footing.foot-right { right: 54px; }
+        .stilt-footing.foot-left { left: 123px; }
+        .stilt-footing.foot-right { left: 543px; }
 
         .promo-saloon-card.transitioning {
             opacity: 0;
@@ -449,7 +451,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 2px;
+            gap: 12px;
+            margin-bottom: 4px;
             white-space: nowrap;
         }
 
@@ -457,33 +460,36 @@
             background: var(--gold-bright);
             color: #1a0c04;
             font-family: 'Rye', serif;
-            font-size: 18px;
-            padding: 3px 14px;
-            border-radius: 6px;
-            letter-spacing: 1.4px;
+            font-size: 20px;
+            padding: 3px 16px;
+            border-radius: 8px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .promo-date-tag {
             font-family: 'Chakra Petch', sans-serif;
-            font-size: 18px;
-            font-weight: 800;
-            color: #ffb35c;
-            letter-spacing: 1.6px;
+            font-size: 17.5px;
+            font-weight: 900;
+            color: #ffc470;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
             white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .promo-headline {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 46px;
-            letter-spacing: 2px;
+            font-size: 58px;
+            letter-spacing: 2.2px;
             color: #ffffff;
-            line-height: 1.0;
-            text-shadow: 0 3px 14px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 175, 40, 0.35);
+            line-height: 1.02;
+            text-shadow: 0 3px 14px rgba(0, 0, 0, 0.95), 0 0 24px rgba(255, 175, 40, 0.45);
             white-space: normal;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -492,12 +498,12 @@
         }
 
         .promo-subline {
-            font-size: 18px;
+            font-size: 23px;
             font-weight: 800;
-            color: var(--gold-bright);
-            letter-spacing: 1px;
+            color: #ffe699;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
-            line-height: 1.15;
+            line-height: 1.18;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
             white-space: normal;
             display: -webkit-box;
@@ -508,31 +514,31 @@
 
         .promo-wanted-cta {
             background: linear-gradient(135deg, #d92332 0%, #8f0e1a 100%);
-            border: 3px solid var(--gold-bright);
-            border-radius: 12px;
-            padding: 7px 18px;
+            border: 3.5px solid var(--gold-bright);
+            border-radius: 14px;
+            padding: 9px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 8px 24px rgba(217, 35, 50, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-            margin-top: 4px;
+            box-shadow: 0 8px 26px rgba(217, 35, 50, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            margin-top: 6px;
         }
 
         .wanted-top {
             font-family: 'Rye', serif;
-            font-size: 16px;
+            font-size: 20px;
             color: var(--gold-bright);
-            letter-spacing: 1.8px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             white-space: nowrap;
         }
 
         .wanted-main {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 32px;
+            font-size: 40px;
             color: #ffffff;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+            letter-spacing: 2.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
             white-space: nowrap;
         }
 
@@ -654,14 +660,10 @@
                 <div class="billboard-catwalk"></div>
                 <div class="billboard-stilts">
                     <div class="stilt-leg leg-left"></div>
-                    <div class="stilt-leg leg-mid"></div>
                     <div class="stilt-leg leg-right"></div>
                     <div class="stilt-cross cross-1"></div>
                     <div class="stilt-cross cross-2"></div>
-                    <div class="stilt-cross cross-3"></div>
-                    <div class="stilt-cross cross-4"></div>
                     <div class="stilt-footing foot-left"></div>
-                    <div class="stilt-footing foot-mid"></div>
                     <div class="stilt-footing foot-right"></div>
                 </div>
 
@@ -670,6 +672,9 @@
                     <div class="status-strip" id="statusStrip">LOOPING AD • 10S SLIDES • [SPACE] PAUSE • [0] LOCK • [↓] DEMO FIREWORKS • [A] ADMIN • [R] REMOTE</div>
                 </div>
             </div>
+
+            <!-- Foreground Stage Canvas for Crossroads Signpost (Guarantees zero stilt obstruction) -->
+            <canvas id="westFgCanvas" width="1920" height="1080"></canvas>
 
             <!-- Midnight Fireworks Celebration Banner -->
             <div class="midnight-banner" id="midnightBanner">
@@ -1130,6 +1135,8 @@
         // =========================================================================
         const canvas = document.getElementById('westCanvas');
         const ctx = canvas.getContext('2d');
+        const fgCanvas = document.getElementById('westFgCanvas');
+        const fgCtx = fgCanvas ? fgCanvas.getContext('2d') : null;
 
         // Stars (including Southern Cross / Crux constellation)
         const stars = [];
@@ -1998,9 +2005,6 @@
                 ctx.arc(em.x, em.y, em.size, 0, Math.PI * 2);
                 ctx.fill();
             }
-
-            // Massive TV-Readable Trail Crossroads Directional Signpost on Right Foreground (x=1690, y=985)
-            drawTrailSignpost(ctx, 1690, 985, timeSec);
         }
 
         // Frontier Directional Crossroads Signpost in Right Foreground (Enlarged & Bold for TV screens)
@@ -2011,17 +2015,17 @@
             // Ground Base Mound & Desert Stones in Foreground Earth
             ctx.fillStyle = "#33190a";
             ctx.beginPath();
-            ctx.ellipse(0, 6, 56, 14, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, 8, 68, 16, 0, 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = "#5c2f16";
             ctx.beginPath();
-            ctx.ellipse(-24, 7, 13, 6, -0.2, 0, Math.PI * 2);
-            ctx.ellipse(22, 8, 15, 7, 0.3, 0, Math.PI * 2);
+            ctx.ellipse(-28, 9, 15, 7, -0.2, 0, Math.PI * 2);
+            ctx.ellipse(26, 10, 18, 8, 0.3, 0, Math.PI * 2);
             ctx.fill();
 
             // Main Sturdy Vertical Timber Post
-            const postW = 28;
-            const postH = 390;
+            const postW = 34;
+            const postH = 450;
             const postGrad = ctx.createLinearGradient(-postW / 2, 0, postW / 2, 0);
             postGrad.addColorStop(0, "#421f0a");
             postGrad.addColorStop(0.35, "#683315");
@@ -2032,17 +2036,17 @@
 
             // Weathered Deep Wood Grain Lines
             ctx.strokeStyle = "rgba(25, 10, 3, 0.65)";
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 2.5;
             ctx.beginPath();
-            ctx.moveTo(-5, -postH); ctx.lineTo(-6, 0);
-            ctx.moveTo(5, -postH); ctx.lineTo(4, 0);
+            ctx.moveTo(-6, -postH); ctx.lineTo(-7, 0);
+            ctx.moveTo(6, -postH); ctx.lineTo(5, 0);
             ctx.stroke();
 
             // Carved Post Cap / Pyramid Top
             ctx.fillStyle = "#5c2d12";
             ctx.beginPath();
             ctx.moveTo(-postW / 2 - 3, -postH);
-            ctx.lineTo(0, -postH - 16);
+            ctx.lineTo(0, -postH - 18);
             ctx.lineTo(postW / 2 + 3, -postH);
             ctx.closePath();
             ctx.fill();
@@ -2059,14 +2063,14 @@
                 ctx.rotate(angle + sway);
 
                 // Plank Drop Shadow for Visual Depth
-                ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
-                ctx.shadowBlur = 12;
-                ctx.shadowOffsetY = 6;
+                ctx.shadowColor = "rgba(0, 0, 0, 0.85)";
+                ctx.shadowBlur = 14;
+                ctx.shadowOffsetY = 7;
 
                 // Plank Outline Path with Pointed Arrow Chevrons
                 ctx.beginPath();
                 const h2 = height / 2;
-                const ptSize = 22;
+                const ptSize = 28;
 
                 if (type === 'both') {
                     // Points Left and Right (◄───►)
@@ -2082,25 +2086,25 @@
                     // Points South-West / Left (◄───)
                     ctx.moveTo(-width, 0);
                     ctx.lineTo(-width + ptSize, -h2);
-                    ctx.lineTo(24, -h2);
-                    ctx.lineTo(24, h2);
+                    ctx.lineTo(28, -h2);
+                    ctx.lineTo(28, h2);
                     ctx.lineTo(-width + ptSize, h2);
                     ctx.closePath();
                 } else if (type === 'se') {
                     // Points South-East / Right (───►)
-                    ctx.moveTo(-24, -h2);
+                    ctx.moveTo(-28, -h2);
                     ctx.lineTo(width - ptSize, -h2);
                     ctx.lineTo(width, 0);
                     ctx.lineTo(width - ptSize, h2);
-                    ctx.lineTo(-24, h2);
+                    ctx.lineTo(-28, h2);
                     ctx.closePath();
                 }
 
-                // Weathered Frontier Oak Timber Gradient
+                // Weathered Frontier Oak Timber Gradient with Warm Backing for High Contrast
                 const plankGrad = ctx.createLinearGradient(0, -h2, 0, h2);
-                plankGrad.addColorStop(0, "#7a3f1c");
-                plankGrad.addColorStop(0.25, "#643315");
-                plankGrad.addColorStop(0.8, "#52280f");
+                plankGrad.addColorStop(0, "#8a4820");
+                plankGrad.addColorStop(0.25, "#6f3717");
+                plankGrad.addColorStop(0.8, "#562910");
                 plankGrad.addColorStop(1, "#361606");
                 ctx.fillStyle = plankGrad;
                 ctx.fill();
@@ -2108,69 +2112,69 @@
                 // Clear shadow for crisp borders & text
                 ctx.shadowColor = "transparent";
 
-                // Bevel Edges & Dark Outline
-                ctx.strokeStyle = "#9e5527";
-                ctx.lineWidth = 1.5;
+                // Bevel Edges & Dark Heavy Outline
+                ctx.strokeStyle = "#ffbe66";
+                ctx.lineWidth = 2.0;
                 ctx.stroke();
-                ctx.strokeStyle = "#240d04";
-                ctx.lineWidth = 2.8;
+                ctx.strokeStyle = "#120502";
+                ctx.lineWidth = 3.5;
                 ctx.stroke();
 
                 // Weathered Plank Grain Grooves
-                ctx.strokeStyle = "rgba(35, 14, 5, 0.45)";
-                ctx.lineWidth = 1.2;
+                ctx.strokeStyle = "rgba(35, 14, 5, 0.4)";
+                ctx.lineWidth = 1.4;
                 ctx.beginPath();
-                const startX = type === 'sw' ? -width + ptSize : (type === 'both' ? -width/2 + ptSize : -20);
-                const endX = type === 'se' ? width - ptSize : (type === 'both' ? width/2 - ptSize : 20);
-                ctx.moveTo(startX, -h2 * 0.38);
-                ctx.lineTo(endX, -h2 * 0.38);
-                ctx.moveTo(startX, h2 * 0.38);
-                ctx.lineTo(endX, h2 * 0.38);
+                const startX = type === 'sw' ? -width + ptSize : (type === 'both' ? -width/2 + ptSize : -24);
+                const endX = type === 'se' ? width - ptSize : (type === 'both' ? width/2 - ptSize : 24);
+                ctx.moveTo(startX, -h2 * 0.42);
+                ctx.lineTo(endX, -h2 * 0.42);
+                ctx.moveTo(startX, h2 * 0.42);
+                ctx.lineTo(endX, h2 * 0.42);
                 ctx.stroke();
 
                 // Dark Forged Iron Nail Studs
-                [-6, 6].forEach(ny => {
-                    ctx.fillStyle = "#160a03";
+                [-8, 8].forEach(ny => {
+                    ctx.fillStyle = "#120703";
                     ctx.beginPath();
-                    ctx.arc(0, ny, 3.8, 0, Math.PI * 2);
+                    ctx.arc(0, ny, 4.5, 0, Math.PI * 2);
                     ctx.fill();
-                    ctx.fillStyle = "#a88e7a";
+                    ctx.fillStyle = "#bda18a";
                     ctx.beginPath();
-                    ctx.arc(-1, ny - 1, 1.4, 0, Math.PI * 2);
+                    ctx.arc(-1, ny - 1, 1.6, 0, Math.PI * 2);
                     ctx.fill();
                 });
 
-                // High-Contrast Crisp Lettering Engineered for 1080p TV Screens
+                // High-Contrast Extra-Large Bold Lettering Engineered for 1080p TV Screens
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
-                ctx.font = "900 23px 'Chakra Petch', sans-serif";
+                ctx.font = "900 30px 'Chakra Petch', sans-serif";
 
-                // Heavy dark stroke for clear silhouette separation against scene
-                ctx.lineWidth = 4.5;
-                ctx.strokeStyle = "#120703";
+                // Thick black double-pass stroke for maximum legibility against any background
+                ctx.lineWidth = 7;
+                ctx.strokeStyle = "#000000";
                 ctx.strokeText(text, textOffsetX, 0);
 
-                // Bright High-Contrast Cream / Gold Lettering
-                ctx.fillStyle = "#fff8b4";
+                // Bright High-Contrast White / Soft Cream Lettering
+                ctx.fillStyle = "#ffffff";
                 ctx.fillText(text, textOffsetX, 0);
 
                 ctx.restore();
             }
 
             // 1. LEFT AND RIGHT: GRAZING STATIONS (Top plank, bidirectional ◄───►)
-            drawPlank(-320, 0, 320, 48, 'both', '◄ GRAZING STATIONS ►', 0);
+            drawPlank(-370, 0, 440, 68, 'both', '◄ GRAZING STATIONS ►', 0);
 
             // 2. SOUTH WEST: SHERIFF'S OFFICE (Pointing towards town)
-            drawPlank(-255, -0.16, 290, 48, 'sw', '★ SHERIFF\'S OFFICE ◄', -130);
+            drawPlank(-295, -0.16, 400, 66, 'sw', '★ SHERIFF\'S OFFICE ◄', -180);
 
             // 3. SOUTH WEST: WATERING HOLE (Plank points Left and tilts downwards, -0.22 rad)
-            drawPlank(-190, -0.22, 270, 48, 'sw', 'WATERING HOLE ↙', -125);
+            drawPlank(-220, -0.22, 380, 64, 'sw', 'WATERING HOLE ↙', -170);
 
             // 4. SOUTH EAST: GOLD MINE (Plank points Right and tilts downwards, +0.22 rad)
-            drawPlank(-125, 0.22, 235, 48, 'se', 'GOLD MINE ↘', 95);
+            drawPlank(-145, 0.22, 340, 64, 'se', 'GOLD MINE ↘', 140);
 
             // 5. SOUTH EAST: OUTHOUSE (Plank points Right and tilts downwards, +0.25 rad)
-            drawPlank(-60, 0.25, 220, 46, 'se', 'OUTHOUSE ↘', 85);
+            drawPlank(-70, 0.25, 310, 62, 'se', 'OUTHOUSE ↘', 125);
 
             ctx.restore();
         }
@@ -2689,6 +2693,12 @@
                 ctx.fill();
             }
             ctx.globalAlpha = 1;
+
+            // 15. Render Foreground Crossroads Directional Signpost (Z-index 14, in front of billboard stilts)
+            if (fgCtx) {
+                fgCtx.clearRect(0, 0, 1920, 1080);
+                drawTrailSignpost(fgCtx, 1680, 995, timeSec);
+            }
 
             requestAnimationFrame(renderScene);
         }
