@@ -75,171 +75,10 @@
             box-shadow: inset 0 0 0 4px rgba(212, 155, 53, 0.28);
         }
 
-        /* Top Bar: Location / Astro / Weather Left + Venue & Blinking Clock Right */
-        .top-bar {
-            position: absolute;
-            top: 26px;
-            left: 36px;
-            right: 36px;
-            height: 88px;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-            pointer-events: none;
-        }
-
-        .astro-weather-pill {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: var(--glass-dark);
-            border: 2px solid var(--brass);
-            border-left: 8px solid var(--amber);
-            border-radius: 14px;
-            padding: 12px 24px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
-            white-space: nowrap;
-            overflow: hidden;
-        }
-
-        .sky-phase-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #b85d00, #6e2b00);
-            border: 1px solid var(--gold);
-            color: var(--gold-bright);
-            font-family: 'Chakra Petch', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: 1.5px;
-            padding: 7px 16px;
-            border-radius: 8px;
-            white-space: nowrap;
-        }
-
-        .astro-details {
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .astro-location {
-            font-family: 'Rye', serif;
-            font-size: 24px;
-            color: var(--gold);
-            letter-spacing: 1.2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .astro-metrics {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            color: #e5e7eb;
-            letter-spacing: 1px;
-            margin-top: 2px;
-            white-space: nowrap;
-        }
-
-        .astro-metrics span.hl {
-            color: var(--gold-bright);
-        }
-
-        .venue-clock-pill {
-            display: flex;
-            align-items: center;
-            gap: 22px;
-            background: var(--glass-dark);
-            border: 2px solid var(--brass);
-            border-right: 8px solid var(--gold);
-            border-radius: 14px;
-            padding: 10px 26px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
-            white-space: nowrap;
-        }
-
-        .venue-logo {
-            height: 58px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.85));
-        }
-
-        .venue-text {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            white-space: nowrap;
-        }
-
-        .venue-name {
-            font-family: 'Rye', serif;
-            font-size: 26px;
-            color: #ffffff;
-            letter-spacing: 1.5px;
-            white-space: nowrap;
-        }
-
-        .venue-sub {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            white-space: nowrap;
-            margin-top: 2px;
-        }
-
-        .live-clock-box {
-            display: flex;
-            align-items: center;
-            background: rgba(5, 3, 2, 0.8);
-            border: 1px solid rgba(255, 204, 51, 0.4);
-            border-radius: 10px;
-            padding: 8px 18px;
-            font-family: 'Chakra Petch', monospace;
-            font-size: 38px;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 2px;
-            white-space: nowrap;
-        }
-
-        .blink-colon {
-            display: inline-block;
-            color: var(--gold);
-            animation: blinkColon 1s steps(1, start) infinite;
-            margin: 0 2px;
-        }
-
-        @keyframes blinkColon {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0; }
-        }
-
-        .clock-ampm {
-            font-size: 18px;
-            color: var(--gold);
-            margin-left: 8px;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
         /* Center-Top Epic Western New Year's Eve Countdown Stage */
         .countdown-stage {
             position: absolute;
-            top: 138px;
+            top: 256px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 12;
@@ -250,7 +89,7 @@
             width: 1560px;
         }
 
-        . saloon-header-plaque {
+        .saloon-header-plaque {
             background: linear-gradient(180deg, #3b1e0d 0%, #1d0e05 100%);
             border: 3px solid var(--brass);
             border-radius: 999px;
@@ -339,6 +178,11 @@
             white-space: nowrap;
         }
 
+        @keyframes blinkColon {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
         .cd-sep {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 96px;
@@ -353,7 +197,7 @@
         /* Midnight Celebration Overlay Banner */
         .midnight-banner {
             position: absolute;
-            top: 145px;
+            top: 265px;
             left: 50%;
             transform: translateX(-50%) scale(0.9);
             z-index: 25;
@@ -395,13 +239,13 @@
             white-space: nowrap;
         }
 
-        /* Lower-Third Western Saloon Promotional Slide Card */
+        /* Top Western Saloon Promotional Billboard Card */
         .promo-wrap {
             position: absolute;
-            bottom: 30px;
+            top: 26px;
             left: 50%;
             transform: translateX(-50%);
-            width: 1500px;
+            width: 1560px;
             z-index: 15;
             pointer-events: none;
         }
@@ -426,7 +270,7 @@
 
         .promo-saloon-card.transitioning {
             opacity: 0;
-            transform: translateY(16px) scale(0.985);
+            transform: translateY(-12px) scale(0.985);
         }
 
         .rope-border-left {
@@ -544,6 +388,13 @@
             margin-top: 10px;
             padding: 0 12px;
             white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #stage:hover .slide-footer-bar,
+        body.mouse-active .slide-footer-bar {
+            opacity: 1;
         }
 
         .slide-dots {
@@ -585,31 +436,26 @@
             <canvas id="westCanvas" width="1920" height="1080"></canvas>
             <div class="western-vignette"></div>
 
-            <!-- Top Broadcast & Astronomical Weather Bar -->
-            <div class="top-bar">
-                <div class="astro-weather-pill">
-                    <div class="sky-phase-badge" id="skyPhaseBadge">☀️ HIGH NOON SKY</div>
-                    <div class="astro-details">
-                        <div class="astro-location" id="locationHeading">REDWOOD, CHRISTCHURCH NZ • 43.48°S 172.62°E</div>
-                        <div class="astro-metrics">
-                            <span>WEATHER: <span class="hl" id="weatherDescText">CLEAR CANTERBURY SKY • 18°C</span></span>
-                            <span>•</span>
-                            <span>SUNRISE: <span class="hl" id="sunriseText">06:12 AM</span></span>
-                            <span>•</span>
-                            <span>SUNSET: <span class="hl" id="sunsetText">08:48 PM</span></span>
+            <!-- Top Western Saloon Promotional Billboard Overlay -->
+            <div class="promo-wrap">
+                <div class="promo-saloon-card" id="promoCard">
+                    <div class="rope-border-left"></div>
+                    <div class="promo-content">
+                        <div class="promo-kicker-line">
+                            <span class="promo-badge" id="slideBadge">WILD WEST KARAOKE NYE</span>
+                            <span class="promo-date-tag" id="slideDateTag">DECEMBER 31 • REDWOOD CHRISTCHURCH</span>
                         </div>
+                        <div class="promo-headline" id="slideHeadline">SADDLE UP & GRAB THE MIC THIS NEW YEAR'S EVE!</div>
+                        <div class="promo-subline" id="slideSubline">WESTERN KARAOKE SHOWDOWN • BEST DRESSED PRIZES • SALOON SPECIALS • MIDNIGHT COUNTDOWN</div>
+                    </div>
+                    <div class="promo-wanted-cta">
+                        <div class="wanted-top" id="slideCtaTop">WANTED ON STAGE</div>
+                        <div class="wanted-main" id="slideCtaMain">BOOK YOUR TABLE</div>
                     </div>
                 </div>
-
-                <div class="venue-clock-pill">
-                    <img src="coasters_logo.png" alt="Coasters Tavern" class="venue-logo" onerror="this.style.display='none'">
-                    <div class="venue-text">
-                        <div class="venue-name" id="venueNameText">COASTERS TAVERN</div>
-                        <div class="venue-sub" id="venueSubText">WILD WEST KARAOKE NYE</div>
-                    </div>
-                    <div class="live-clock-box" aria-label="Redwood Local Time">
-                        <span id="clkH">12</span><span class="blink-colon">:</span><span id="clkM">00</span><span class="blink-colon">:</span><span id="clkS">00</span><span class="clock-ampm" id="clkAmPm">PM</span>
-                    </div>
+                <div class="slide-footer-bar">
+                    <div class="slide-dots" id="slideDots"></div>
+                    <div class="status-strip" id="statusStrip">LOOPING AD • 10S SLIDES • [SPACE] PAUSE • [0] LOCK • [↓] DEMO FIREWORKS • [A] ADMIN • [R] REMOTE</div>
                 </div>
             </div>
 
@@ -652,29 +498,6 @@
             <div class="midnight-banner" id="midnightBanner">
                 <div class="midnight-title" id="midnightBannerTitle">★ HAPPY NEW YEAR 2027! ★</div>
                 <div class="midnight-sub" id="midnightBannerSub">SING IT LOUD & RAISE YOUR GLASSES AT COASTERS TAVERN REDWOOD!</div>
-            </div>
-
-            <!-- Bottom Western Saloon Promotional Slide Overlay -->
-            <div class="promo-wrap">
-                <div class="promo-saloon-card" id="promoCard">
-                    <div class="rope-border-left"></div>
-                    <div class="promo-content">
-                        <div class="promo-kicker-line">
-                            <span class="promo-badge" id="slideBadge">WILD WEST KARAOKE NYE</span>
-                            <span class="promo-date-tag" id="slideDateTag">DECEMBER 31 • REDWOOD CHRISTCHURCH</span>
-                        </div>
-                        <div class="promo-headline" id="slideHeadline">SADDLE UP & GRAB THE MIC THIS NEW YEAR'S EVE!</div>
-                        <div class="promo-subline" id="slideSubline">WESTERN KARAOKE SHOWDOWN • BEST DRESSED PRIZES • SALOON SPECIALS • MIDNIGHT COUNTDOWN</div>
-                    </div>
-                    <div class="promo-wanted-cta">
-                        <div class="wanted-top" id="slideCtaTop">WANTED ON STAGE</div>
-                        <div class="wanted-main" id="slideCtaMain">BOOK YOUR TABLE</div>
-                    </div>
-                </div>
-                <div class="slide-footer-bar">
-                    <div class="slide-dots" id="slideDots"></div>
-                    <div class="status-strip" id="statusStrip">LOOPING AD • 10S SLIDES • [SPACE] PAUSE • [0] LOCK • [↓] DEMO FIREWORKS • [A] ADMIN • [R] REMOTE</div>
-                </div>
             </div>
         </div>
     </div>
@@ -754,6 +577,16 @@
         window.addEventListener('resize', resizeStage);
         resizeStage();
 
+        // Reveal controls on mouse move, auto-hide after 3s idle
+        let mouseHideTimer = null;
+        window.addEventListener('mousemove', () => {
+            document.body.classList.add('mouse-active');
+            if (mouseHideTimer) clearTimeout(mouseHideTimer);
+            mouseHideTimer = setTimeout(() => {
+                document.body.classList.remove('mouse-active');
+            }, 3000);
+        });
+
         // =========================================================================
         // 2. REAL ASTRONOMICAL SUNRISE / SUNSET CALCULATOR FOR REDWOOD, CHRISTCHURCH
         // =========================================================================
@@ -799,15 +632,6 @@
             };
         }
 
-        function formatMinutesTo12Hr(totalMins) {
-            const norm = ((Math.round(totalMins) % 1440) + 1440) % 1440;
-            const h24 = Math.floor(norm / 60);
-            const m = norm % 60;
-            const ampm = h24 >= 12 ? 'PM' : 'AM';
-            const h12 = h24 % 12 || 12;
-            return `${String(h12).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`;
-        }
-
         const liveWeather = {
             tempC: 19,
             windKmh: 14,
@@ -833,35 +657,21 @@
                         liveWeather.windKmh = Math.round(data.current.wind_speed_10m);
                         liveWeather.cloudCover = data.current.cloud_cover || 15;
                         liveWeather.weatherCode = data.current.weather_code || 0;
-
-                        const code = liveWeather.weatherCode;
-                        if (code === 0) liveWeather.description = "CLEAR REDWOOD SKY";
-                        else if (code <= 3) liveWeather.description = "PARTLY CLOUDY NOR'WEST";
-                        else if (code <= 48) liveWeather.description = "MISTY PLAINS";
-                        else if (code <= 67) liveWeather.description = "PRAIRIE RAIN";
-                        else if (code >= 95) liveWeather.description = "FRONTIER THUNDERSTORM";
-                        else liveWeather.description = "CANTERBURY BREEZE";
                     }
                 }
             } catch (_) {
                 // Offline fallback uses astronomical calculations seamlessly
             }
-            updateAstroUI();
-        }
-
-        function updateAstroUI() {
-            document.getElementById('sunriseText').textContent = formatMinutesTo12Hr(liveWeather.sunriseMin);
-            document.getElementById('sunsetText').textContent = formatMinutesTo12Hr(liveWeather.sunsetMin);
-            document.getElementById('weatherDescText').textContent = `${liveWeather.description} • ${liveWeather.tempC}°C`;
         }
 
         fetchRedwoodWeather();
         setInterval(fetchRedwoodWeather, 600000);
 
         // =========================================================================
-        // 3. COUNTDOWN & BLINKING CLOCK CONTROLLER
+        // 3. COUNTDOWN CONTROLLER (FIREWORKS ONLY AT NYE MIDNIGHT)
         // =========================================================================
-        let demoFireworksRemaining = 0; // Triggered via remote/keyboard or actual midnight
+        let demoFireworksRemaining = 0;
+        let isMidnightFireworksActive = false;
 
         function getTargetNewYearDate(now) {
             if (appConfig.targetDateISO) {
@@ -874,24 +684,14 @@
 
         function updateClocksAndCountdown() {
             const now = new Date();
-            let h = now.getHours();
-            const m = String(now.getMinutes()).padStart(2, '0');
-            const s = String(now.getSeconds()).padStart(2, '0');
-            const ampm = h >= 12 ? 'PM' : 'AM';
-            h = h % 12 || 12;
-
-            document.getElementById('clkH').textContent = String(h).padStart(2, '0');
-            document.getElementById('clkM').textContent = m;
-            document.getElementById('clkS').textContent = s;
-            document.getElementById('clkAmPm').textContent = ampm;
-
             const target = getTargetNewYearDate(now);
             let diffMs = target.getTime() - now.getTime();
 
-            // Check if within first 5 minutes after midnight New Year's Day or demo mode active
+            // Check if within first 10 minutes after midnight New Year's Day or demo mode active
             const isNewYearsMidnightWindow = (now.getMonth() === 0 && now.getDate() === 1 && now.getHours() === 0 && now.getMinutes() < 10);
 
             if (diffMs <= 0 || isNewYearsMidnightWindow || demoFireworksRemaining > 0) {
+                isMidnightFireworksActive = true;
                 document.getElementById('cdDays').textContent = '00';
                 document.getElementById('cdHours').textContent = '00';
                 document.getElementById('cdMinutes').textContent = '00';
@@ -900,10 +700,8 @@
                 document.getElementById('midnightBannerTitle').textContent = `★ HAPPY NEW YEAR ${target.getFullYear()}! ★`;
                 document.getElementById('midnightBanner').classList.add('active');
                 document.getElementById('countdownStage').style.opacity = '0.18';
-                if (demoFireworksRemaining <= 0 && (diffMs <= 0 || isNewYearsMidnightWindow)) {
-                    demoFireworksRemaining = 5;
-                }
             } else {
+                isMidnightFireworksActive = false;
                 document.getElementById('midnightBanner').classList.remove('active');
                 document.getElementById('countdownStage').style.opacity = '1';
 
@@ -936,8 +734,6 @@
         let slideTimer = null;
 
         function applyStaticBranding() {
-            document.getElementById('venueNameText').textContent = appConfig.venueName;
-            document.getElementById('venueSubText').textContent = appConfig.venueSub;
             document.getElementById('countdownHeaderTitle').textContent = appConfig.countdownTitle;
         }
 
@@ -1712,7 +1508,6 @@
 
             // 1. Dynamic Sky Gradient for Redwood, Christchurch
             const env = getSkyEnvironment(nowDate);
-            document.getElementById('skyPhaseBadge').textContent = env.phaseLabel;
 
             const skyGrad = ctx.createLinearGradient(0, 0, 0, 795);
             skyGrad.addColorStop(0, env.topCol);
@@ -1894,14 +1689,15 @@
                 ctx.restore();
             }
 
-            // 11. Epic Fireworks Display (Continuous celebratory bursts during Midnight / Demo + Periodic Teasers)
-            autoFireworkTimer += dt;
-            const fwInterval = demoFireworksRemaining > 0 ? 0.32 : 2.6;
-            if (autoFireworkTimer >= fwInterval) {
-                autoFireworkTimer = 0;
-                launchFireworkShell();
-                if (demoFireworksRemaining > 0 && Math.random() > 0.35) {
+            // 11. Epic Fireworks Display (ONLY when NYE Countdown reaches Midnight)
+            if (isMidnightFireworksActive) {
+                autoFireworkTimer += dt;
+                if (autoFireworkTimer >= 0.32) {
+                    autoFireworkTimer = 0;
                     launchFireworkShell();
+                    if (Math.random() > 0.35) {
+                        launchFireworkShell();
+                    }
                 }
             }
 
