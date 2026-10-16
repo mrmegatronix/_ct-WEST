@@ -1592,9 +1592,9 @@
             drawCactus(ctx, 1615, 805, 1.05, "#2d5a27");
             drawCactus(ctx, 1835, 825, 0.78, "#254a20");
 
-            // Coiled Rattlesnake with Vibrating Tail Rattle Near Left Cactus (x=152, y=818)
+            // Coiled Rattlesnake with Vibrating Tail Rattle Near Left Cactus (x=72, y=822)
             ctx.save();
-            ctx.translate(152, 818);
+            ctx.translate(72, 822);
             ctx.fillStyle = "#5c3016";
             ctx.beginPath();
             ctx.ellipse(0, 0, 18, 6, 0, 0, Math.PI * 2);
@@ -1739,6 +1739,9 @@
                 ctx.fill();
             }
 
+            // Foreground Trail Crossroads Directional Signpost (x=210, y=845)
+            drawTrailSignpost(ctx, 210, 845, timeSec);
+
             // Swinging Wooden Signpost ("NYE KARAOKE AT COASTERS") on Right Foreground (Bigger Sign & Text)
             ctx.save();
             ctx.translate(1715, 818);
@@ -1758,6 +1761,174 @@
             ctx.textAlign = "center";
             ctx.fillText("NYE KARAOKE", 0, 26);
             ctx.fillText("AT COASTERS", 0, 44);
+            ctx.restore();
+        }
+
+        // Frontier Directional Crossroads Signpost in Foreground
+        function drawTrailSignpost(ctx, posX, posY, timeSec) {
+            ctx.save();
+            ctx.translate(posX, posY);
+
+            // Ground Base Mound & Desert Stones
+            ctx.fillStyle = "#3d2010";
+            ctx.beginPath();
+            ctx.ellipse(0, 4, 40, 10, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = "#66381d";
+            ctx.beginPath();
+            ctx.ellipse(-18, 5, 9, 4, -0.2, 0, Math.PI * 2);
+            ctx.ellipse(17, 6, 11, 5, 0.3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Main Vertical Timber Post
+            const postW = 18;
+            const postH = 265;
+            const postGrad = ctx.createLinearGradient(-postW / 2, 0, postW / 2, 0);
+            postGrad.addColorStop(0, "#4a240e");
+            postGrad.addColorStop(0.35, "#6e3818");
+            postGrad.addColorStop(0.85, "#522810");
+            postGrad.addColorStop(1, "#361808");
+            ctx.fillStyle = postGrad;
+            ctx.fillRect(-postW / 2, -postH, postW, postH);
+
+            // Wood Grain Lines
+            ctx.strokeStyle = "rgba(35, 16, 5, 0.55)";
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(-3, -postH); ctx.lineTo(-4, 0);
+            ctx.moveTo(3, -postH); ctx.lineTo(2, 0);
+            ctx.stroke();
+
+            // Carved Post Cap / Pyramid Top
+            ctx.fillStyle = "#5c2d12";
+            ctx.beginPath();
+            ctx.moveTo(-postW / 2 - 2, -postH);
+            ctx.lineTo(0, -postH - 12);
+            ctx.lineTo(postW / 2 + 2, -postH);
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = "#301507";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Helper to draw realistic wooden arrow sign plank
+            function drawPlank(mountY, angle, width, height, type, text, textOffsetX) {
+                ctx.save();
+                ctx.translate(0, mountY);
+                // Gentle realistic wind sway
+                const sway = Math.sin(timeSec * 2.1 + mountY * 0.05) * 0.018;
+                ctx.rotate(angle + sway);
+
+                // Plank Drop Shadow
+                ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+                ctx.shadowBlur = 8;
+                ctx.shadowOffsetY = 4;
+
+                // Plank Outline Path with Chevron Arrow Points
+                ctx.beginPath();
+                const h2 = height / 2;
+                const ptSize = 16;
+
+                if (type === 'both') {
+                    // Points Left and Right (◄───►)
+                    const w2 = width / 2;
+                    ctx.moveTo(-w2, 0);
+                    ctx.lineTo(-w2 + ptSize, -h2);
+                    ctx.lineTo(w2 - ptSize, -h2);
+                    ctx.lineTo(w2, 0);
+                    ctx.lineTo(w2 - ptSize, h2);
+                    ctx.lineTo(-w2 + ptSize, h2);
+                    ctx.closePath();
+                } else if (type === 'sw') {
+                    // Points South-West / Left (◄───)
+                    ctx.moveTo(-width, 0);
+                    ctx.lineTo(-width + ptSize, -h2);
+                    ctx.lineTo(16, -h2);
+                    ctx.lineTo(16, h2);
+                    ctx.lineTo(-width + ptSize, h2);
+                    ctx.closePath();
+                } else if (type === 'se') {
+                    // Points South-East / Right (───►)
+                    ctx.moveTo(-16, -h2);
+                    ctx.lineTo(width - ptSize, -h2);
+                    ctx.lineTo(width, 0);
+                    ctx.lineTo(width - ptSize, h2);
+                    ctx.lineTo(-16, h2);
+                    ctx.closePath();
+                }
+
+                // Weathered Frontier Wood Gradient
+                const plankGrad = ctx.createLinearGradient(0, -h2, 0, h2);
+                plankGrad.addColorStop(0, "#7a3f1c");
+                plankGrad.addColorStop(0.25, "#643315");
+                plankGrad.addColorStop(0.8, "#52280f");
+                plankGrad.addColorStop(1, "#3d1c09");
+                ctx.fillStyle = plankGrad;
+                ctx.fill();
+
+                // Clear shadow for borders & details
+                ctx.shadowColor = "transparent";
+
+                // Bevel Border
+                ctx.strokeStyle = "#995226";
+                ctx.lineWidth = 1.2;
+                ctx.stroke();
+                ctx.strokeStyle = "#2e1306";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Weathered Wood Grain Lines
+                ctx.strokeStyle = "rgba(42, 19, 7, 0.4)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                const startX = type === 'sw' ? -width + ptSize : (type === 'both' ? -width/2 + ptSize : -14);
+                const endX = type === 'se' ? width - ptSize : (type === 'both' ? width/2 - ptSize : 14);
+                ctx.moveTo(startX, -h2 * 0.35);
+                ctx.lineTo(endX, -h2 * 0.35);
+                ctx.moveTo(startX, h2 * 0.4);
+                ctx.lineTo(endX, h2 * 0.4);
+                ctx.stroke();
+
+                // Dark Iron Nail Studs
+                [-4, 4].forEach(ny => {
+                    ctx.fillStyle = "#1e0f06";
+                    ctx.beginPath();
+                    ctx.arc(0, ny, 2.8, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.fillStyle = "#8a7060";
+                    ctx.beginPath();
+                    ctx.arc(-0.8, ny - 0.8, 1, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                // High-Contrast Crisp Lettering
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.font = "700 13.5px 'Chakra Petch', sans-serif";
+
+                // Text Drop Shadow for 1080p Readability
+                ctx.fillStyle = "rgba(0, 0, 0, 0.95)";
+                ctx.fillText(text, textOffsetX + 1.5, 1.5);
+                ctx.fillText(text, textOffsetX + 1.5, 0);
+                // Main Cream Gold Text
+                ctx.fillStyle = "#fff1a8";
+                ctx.fillText(text, textOffsetX, 0);
+
+                ctx.restore();
+            }
+
+            // 1. LEFT AND RIGHT: GRAZING STATIONS (Top plank, bidirectional ◄───►)
+            drawPlank(-218, 0, 218, 30, 'both', '◄ GRAZING STATIONS ►', 0);
+
+            // 2. SOUTH WEST: WATERING HOLE (Plank points Left and tilts downwards, -0.22 rad)
+            drawPlank(-162, -0.22, 168, 29, 'sw', 'WATERING HOLE ↙', -72);
+
+            // 3. SOUTH EAST: GOLD MINE (Plank points Right and tilts downwards, +0.21 rad)
+            drawPlank(-106, 0.21, 162, 29, 'se', 'GOLD MINE ↘', 65);
+
+            // 4. SOUTH EAST: OUTHOUSE (Plank points Right and tilts downwards, +0.25 rad)
+            drawPlank(-52, 0.25, 146, 28, 'se', 'OUTHOUSE ↘', 57);
+
             ctx.restore();
         }
 
