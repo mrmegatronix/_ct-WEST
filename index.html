@@ -846,7 +846,7 @@
 
                 <div class="slide-footer-bar">
                     <div class="slide-dots" id="slideDots"></div>
-                    <div class="status-strip" id="statusStrip">LOOPING AD • 10S SLIDES • [SPACE] PAUSE • [0] LOCK • [↓] DEMO FIREWORKS • [A] ADMIN • [R] REMOTE</div>
+                    <div class="status-strip" id="statusStrip">LOOPING AD • 10S SLIDES • [SPACE] PAUSE • [0] LOCK • [↓] DEMO FIREWORKS • [P] POSTER • [A] ADMIN • [R] REMOTE</div>
                 </div>
             </div>
 
@@ -1171,7 +1171,7 @@
             const state = isLocked ? '🔒 LOCKED (0)' : (isPaused ? '⏸ PAUSED (SPACE)' : `▶ LOOPING (${sec}S)`);
             const skyLabel = appConfig.skyMode || 'REALTIME';
             document.getElementById('statusStrip').textContent =
-                `${state} • SLIDE ${currentSlideIndex + 1}/${appConfig.slides.length} • SKY: ${skyLabel} • [↓] FIREWORKS • [A] ADMIN • [R] REMOTE`;
+                `${state} • SLIDE ${currentSlideIndex + 1}/${appConfig.slides.length} • SKY: ${skyLabel} • [↓] FIREWORKS • [P] POSTER • [A] ADMIN • [R] REMOTE`;
         }
 
         function showSlide(index, immediate = false) {
@@ -1283,6 +1283,9 @@
             } else if (e.key >= '1' && e.key <= '9') {
                 e.preventDefault();
                 if (!isLocked) setSlideDurationSeconds(parseInt(e.key, 10) * 10);
+            } else if (e.key === 'p' || e.key === 'P') {
+                e.preventDefault();
+                window.open('poster.html', '_blank');
             } else if (e.key === 'a' || e.key === 'A') {
                 e.preventDefault();
                 window.open('admin.html', '_blank');

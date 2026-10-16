@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WANTED POSTER - Wild West NYE Karaoke Party | Coasters Tavern Redwood</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Rye&family=Smokum&family=Sancreek&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --poster-w: 297mm;
+            --poster-h: 420mm;
+            --paper-bg: #ecd7b0;
+            --paper-dark: #caa36e;
+            --ink-black: #1a0f08;
+            --ink-brown: #361a0b;
+            --ink-red: #8b181b;
+            --gold: #d49a37;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #110804;
+            background-image: 
+                radial-gradient(ellipse at 50% 50%, #221006 0%, #0d0502 100%);
+            color: var(--ink-black);
+            font-family: 'Playfair Display', Georgia, serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Action Bar (Print / Back) */
+        .controls-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            z-index: 100;
+        }
+
+        .btn {
+            background: linear-gradient(180deg, #d49a37 0%, #996317 100%);
+            color: #1a0b04;
+            font-family: 'Rye', serif;
+            font-size: 16px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: 2px solid #ffde8a;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.4);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 180, 50, 0.4), inset 0 1px 0 rgba(255,255,255,0.6);
+            background: linear-gradient(180deg, #e8b354 0%, #ab7220 100%);
+        }
+
+        .btn-outline {
+            background: rgba(45, 20, 8, 0.8);
+            color: #ffd88a;
+            border: 2px solid #b87f2b;
+        }
+
+        .btn-outline:hover {
+            background: rgba(70, 32, 14, 0.95);
+            color: #fff;
+        }
+
+        /* The Poster Itself - Exact A3 Aspect Ratio (1 : 1.4142) */
+        .poster-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 860px;
+            aspect-ratio: 297 / 420;
+            background-color: var(--paper-bg);
+            background-image:
+                radial-gradient(circle at 50% 50%, rgba(255, 245, 225, 0.7) 0%, rgba(210, 170, 115, 0.3) 70%, rgba(130, 85, 45, 0.6) 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(90, 50, 20, 0.04) 3px, rgba(90, 50, 20, 0.04) 6px),
+                repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(90, 50, 20, 0.03) 4px, rgba(90, 50, 20, 0.03) 8px);
+            border: 1px solid #784820;
+            border-radius: 4px;
+            padding: 38px 46px;
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.95),
+                0 0 120px rgba(180, 110, 45, 0.2),
+                inset 0 0 60px rgba(110, 60, 20, 0.45);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* Weathered Aged Paper Texture Vignette */
+        .poster-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, transparent 68%, rgba(80, 40, 15, 0.45) 90%, rgba(40, 18, 5, 0.75) 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Vintage Creases & Water Stains */
+        .crease-h {
+            position: absolute;
+            top: 33%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(100, 55, 20, 0.25) 20%, rgba(80, 40, 15, 0.35) 50%, rgba(100, 55, 20, 0.25) 80%, transparent 100%);
+            pointer-events: none;
+            z-index: 3;
+        }
+        .crease-h2 {
+            position: absolute;
+            top: 66%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(100, 55, 20, 0.22) 25%, rgba(80, 40, 15, 0.32) 50%, rgba(100, 55, 20, 0.22) 75%, transparent 100%);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* 4 Corner Heavy Iron Tacks */
+        .tack {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(circle at 35% 35%, #5a5a5a 0%, #202020 60%, #0a0a0a 100%);
+            border-radius: 50%;
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255,255,255,0.4);
+            z-index: 10;
+        }
+        .tack-tl { top: 18px; left: 22px; }
+        .tack-tr { top: 18px; right: 22px; }
+        .tack-bl { bottom: 18px; left: 22px; }
+        .tack-br { bottom: 18px; right: 22px; }
+
+        /* Inner Frontier Border Frame */
+        .inner-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border: 5px solid var(--ink-black);
+            border-radius: 3px;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            z-index: 5;
+        }
+
+        .inner-frame::after {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            border: 1.5px solid var(--ink-black);
+            pointer-events: none;
+        }
+
+        /* Ornate Victorian Corner Accents */
+        .corner-bracket {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-color: var(--ink-black);
+            border-style: solid;
+            pointer-events: none;
+        }
+        .corner-tl { top: 10px; left: 10px; border-width: 3px 0 0 3px; }
+        .corner-tr { top: 10px; right: 10px; border-width: 3px 3px 0 0; }
+        .corner-bl { bottom: 10px; left: 10px; border-width: 0 0 3px 3px; }
+        .corner-br { bottom: 10px; right: 10px; border-width: 0 3px 3px 0; }
+
+        /* Poster Typography Sections */
+        .top-authority {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--ink-brown);
+            border-bottom: 2px solid var(--ink-black);
+            padding-bottom: 5px;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .huge-wanted {
+            font-family: 'Smokum', 'Rye', serif;
+            font-size: 108px;
+            line-height: 0.88;
+            letter-spacing: 8px;
+            color: var(--ink-black);
+            text-transform: uppercase;
+            text-shadow: 3px 4px 0px rgba(140, 85, 40, 0.4);
+            margin: 8px 0 2px 0;
+            transform: scaleY(1.15);
+        }
+
+        .dead-or-alive {
+            font-family: 'Rye', serif;
+            font-size: 26px;
+            letter-spacing: 5px;
+            color: var(--ink-red);
+            text-transform: uppercase;
+            font-weight: 700;
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15);
+            margin-bottom: 6px;
+        }
+
+        .event-banner-box {
+            background: var(--ink-black);
+            color: #fff8ea;
+            width: 100%;
+            padding: 8px 14px;
+            border: 2px solid var(--ink-black);
+            border-radius: 4px;
+            margin: 4px 0 10px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .event-main-title {
+            font-family: 'Smokum', 'Rye', serif;
+            font-size: 38px;
+            letter-spacing: 3px;
+            line-height: 1;
+            color: #ffd875;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .event-date-row {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 900;
+            font-size: 18px;
+            letter-spacing: 2.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        /* Center Woodcut Engraving Illustration & Mugshot Box */
+        .portrait-section {
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            margin: 4px 0;
+        }
+
+        .woodcut-mugshot-frame {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            border: 4px solid var(--ink-black);
+            background: #f7ebd4;
+            padding: 6px;
+            box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .woodcut-mugshot-frame::before {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            border: 1px dashed var(--ink-brown);
+        }
+
+        .woodcut-svg {
+            width: 100%;
+            height: 100%;
+            filter: contrast(1.2);
+        }
+
+        .wanted-description-col {
+            flex: 1;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .alias-tag {
+            font-family: 'Rye', serif;
+            font-size: 20px;
+            color: var(--ink-red);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 2px dashed var(--ink-brown);
+            padding-bottom: 4px;
+        }
+
+        .offense-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 2px;
+        }
+
+        .offense-list li {
+            font-family: 'Playfair Display', serif;
+            font-size: 14.5px;
+            line-height: 1.25;
+            font-weight: 700;
+            color: var(--ink-brown);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .offense-list li::before {
+            content: "★";
+            position: absolute;
+            left: 0;
+            color: var(--ink-red);
+            font-size: 13px;
+        }
+
+        /* Huge Reward Callout Section */
+        .reward-section {
+            width: 100%;
+            border-top: 3px double var(--ink-black);
+            border-bottom: 3px double var(--ink-black);
+            padding: 8px 12px;
+            margin: 6px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            background: rgba(140, 24, 27, 0.06);
+        }
+
+        .reward-title {
+            font-family: 'Smokum', 'Rye', serif;
+            font-size: 52px;
+            line-height: 0.95;
+            letter-spacing: 4px;
+            color: var(--ink-red);
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+        }
+
+        .reward-details {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--ink-black);
+        }
+
+        .reward-prizes {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--ink-brown);
+            text-transform: uppercase;
+        }
+
+        /* Saloon Amenities & Outlaw Perks */
+        .perks-strip {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0;
+            border-bottom: 1.5px solid var(--ink-black);
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 900;
+            font-size: 13.5px;
+            letter-spacing: 1.5px;
+            color: var(--ink-brown);
+            text-transform: uppercase;
+        }
+
+        .perk-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Bottom Seal & Marshal Endorsement */
+        .poster-footer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 8px;
+            padding-top: 4px;
+        }
+
+        .sheriff-badge-stamp {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .sheriff-star-svg {
+            width: 64px;
+            height: 64px;
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.4));
+        }
+
+        .stamp-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            line-height: 1.3;
+            text-transform: uppercase;
+            color: var(--ink-black);
+        }
+
+        .venue-stamp-box {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .venue-name-bold {
+            font-family: 'Rye', serif;
+            font-size: 21px;
+            color: var(--ink-black);
+            letter-spacing: 1.5px;
+        }
+
+        .venue-address {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--ink-brown);
+        }
+
+        .official-fineprint {
+            font-family: 'Playfair Display', serif;
+            font-size: 10.5px;
+            font-style: italic;
+            letter-spacing: 1px;
+            color: #5a3820;
+            width: 100%;
+            margin-top: 4px;
+            border-top: 1px solid rgba(50, 25, 10, 0.35);
+            padding-top: 3px;
+        }
+
+        /* Print Settings for A3 High-Res Output */
+        @media print {
+            body {
+                background: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .controls-bar {
+                display: none !important;
+            }
+
+            .poster-wrapper {
+                max-width: none !important;
+                width: 297mm !important;
+                height: 420mm !important;
+                aspect-ratio: auto !important;
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 30mm 26mm !important;
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+
+            @page {
+                size: A3 portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Controls Bar (Hidden during Print) -->
+    <div class="controls-bar">
+        <button class="btn" onclick="window.print()">
+            <span>🖨️</span> PRINT / SAVE AS PDF (A3)
+        </button>
+        <a href="index.html" class="btn btn-outline">
+            <span>📺</span> LIVE DISPLAY
+        </a>
+        <a href="admin.html" class="btn btn-outline">
+            <span>⚙️</span> ADMIN PANEL
+        </a>
+    </div>
+
+    <!-- A3 Portrait Wild West Wanted Poster -->
+    <div class="poster-wrapper">
+        <div class="crease-h"></div>
+        <div class="crease-h2"></div>
+        <div class="tack tack-tl"></div>
+        <div class="tack tack-tr"></div>
+        <div class="tack tack-bl"></div>
+        <div class="tack tack-br"></div>
+
+        <div class="inner-frame">
+            <div class="corner-bracket corner-tl"></div>
+            <div class="corner-bracket corner-tr"></div>
+            <div class="corner-bracket corner-bl"></div>
+            <div class="corner-bracket corner-br"></div>
+
+            <!-- Top Authority Header -->
+            <div class="top-authority">
+                <span>★ CANTERBURY TERRITORY ★</span>
+                <span>OFFICIAL NOTICE NO. 2027</span>
+                <span>★ REDWOOD MARSHAL ★</span>
+            </div>
+
+            <!-- Massive WANTED Banner -->
+            <div class="huge-wanted">WANTED</div>
+            <div class="dead-or-alive">★ DEAD OR ALIVE ON STAGE ★</div>
+
+            <!-- Event Highlight Box -->
+            <div class="event-banner-box">
+                <div class="event-main-title">WILD WEST N.Y.E. KARAOKE PARTY!</div>
+                <div class="event-date-row">WEDNESDAY 31ST DECEMBER • FROM 8:00 PM TILL LATE</div>
+            </div>
+
+            <!-- Center Woodcut Portrait & Outlaw Offenses -->
+            <div class="portrait-section">
+                <!-- Authentic High-Res Woodcut Engraving Mugshot SVG -->
+                <div class="woodcut-mugshot-frame">
+                    <svg class="woodcut-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background woodcut hatching -->
+                        <g stroke="#3a2012" stroke-width="0.8" opacity="0.35">
+                            <line x1="10" y1="20" x2="190" y2="20" />
+                            <line x1="10" y1="35" x2="190" y2="35" />
+                            <line x1="10" y1="50" x2="190" y2="50" />
+                            <line x1="10" y1="65" x2="190" y2="65" />
+                            <line x1="10" y1="80" x2="190" y2="80" />
+                            <line x1="10" y1="95" x2="190" y2="95" />
+                            <line x1="10" y1="110" x2="190" y2="110" />
+                            <line x1="10" y1="125" x2="190" y2="125" />
+                            <line x1="10" y1="140" x2="190" y2="140" />
+                            <line x1="10" y1="155" x2="190" y2="155" />
+                            <line x1="10" y1="170" x2="190" y2="170" />
+                        </g>
+
+                        <!-- Silhouette of Outlaw Cowboy with Stetson singing into Vintage Microphone -->
+                        <!-- Shoulders / Duster Coat -->
+                        <path d="M 30,195 Q 50,140 85,135 L 115,135 Q 150,140 170,195 Z" fill="#201006" />
+                        <!-- Coat Lapels -->
+                        <path d="M 85,135 L 100,165 L 115,135" stroke="#f0dec0" stroke-width="2.5" fill="none" />
+                        <!-- Wild West Bandana / Neckerchief -->
+                        <polygon points="90,128 110,128 100,146" fill="#8b181b" stroke="#201006" stroke-width="1.5" />
+                        <!-- Head & Jawline -->
+                        <ellipse cx="100" cy="102" rx="24" ry="28" fill="#dfbe98" stroke="#201006" stroke-width="2.5" />
+                        <!-- Singing Open Mouth (Singing Outlaw!) -->
+                        <ellipse cx="94" cy="114" rx="8" ry="7" fill="#2b0e06" stroke="#201006" stroke-width="1.5" />
+                        <!-- Mustache -->
+                        <path d="M 80,108 Q 94,104 100,110 Q 106,104 120,108 Q 108,114 100,111 Q 92,114 80,108 Z" fill="#201006" />
+                        <!-- Eyes & Determined Brow -->
+                        <path d="M 85,95 Q 92,93 96,96" stroke="#201006" stroke-width="2.5" fill="none" />
+                        <circle cx="91" cy="98" r="2" fill="#201006" />
+                        <!-- Iconic Wide-Brim Stetson Hat -->
+                        <path d="M 45,86 Q 100,68 155,86 Q 100,82 45,86 Z" fill="#201006" />
+                        <path d="M 72,84 L 76,46 Q 100,40 124,46 L 128,84 Z" fill="#2e170a" stroke="#201006" stroke-width="2" />
+                        <!-- Hat Crown Crease & Band -->
+                        <path d="M 86,48 Q 100,54 114,48" stroke="#150a04" stroke-width="2.5" fill="none" />
+                        <rect x="74" y="78" width="52" height="6" fill="#8b181b" stroke="#d49a37" stroke-width="1" />
+
+                        <!-- Vintage Chrome Stage Microphone held in front -->
+                        <!-- Hand holding mic -->
+                        <path d="M 125,145 Q 115,130 110,120 Q 116,115 125,124 Q 130,132 132,142 Z" fill="#dfbe98" stroke="#201006" stroke-width="2" />
+                        <!-- Mic head (Pill-shaped 1950s/Saloon microphone) -->
+                        <rect x="108" y="104" width="16" height="24" rx="8" fill="#a8b2ba" stroke="#201006" stroke-width="2" />
+                        <line x1="110" y1="110" x2="122" y2="110" stroke="#404850" stroke-width="1.5" />
+                        <line x1="110" y1="116" x2="122" y2="116" stroke="#404850" stroke-width="1.5" />
+                        <line x1="110" y1="122" x2="122" y2="122" stroke="#404850" stroke-width="1.5" />
+                        <!-- Mic stand rod -->
+                        <line x1="116" y1="128" x2="122" y2="195" stroke="#201006" stroke-width="3" />
+
+                        <!-- Floating Musical Notes -->
+                        <text x="32" y="55" font-family="sans-serif" font-weight="bold" font-size="22" fill="#8b181b">♪</text>
+                        <text x="156" y="60" font-family="sans-serif" font-weight="bold" font-size="26" fill="#8b181b">♫</text>
+                        <text x="162" y="115" font-family="sans-serif" font-weight="bold" font-size="18" fill="#8b181b">♬</text>
+                    </svg>
+                </div>
+
+                <!-- Description & Wanted Charges -->
+                <div class="wanted-description-col">
+                    <div class="alias-tag">ALIAS: "THE REDWOOD VOCAL OUTLAW"</div>
+                    <ul class="offense-list">
+                        <li><strong>CHARGE 1:</strong> Stealing the spotlight with reckless country anthems & saloon sing-alongs.</li>
+                        <li><strong>CHARGE 2:</strong> Armed with dangerous vocal cords, killer rhythm & zero stage fright.</li>
+                        <li><strong>CHARGE 3:</strong> Inciting line-dancing showdowns & cheering crowds into the midnight hour.</li>
+                        <li><strong>CHARGE 4:</strong> Saddling up at Coasters Saloon for the epic countdown until 2027.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Big REWARD Box -->
+            <div class="reward-section">
+                <div class="reward-title">$$$ REWARD $$$</div>
+                <div class="reward-details">COLD HARD BAR TABS & SALOON GLORY!</div>
+                <div class="reward-prizes">★ PRIZES FOR BEST DRESSED OUTLAWS (COWBOYS & COWGIRLS) & BEST SINGER ★</div>
+            </div>
+
+            <!-- Perks & Saloon Provisions -->
+            <div class="perks-strip">
+                <div class="perk-item"><span>🍺</span> ICE-COLD CRAFT BREWS</div>
+                <div class="perk-item"><span>🥃</span> BOURBON & COCKTAILS</div>
+                <div class="perk-item"><span>🐎</span> HOBBLE HORSE PARKING</div>
+                <div class="perk-item"><span>🎆</span> MIDNIGHT FIREWORKS</div>
+                <div class="perk-item"><span>🎟️</span> FREE ENTRY</div>
+            </div>
+
+            <!-- Footer: Marshal Seal, Venue Stamp & Endorsement -->
+            <div class="poster-footer">
+                <!-- 6-Point Brass Sheriff Star Badge -->
+                <div class="sheriff-badge-stamp">
+                    <svg class="sheriff-star-svg" viewBox="0 0 100 100">
+                        <!-- Six Point Star Polygon -->
+                        <polygon points="50,5 62,32 92,32 68,52 78,80 50,64 22,80 32,52 8,32 38,32" fill="#d49a37" stroke="#361a0b" stroke-width="3" />
+                        <circle cx="50" cy="5" r="3.5" fill="#361a0b" />
+                        <circle cx="92" cy="32" r="3.5" fill="#361a0b" />
+                        <circle cx="78" cy="80" r="3.5" fill="#361a0b" />
+                        <circle cx="22" cy="80" r="3.5" fill="#361a0b" />
+                        <circle cx="8" cy="32" r="3.5" fill="#361a0b" />
+                        <!-- Center Ring -->
+                        <circle cx="50" cy="48" r="19" fill="#f5e2b8" stroke="#361a0b" stroke-width="2" />
+                        <text x="50" y="45" font-family="'Rye', serif" font-size="7.5" font-weight="bold" fill="#361a0b" text-anchor="middle">SHERIFF</text>
+                        <text x="50" y="54" font-family="'Chakra Petch', sans-serif" font-size="6.5" font-weight="900" fill="#8b181b" text-anchor="middle">REDWOOD</text>
+                    </svg>
+                    <div class="stamp-text">
+                        OFFICIAL NOTICE<br>
+                        ISSUED BY AUTHORITY OF<br>
+                        REDWOOD MARSHAL SERVICE
+                    </div>
+                </div>
+
+                <!-- Venue Location Stamp -->
+                <div class="venue-stamp-box">
+                    <div class="venue-name-bold">COASTERS TAVERN</div>
+                    <div class="venue-address">156 MAIN NORTH ROAD, REDWOOD, CHRISTCHURCH</div>
+                    <div style="font-family: 'Chakra Petch', sans-serif; font-size: 13px; font-weight: 800; color: #8b181b; letter-spacing: 1px;">
+                        TABLE RESERVATIONS HIGHLY RECOMMENDED
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fineprint Disclaimer -->
+            <div class="official-fineprint">
+                * All outlaws, wranglers, saloon singers & frontier folk welcome. Stetsons, boots & spurs encouraged. Sing responsibly & party till late!
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
