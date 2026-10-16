@@ -89,55 +89,74 @@
             box-shadow: inset 0 0 0 4px rgba(255, 195, 75, 0.42);
         }
 
-        /* Top Screen Epic Western Countdown Stage (Positioned on Left) */
-        .countdown-stage {
+        /* Full-Width Top Western Title Banner (Spanning 100% Page Width) */
+        .saloon-header-banner {
             position: absolute;
-            top: 18px;
-            left: 48px;
-            transform: none;
-            z-index: 18;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 72px;
+            z-index: 24;
+            background:
+                repeating-linear-gradient(90deg, transparent 0px, transparent 140px, rgba(0, 0, 0, 0.45) 140px, rgba(0, 0, 0, 0.45) 142px),
+                linear-gradient(180deg, #441c09 0%, #2b1105 52%, #170702 100%);
+            border-bottom: 3.5px solid var(--gold-bright);
+            box-shadow:
+                0 10px 32px rgba(0, 0, 0, 0.92),
+                0 0 35px rgba(255, 185, 45, 0.4),
+                inset 0 2px 0 rgba(255, 240, 180, 0.55),
+                inset 0 -2px 0 rgba(0, 0, 0, 0.8);
+            box-sizing: border-box;
             pointer-events: none;
-            width: auto;
         }
 
-        .saloon-header-plaque {
-            background: radial-gradient(ellipse at 50% 25%, #632d13 0%, #3e1908 65%, #240c03 100%);
-            border: 4px solid var(--gold-bright);
-            border-radius: 18px 18px 24px 24px;
-            padding: 8px 36px;
-            box-shadow:
-                0 10px 32px rgba(0, 0, 0, 0.9),
-                0 0 40px rgba(255, 185, 45, 0.45),
-                inset 0 3px 0 rgba(255, 240, 180, 0.65),
-                inset 0 0 16px rgba(0, 0, 0, 0.85);
+        .banner-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 44px;
+            box-sizing: border-box;
+        }
+
+        .banner-side-badge {
+            font-family: 'Rye', serif;
+            font-size: 16px;
+            letter-spacing: 2.2px;
+            color: #ffd866;
+            background: rgba(22, 9, 3, 0.75);
+            border: 1.5px solid #d49324;
+            border-radius: 999px;
+            padding: 4px 18px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 0 12px rgba(255, 195, 50, 0.25);
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
+            white-space: nowrap;
+        }
+
+        .banner-center-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-            margin-bottom: 8px;
+            gap: 2px;
             white-space: nowrap;
-            position: relative;
         }
 
         .plaque-title-row {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
         .star-icon {
             color: var(--gold-bright);
-            font-size: 30px;
+            font-size: 26px;
             text-shadow: 0 0 18px var(--amber), 0 3px 6px rgba(0, 0, 0, 0.9);
             filter: drop-shadow(0 0 8px #ffb300);
         }
 
         .plaque-title {
             font-family: 'Rye', serif;
-            font-size: 38px;
+            font-size: 34px;
             color: #fff9db;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -153,17 +172,31 @@
         .plaque-subbadge {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            font-size: 18px;
-            letter-spacing: 2.5px;
+            font-size: 14.5px;
+            letter-spacing: 2px;
             color: #ffd866;
             background: rgba(24, 9, 2, 0.88);
             border: 1.5px solid #d49324;
             border-radius: 999px;
-            padding: 2px 22px;
+            padding: 1px 18px;
             box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9), 0 0 14px rgba(255, 195, 50, 0.35);
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
             text-transform: uppercase;
             white-space: nowrap;
+        }
+
+        /* Top Screen Epic Western Countdown Stage (Positioned on Left Under Banner) */
+        .countdown-stage {
+            position: absolute;
+            top: 86px;
+            left: 44px;
+            transform: none;
+            z-index: 18;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            pointer-events: none;
+            width: auto;
         }
 
         /* Glass UI Countdown Board with Adaptive Light/Dark Theme */
@@ -230,19 +263,19 @@
             transition: color 0.7s ease, text-shadow 0.7s ease;
         }
 
-        /* Glass UI Adaptive Dark Theme (Sunset / Night / Dawn) -> Light Text */
+        /* Glass UI Adaptive Dark Theme (Sunset / Night / Dawn) -> Light Text, Crystal Transparent Glass */
         .countdown-board.theme-dark {
-            background: rgba(22, 11, 5, 0.58);
-            border: 3px solid rgba(255, 204, 51, 0.55);
+            background: rgba(18, 9, 4, 0.20);
+            border: 2px solid rgba(255, 204, 51, 0.38);
             box-shadow:
-                0 16px 45px rgba(0, 0, 0, 0.8),
-                0 0 35px rgba(255, 175, 35, 0.28),
-                inset 0 1px 0 rgba(255, 240, 180, 0.35);
+                0 16px 45px rgba(0, 0, 0, 0.55),
+                0 0 25px rgba(255, 175, 35, 0.18),
+                inset 0 1px 0 rgba(255, 240, 180, 0.25);
         }
         .countdown-board.theme-dark .cd-unit {
-            background: rgba(45, 22, 9, 0.65);
-            border: 1.5px solid rgba(255, 204, 51, 0.42);
-            box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.75);
+            background: rgba(36, 17, 7, 0.26);
+            border: 1.5px solid rgba(255, 204, 51, 0.28);
+            box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.45);
         }
         .countdown-board.theme-dark .cd-digits {
             color: #ffffff;
@@ -259,19 +292,19 @@
             text-shadow: 0 0 24px rgba(255, 170, 0, 0.95);
         }
 
-        /* Glass UI Adaptive Light Theme (Daylight / Bright Sky) -> Dark Text */
+        /* Glass UI Adaptive Light Theme (Daylight / Bright Sky) -> Dark Text, Crystal Translucent Glass */
         .countdown-board.theme-light {
-            background: rgba(255, 255, 255, 0.45);
-            border: 3px solid rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.16);
+            border: 2px solid rgba(255, 255, 255, 0.55);
             box-shadow:
-                0 16px 45px rgba(0, 0, 0, 0.22),
-                0 0 30px rgba(255, 255, 255, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+                0 16px 45px rgba(0, 0, 0, 0.15),
+                0 0 20px rgba(255, 255, 255, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
         }
         .countdown-board.theme-light .cd-unit {
-            background: rgba(255, 255, 255, 0.58);
-            border: 1.5px solid rgba(255, 255, 255, 0.95);
-            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.45), 0 4px 10px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.20);
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.25), 0 4px 10px rgba(0, 0, 0, 0.05);
         }
         .countdown-board.theme-light .cd-digits {
             color: #1a0c04;
@@ -304,18 +337,18 @@
             transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .countdown-subheading.theme-dark {
-            background: rgba(22, 11, 5, 0.65);
-            border: 2px solid rgba(255, 204, 51, 0.55);
+            background: rgba(22, 11, 5, 0.28);
+            border: 2px solid rgba(255, 204, 51, 0.45);
             color: #ffe685;
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
         .countdown-subheading.theme-light {
-            background: rgba(255, 255, 255, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.22);
+            border: 2px solid rgba(255, 255, 255, 0.6);
             color: #1a0c04;
             text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
         /* Midnight Celebration Overlay Banner */
@@ -366,7 +399,7 @@
         /* Huge Western Frontier Billboard in the Distance (Right Hand Side, Angled South-West) */
         .promo-wrap {
             position: absolute;
-            top: 24px;
+            top: 86px;
             right: 36px;
             left: auto;
             transform-origin: right center;
@@ -571,33 +604,72 @@
             text-overflow: ellipsis;
         }
 
+        .promo-marquee-wrap {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            white-space: nowrap;
+            mask-image: linear-gradient(90deg, transparent 0px, black 16px, black calc(100% - 16px), transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0px, black 16px, black calc(100% - 16px), transparent 100%);
+        }
+
+        .promo-marquee-wrap.headline-wrap {
+            margin: 2px 0;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .promo-marquee-wrap.subline-wrap {
+            margin-bottom: 2px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+        }
+
+        .promo-marquee-track {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            will-change: transform;
+        }
+
+        .promo-marquee-track.scrolling {
+            animation: billboardMarquee 18s linear infinite;
+        }
+
+        .promo-marquee-wrap.subline-wrap .promo-marquee-track.scrolling {
+            animation-duration: 24s;
+        }
+
+        @keyframes billboardMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         .promo-headline {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 58px;
-            letter-spacing: 2.2px;
+            font-size: 72px;
+            letter-spacing: 2.8px;
             color: #ffffff;
-            line-height: 1.02;
-            text-shadow: 0 3px 14px rgba(0, 0, 0, 0.95), 0 0 24px rgba(255, 175, 40, 0.45);
-            white-space: normal;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            line-height: 1;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95), 0 0 28px rgba(255, 175, 40, 0.55);
+            white-space: nowrap;
+            padding-right: 48px;
+            display: inline-block;
         }
 
         .promo-subline {
-            font-size: 20px;
+            font-size: 26px;
             font-weight: 800;
             color: #ffe699;
-            letter-spacing: 1.1px;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
-            line-height: 1.16;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
-            white-space: normal;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            line-height: 1.15;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
+            white-space: nowrap;
+            padding-right: 48px;
+            display: inline-block;
         }
 
         .promo-wanted-cta {
@@ -685,16 +757,24 @@
             <canvas id="westCanvas" width="1920" height="1080"></canvas>
             <div class="western-vignette"></div>
 
-            <!-- Top Western Title & Epic Countdown Board (Days, Hours, Minutes, Seconds) -->
-            <div class="countdown-stage" id="countdownStage">
-                <div class="saloon-header-plaque">
-                    <div class="plaque-title-row">
-                        <span class="star-icon">🤠</span>
-                        <span class="plaque-title" id="countdownHeaderTitle">WILD WEST N.Y.E. KARAOKE PARTY!</span>
-                        <span class="star-icon">🎤</span>
+            <!-- Full-Width Top Western Title Banner (Spanning 100% Page Width) -->
+            <div class="saloon-header-banner" id="saloonHeaderBanner">
+                <div class="banner-inner">
+                    <div class="banner-side-badge left-badge">★ REDWOOD SALOON ★</div>
+                    <div class="banner-center-content">
+                        <div class="plaque-title-row">
+                            <span class="star-icon">🤠</span>
+                            <span class="plaque-title" id="countdownHeaderTitle">WILD WEST N.Y.E. KARAOKE PARTY!</span>
+                            <span class="star-icon">🎤</span>
+                        </div>
+                        <div class="plaque-subbadge">★ WEDNESDAY 31ST DECEMBER • FROM 8PM TILL LATE • COASTERS TAVERN REDWOOD ★</div>
                     </div>
-                    <div class="plaque-subbadge">★ WEDNESDAY 31ST DECEMBER • FROM 8PM TILL LATE • COASTERS TAVERN REDWOOD ★</div>
+                    <div class="banner-side-badge right-badge">★ NYE COUNTDOWN 2027 ★</div>
                 </div>
+            </div>
+
+            <!-- Top Western Countdown Board (Positioned on Left Under Title Banner) -->
+            <div class="countdown-stage" id="countdownStage">
                 <div class="countdown-board">
                     <div class="cd-unit">
                         <div class="cd-digits" id="cdDays">00</div>
@@ -736,8 +816,16 @@
                             <span class="promo-badge" id="slideBadge">WILD WEST KARAOKE NYE</span>
                             <span class="promo-date-tag" id="slideDateTag">DECEMBER 31 • FROM 8 PM</span>
                         </div>
-                        <div class="promo-headline" id="slideHeadline">SADDLE UP & GRAB THE MIC THIS NEW YEAR'S EVE!</div>
-                        <div class="promo-subline" id="slideSubline">NON-STOP KARAOKE • COLD BREWS • BOURBON SPECIALS • MIDNIGHT COUNTDOWN</div>
+                        <div class="promo-marquee-wrap headline-wrap">
+                            <div class="promo-marquee-track" id="slideHeadlineTrack">
+                                <span class="promo-headline" id="slideHeadline">SADDLE UP & GRAB THE MIC THIS NEW YEAR'S EVE!</span>
+                            </div>
+                        </div>
+                        <div class="promo-marquee-wrap subline-wrap">
+                            <div class="promo-marquee-track" id="slideSublineTrack">
+                                <span class="promo-subline" id="slideSubline">NON-STOP KARAOKE • COLD BREWS • BOURBON SPECIALS • MIDNIGHT COUNTDOWN</span>
+                            </div>
+                        </div>
                         <div class="promo-wanted-cta">
                             <div class="wanted-top" id="slideCtaTop">WANTED ON STAGE</div>
                             <div class="wanted-main" id="slideCtaMain">BOOK YOUR TABLE</div>
@@ -1093,11 +1181,33 @@
             const s = slides[currentSlideIndex];
             const card = document.getElementById('promoCard');
 
+            const setupBillboardMarquee = (trackId, text, className) => {
+                const track = document.getElementById(trackId);
+                if (!track) return;
+                track.innerHTML = '';
+                const span1 = document.createElement('span');
+                span1.className = className;
+                span1.textContent = text;
+                const sep = document.createElement('span');
+                sep.className = className;
+                sep.textContent = ' ★ ';
+                const span2 = document.createElement('span');
+                span2.className = className;
+                span2.textContent = text;
+                track.appendChild(span1);
+                track.appendChild(sep);
+                track.appendChild(span2);
+
+                track.classList.remove('scrolling');
+                void track.offsetWidth;
+                track.classList.add('scrolling');
+            };
+
             const apply = () => {
                 document.getElementById('slideBadge').textContent = s.badge;
                 document.getElementById('slideDateTag').textContent = s.dateTag;
-                document.getElementById('slideHeadline').textContent = s.headline;
-                document.getElementById('slideSubline').textContent = s.subline;
+                setupBillboardMarquee('slideHeadlineTrack', s.headline, 'promo-headline');
+                setupBillboardMarquee('slideSublineTrack', s.subline, 'promo-subline');
                 document.getElementById('slideCtaTop').textContent = s.ctaTop;
                 document.getElementById('slideCtaMain').textContent = s.ctaMain;
                 renderSlideDots();
@@ -1315,6 +1425,16 @@
             state: 'run',
             stateTimer: 3.2,
             delayTimer: 1.0
+        };
+
+        // Foreground Running Cattle Herd & Lasso Cowboy Chase
+        const cattleChase = {
+            x: -850,
+            baseY: 965,
+            speed: 330,
+            stride: 0,
+            delayTimer: 1.5,
+            dust: []
         };
 
         // Shooting Stars / Meteors
@@ -1750,14 +1870,48 @@
             ctx.arc(0, -234, 78, Math.PI, 0);
             ctx.fill();
 
-            // Gold Trim & Saloon Signboard (Bigger Text for TV)
+            // Radiant Backlight Spill Behind Saloon Signs
+            const signBackGlow = ctx.createRadialGradient(0, -180, 20, 0, -180, 160);
+            signBackGlow.addColorStop(0, "rgba(255, 195, 60, 0.55)");
+            signBackGlow.addColorStop(0.55, "rgba(255, 120, 20, 0.25)");
+            signBackGlow.addColorStop(1, "rgba(255, 90, 0, 0)");
+            ctx.fillStyle = signBackGlow;
+            ctx.fillRect(-160, -255, 320, 150);
+
+            // Gold Trim & Saloon Signboard with Glowing Carnival Marquee Bulbs
+            ctx.fillStyle = "#2c1106";
+            ctx.fillRect(-140, -224, 280, 44);
             ctx.strokeStyle = "#f0b44c";
             ctx.lineWidth = 3.5;
-            ctx.strokeRect(-138, -222, 276, 42);
-            ctx.fillStyle = "#ffe680";
+            ctx.strokeRect(-138, -222, 276, 40);
+
+            // Perimeter Glowing Edison Light Bulbs Around COASTERS SALOON
+            const bulbCountX = 11;
+            const bulbSpacingX = 260 / (bulbCountX - 1);
+            for (let b = 0; b < bulbCountX; b++) {
+                const bx = -130 + b * bulbSpacingX;
+                const bFlicker1 = 0.7 + Math.sin(timeSec * 8 + b * 0.9) * 0.3;
+                const bFlicker2 = 0.7 + Math.cos(timeSec * 8 + b * 0.9) * 0.3;
+                // Top border bulbs
+                ctx.fillStyle = `rgba(255, 235, 120, ${bFlicker1})`;
+                ctx.shadowColor = "#ffb300";
+                ctx.shadowBlur = 8;
+                ctx.beginPath(); ctx.arc(bx, -222, 3, 0, Math.PI * 2); ctx.fill();
+                // Bottom border bulbs
+                ctx.fillStyle = `rgba(255, 235, 120, ${bFlicker2})`;
+                ctx.beginPath(); ctx.arc(bx, -182, 3, 0, Math.PI * 2); ctx.fill();
+            }
+            ctx.shadowBlur = 0; // reset
+
+            // Illuminated "COASTERS SALOON" Typography with Warm Amber Neon Glow
+            ctx.save();
+            ctx.shadowColor = "#ffb300";
+            ctx.shadowBlur = 22;
+            ctx.fillStyle = "#fff8d6";
             ctx.font = "400 26px 'Rye', serif";
             ctx.textAlign = "center";
             ctx.fillText("COASTERS SALOON", 0, -193);
+            ctx.restore();
 
             // Glowing Western Marquee Sign with Alternating Texts ("KARAOKE STAGE", "WITH DJ CHIC", "FROM 8 PM TILL LATE")
             const saloonSigns = [
@@ -1777,25 +1931,68 @@
                 signAlpha = (signPeriod - signProgress) / 0.35;
             }
             const activeSign = saloonSigns[signIdx];
-            const neonPulse = 0.85 + Math.sin(timeSec * 7) * 0.15;
+            const neonPulse = 0.88 + Math.sin(timeSec * 7) * 0.12;
 
-            ctx.fillStyle = "#42120e";
-            ctx.strokeStyle = "#ffcc33";
-            ctx.lineWidth = 3;
+            // Ambient Halo behind Marquee Sign
+            ctx.save();
+            ctx.shadowColor = activeSign.shadow;
+            ctx.shadowBlur = 30;
+            ctx.fillStyle = "#380d0a";
+            ctx.strokeStyle = activeSign.color;
+            ctx.lineWidth = 3.5;
             ctx.beginPath();
-            ctx.roundRect(-126, -142, 252, 28, 7);
+            ctx.roundRect(-128, -143, 256, 30, 8);
             ctx.fill();
             ctx.stroke();
 
+            // Animated Marquee Border Dots
+            const mqDots = 10;
+            for (let d = 0; d < mqDots; d++) {
+                const dx = -118 + d * (236 / (mqDots - 1));
+                const dotGlow = (Math.sin(timeSec * 12 + d) > 0) ? 1.0 : 0.35;
+                ctx.fillStyle = activeSign.color;
+                ctx.globalAlpha = signAlpha * dotGlow;
+                ctx.beginPath(); ctx.arc(dx, -143, 2.2, 0, Math.PI * 2); ctx.fill();
+                ctx.beginPath(); ctx.arc(dx, -113, 2.2, 0, Math.PI * 2); ctx.fill();
+            }
+            ctx.restore();
+
+            // Dual-Pass Neon Glowing Text
             ctx.save();
             ctx.globalAlpha = signAlpha * neonPulse;
+            // Pass 1: Wide neon bloom
             ctx.fillStyle = activeSign.color;
             ctx.shadowColor = activeSign.shadow;
-            ctx.shadowBlur = 14;
-            ctx.font = "900 17.5px 'Chakra Petch', sans-serif";
+            ctx.shadowBlur = 26;
+            ctx.font = "900 18px 'Chakra Petch', sans-serif";
             ctx.textAlign = "center";
             ctx.fillText(activeSign.text, 0, -121);
+            // Pass 2: Bright core
+            ctx.fillStyle = "#ffffff";
+            ctx.shadowBlur = 6;
+            ctx.fillText(activeSign.text, 0, -121);
             ctx.restore();
+
+            // Hanging Western Brass Lanterns on Porch Posts
+            [-135, 135].forEach((lx, li) => {
+                const lanternFlicker = 0.85 + Math.sin(timeSec * 14 + li * 2.5) * 0.15;
+                // Radial lantern light glow
+                const lGlow = ctx.createRadialGradient(lx, -65, 4, lx, -65, 65);
+                lGlow.addColorStop(0, `rgba(255, 215, 90, ${0.65 * lanternFlicker})`);
+                lGlow.addColorStop(0.5, `rgba(255, 140, 20, ${0.28 * lanternFlicker})`);
+                lGlow.addColorStop(1, "rgba(255, 100, 0, 0)");
+                ctx.fillStyle = lGlow;
+                ctx.beginPath(); ctx.arc(lx, -65, 65, 0, Math.PI * 2); ctx.fill();
+                // Lantern body & bracket
+                ctx.strokeStyle = "#2b1408"; ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.moveTo(lx, -88); ctx.lineTo(lx, -76); ctx.stroke();
+                ctx.fillStyle = "#3e200e";
+                ctx.fillRect(lx - 6, -76, 12, 4); // cap
+                ctx.fillStyle = `rgba(255, 240, 140, ${lanternFlicker})`;
+                ctx.fillRect(lx - 5, -72, 10, 12); // glowing glass
+                ctx.fillStyle = "#2b1408";
+                ctx.fillRect(lx - 6, -60, 12, 3); // base
+            });
 
             // Floating Animated Musical Notes Drifting Up from Saloon Roof
             const noteGlyphs = ["♪", "♫", "♬", "♩"];
@@ -1931,6 +2128,220 @@
             ctx.restore();
         }
 
+        // Helper to draw a running Texas Longhorn Steer in Foreground
+        function drawRunningSteer(ctx, x, y, scale, stridePhase, coatColor, hornColor, spotColor) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.scale(scale, scale);
+
+            const bobY = Math.sin(stridePhase * 2) * 3.5;
+
+            // Galloping Steer Legs
+            const legFrontSwing = Math.sin(stridePhase) * 16;
+            const legBackSwing = Math.cos(stridePhase) * 16;
+            ctx.strokeStyle = "#1a0a04";
+            ctx.lineWidth = 4;
+            // Back legs
+            ctx.beginPath();
+            ctx.moveTo(-18, -4 + bobY); ctx.lineTo(-24 - legBackSwing, 18);
+            ctx.moveTo(-12, -4 + bobY); ctx.lineTo(-8 + legBackSwing, 18);
+            // Front legs
+            ctx.moveTo(14, -4 + bobY);  ctx.lineTo(20 + legFrontSwing, 18);
+            ctx.moveTo(20, -4 + bobY);  ctx.lineTo(26 - legFrontSwing, 18);
+            ctx.stroke();
+
+            // Steer Body (Muscular barrel)
+            ctx.fillStyle = coatColor;
+            ctx.beginPath();
+            ctx.ellipse(0, -14 + bobY, 30, 16, 0.05, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Shoulder hump
+            ctx.beginPath();
+            ctx.arc(8, -20 + bobY, 11, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Flank spots
+            if (spotColor) {
+                ctx.fillStyle = spotColor;
+                ctx.beginPath();
+                ctx.ellipse(-6, -15 + bobY, 10, 8, 0.2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Swishing tail with brush tuft
+            ctx.strokeStyle = coatColor;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(-28, -16 + bobY);
+            ctx.quadraticCurveTo(-42, -26 + Math.sin(stridePhase) * 8 + bobY, -46, -14 + bobY);
+            ctx.stroke();
+            ctx.fillStyle = "#1a0a04";
+            ctx.beginPath();
+            ctx.arc(-46, -14 + bobY, 4, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Lowered Galloping Head & Muzzle
+            ctx.fillStyle = coatColor;
+            ctx.beginPath();
+            ctx.moveTo(18, -18 + bobY);
+            ctx.lineTo(38, -12 + bobY + Math.sin(stridePhase) * 2);
+            ctx.lineTo(34, -4 + bobY);
+            ctx.lineTo(16, -8 + bobY);
+            ctx.closePath();
+            ctx.fill();
+
+            // Wide Sweeping Longhorn Rack
+            ctx.strokeStyle = hornColor || "#f4eee1";
+            ctx.lineWidth = 3.5;
+            ctx.beginPath();
+            ctx.moveTo(26, -20 + bobY);
+            ctx.bezierCurveTo(28, -36 + bobY, 46, -44 + bobY, 56, -36 + bobY);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(26, -20 + bobY);
+            ctx.bezierCurveTo(22, -36 + bobY, -2, -44 + bobY, -12, -36 + bobY);
+            ctx.stroke();
+
+            // Dark horn tips
+            ctx.strokeStyle = "#221108";
+            ctx.lineWidth = 3.5;
+            ctx.beginPath(); ctx.moveTo(50, -38 + bobY); ctx.lineTo(56, -36 + bobY); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(-7, -38 + bobY); ctx.lineTo(-12, -36 + bobY); ctx.stroke();
+
+            ctx.restore();
+        }
+
+        // Helper to draw Galloping Horse & Lasso Cowboy in Foreground
+        function drawLassoCowboy(ctx, x, y, scale, stridePhase, timeSec) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.scale(scale, scale);
+
+            const horseBob = Math.sin(stridePhase * 2) * 4;
+
+            // Galloping horse legs
+            const hLegFront = Math.sin(stridePhase) * 20;
+            const hLegBack = Math.cos(stridePhase) * 20;
+            ctx.strokeStyle = "#2b1408";
+            ctx.lineWidth = 4.5;
+            // Hind legs
+            ctx.beginPath();
+            ctx.moveTo(-18, -4 + horseBob); ctx.lineTo(-28 - hLegBack, 22);
+            ctx.moveTo(-12, -4 + horseBob); ctx.lineTo(-6 + hLegBack, 22);
+            // Front legs
+            ctx.moveTo(16, -4 + horseBob);  ctx.lineTo(24 + hLegFront, 22);
+            ctx.moveTo(22, -4 + horseBob);  ctx.lineTo(30 - hLegFront, 22);
+            ctx.stroke();
+
+            // Horse Body (Chestnut / Bay Coat)
+            ctx.fillStyle = "#4a2310";
+            ctx.beginPath();
+            ctx.ellipse(0, -14 + horseBob, 32, 16, 0.08, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Flowing black tail
+            ctx.strokeStyle = "#160904";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(-30, -16 + horseBob);
+            ctx.quadraticCurveTo(-52, -28 + Math.sin(stridePhase) * 10 + horseBob, -58, -10 + horseBob);
+            ctx.stroke();
+
+            // Horse Neck & Galloping Head
+            ctx.fillStyle = "#4a2310";
+            ctx.beginPath();
+            ctx.moveTo(16, -18 + horseBob);
+            ctx.lineTo(32, -38 + horseBob);
+            ctx.lineTo(44, -32 + horseBob);
+            ctx.lineTo(24, -10 + horseBob);
+            ctx.closePath();
+            ctx.fill();
+
+            // Black mane
+            ctx.fillStyle = "#160904";
+            ctx.beginPath();
+            ctx.moveTo(20, -22 + horseBob);
+            ctx.lineTo(31, -38 + horseBob);
+            ctx.lineTo(27, -26 + horseBob);
+            ctx.closePath();
+            ctx.fill();
+
+            // Saddle & Stirrup
+            ctx.fillStyle = "#261106";
+            ctx.fillRect(-8, -26 + horseBob, 18, 12);
+            ctx.strokeStyle = "#d49b35";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, -18 + horseBob); ctx.lineTo(0, 4 + horseBob);
+            ctx.stroke();
+
+            // Cowboy Rider in Saddle (Leaning forward, Denim shirt)
+            ctx.fillStyle = "#1c385c";
+            ctx.beginPath();
+            ctx.moveTo(-4, -26 + horseBob);
+            ctx.lineTo(12, -46 + horseBob);
+            ctx.lineTo(2, -46 + horseBob);
+            ctx.lineTo(-8, -26 + horseBob);
+            ctx.closePath();
+            ctx.fill();
+
+            // Cowboy Stetson Hat
+            ctx.fillStyle = "#5c381e";
+            ctx.beginPath();
+            ctx.arc(6, -52 + horseBob, 7, 0, Math.PI * 2);
+            ctx.fill();
+            // Hat brim tilted forward
+            ctx.beginPath();
+            ctx.ellipse(6, -54 + horseBob, 16, 3.5, 0.2, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillRect(1, -61 + horseBob, 11, 7);
+
+            // Cowboy Reins (Left Hand to Horse Bit)
+            ctx.strokeStyle = "#220e04";
+            ctx.lineWidth = 1.8;
+            ctx.beginPath();
+            ctx.moveTo(8, -34 + horseBob); ctx.lineTo(40, -28 + horseBob);
+            ctx.stroke();
+
+            // Cowboy Right Arm Raised Twirling the Spinning Lasso
+            ctx.strokeStyle = "#1c385c";
+            ctx.lineWidth = 3.5;
+            ctx.beginPath();
+            ctx.moveTo(0, -42 + horseBob);
+            ctx.lineTo(-6, -64 + horseBob);
+            ctx.stroke();
+
+            // Spinning Lasso Loop Overhead
+            const lassoHandX = -6;
+            const lassoHandY = -64 + horseBob;
+            const loopX = lassoHandX + 18;
+            const loopY = lassoHandY - 26;
+
+            // Taught rope from hand up to loop
+            ctx.strokeStyle = "#e8c47a";
+            ctx.lineWidth = 2.2;
+            ctx.beginPath();
+            ctx.moveTo(lassoHandX, lassoHandY);
+            ctx.lineTo(loopX - 8, loopY + 2);
+            ctx.stroke();
+
+            // Twirling Lasso Loop in 3D Perspective Overhead
+            ctx.save();
+            ctx.translate(loopX, loopY);
+            ctx.rotate(0.25);
+            ctx.lineWidth = 2.4;
+            ctx.strokeStyle = "#ffe299";
+            ctx.shadowColor = "#ffb300";
+            ctx.shadowBlur = 6;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, 32, 10, timeSec * 16, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.restore();
+
+            ctx.restore();
+        }
+
         // Draw Animated Campfire, Guitarist Cowboy, Rattlesnake & Signpost
         function drawCampfireAndScene(ctx, timeSec, dt) {
             const baseY = 815;
@@ -1941,10 +2352,10 @@
             drawCactus(ctx, 275, 782, 0.58, "#38582b");
             drawCactus(ctx, 680, 785, 0.64, "#38582b");
             drawCactus(ctx, 755, 788, 0.62, "#325026");
-            drawCactus(ctx, 1140, 788, 0.72, "#2d5a27");
-            drawCactus(ctx, 1265, 794, 0.76, "#2d5a27");
-            drawCactus(ctx, 1530, 798, 0.88, "#285223");
-            drawCactus(ctx, 1630, 808, 1.12, "#2d5a27");
+            drawCactus(ctx, 1070, 788, 0.70, "#2d5a27");
+            drawCactus(ctx, 1280, 794, 0.76, "#2d5a27");
+            drawCactus(ctx, 1460, 798, 0.84, "#285223");
+            drawCactus(ctx, 1720, 808, 1.10, "#2d5a27");
             drawCactus(ctx, 1840, 820, 0.92, "#244a1e");
             drawCactus(ctx, 1895, 830, 0.75, "#1c3d18");
 
@@ -2692,6 +3103,58 @@
             ctx.moveTo(0, -8); ctx.lineTo(-rrLeg, 0);
             ctx.stroke();
             ctx.restore();
+
+            // 11.5. Foreground Running Cattle Herd & Lasso Cowboy Chase
+            if (cattleChase.delayTimer > 0) {
+                cattleChase.delayTimer -= dt;
+            } else {
+                cattleChase.x += cattleChase.speed * dt;
+                cattleChase.stride += dt * 16;
+
+                // Dust puffs behind running hooves
+                if (Math.random() < 0.45) {
+                    cattleChase.dust.push({
+                        x: cattleChase.x + Math.random() * 520,
+                        y: cattleChase.baseY + 16 + (Math.random() - 0.5) * 8,
+                        r: 6 + Math.random() * 8,
+                        alpha: 0.65,
+                        grow: 16 + Math.random() * 12
+                    });
+                }
+
+                if (cattleChase.x > 2600) {
+                    cattleChase.x = -950;
+                    cattleChase.delayTimer = 10 + Math.random() * 16;
+                }
+            }
+
+            // Update & render dust puffs
+            for (let i = cattleChase.dust.length - 1; i >= 0; i--) {
+                const p = cattleChase.dust[i];
+                p.r += p.grow * dt;
+                p.y -= 7 * dt;
+                p.alpha -= dt * 0.85;
+                if (p.alpha <= 0) {
+                    cattleChase.dust.splice(i, 1);
+                } else {
+                    ctx.fillStyle = `rgba(185, 135, 85, ${p.alpha * 0.42})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // Draw Running Cattle Herd & Chasing Lasso Cowboy
+            if (cattleChase.x > -900 && cattleChase.x < 2550) {
+                // Steer 1 (Lead Texas Longhorn)
+                drawRunningSteer(ctx, cattleChase.x + 520, cattleChase.baseY + 10, 1.35, cattleChase.stride, "#692a10", "#ffffff", "rgba(255,255,255,0.88)");
+                // Steer 2 (Dark Brindle Longhorn)
+                drawRunningSteer(ctx, cattleChase.x + 370, cattleChase.baseY - 14, 1.25, cattleChase.stride + 1.7, "#28150c", "#f0e6cf", "rgba(255,255,255,0.78)");
+                // Steer 3 (Dun Tan Longhorn)
+                drawRunningSteer(ctx, cattleChase.x + 220, cattleChase.baseY + 6, 1.18, cattleChase.stride + 3.1, "#8a4e1e", "#fdf6e2", null);
+                // Galloping Cowboy on Horseback Twirling Overhead Lasso Chasing Them
+                drawLassoCowboy(ctx, cattleChase.x, cattleChase.baseY, 1.38, cattleChase.stride + 0.6, timeSec);
+            }
 
             // 12. Drifting Golden Fireflies / Prairie Dust Motes
             for (const ff of fireflies) {
