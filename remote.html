@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+    <title>Remote Control — Wild West NYE Countdown | Coasters Tavern Redwood</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@600;700&family=Inter:wght@600;700;800&family=Rye&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #ffcc33;
+            --brass: #d49b35;
+            --red: #c81e2b;
+            --bg: #080503;
+            --panel: #170e08;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body {
+            background: var(--bg);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 28px;
+        }
+        .remote-shell {
+            width: 100%;
+            max-width: 980px;
+            background: var(--panel);
+            border: 3px solid var(--brass);
+            border-radius: 24px;
+            padding: 30px 38px;
+            box-shadow: 0 25px 75px rgba(0,0,0,0.9);
+        }
+        .top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid rgba(255,255,255,0.12);
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+            white-space: nowrap;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .brand img { height: 52px; }
+        .brand-title {
+            font-family: 'Rye', serif;
+            font-size: 30px;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+        }
+        .clock-box {
+            font-family: 'Chakra Petch', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            background: #060302;
+            border: 1px solid rgba(255,204,51,0.35);
+            padding: 8px 20px;
+            border-radius: 12px;
+        }
+        .blink-colon {
+            color: var(--gold);
+            animation: blink 1s steps(1, start) infinite;
+        }
+        @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+        .section-label {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #d1d5db;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            white-space: nowrap;
+        }
+        .btn-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .btn-grid-5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .btn-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .btn-grid-9 {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+        .ctrl-btn {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 16px 12px;
+            border-radius: 12px;
+            border: 2px solid rgba(212,155,53,0.35);
+            background: #28160b;
+            color: #ffffff;
+            cursor: pointer;
+            text-align: center;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .ctrl-btn:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+        .ctrl-btn:active { transform: scale(0.97); }
+        .ctrl-btn.primary { background: var(--red); border-color: var(--gold); }
+        .ctrl-btn.gold { background: var(--gold); color: #140903; }
+        .links-bar {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+        .links-bar a {
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 14px;
+            border-radius: 12px;
+            background: #0d0704;
+            color: var(--gold);
+            border: 1px solid rgba(212,155,53,0.4);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="remote-shell">
+        <div class="top-row">
+            <div class="brand">
+                <img src="coasters_logo.png" alt="Coasters" onerror="this.style.display='none'">
+                <div class="brand-title">WILD WEST NYE — REMOTE</div>
+            </div>
+            <div class="clock-box">
+                <span id="rH">12</span><span class="blink-colon">:</span><span id="rM">00</span><span class="blink-colon">:</span><span id="rS">00</span>
+            </div>
+        </div>
+
+        <div class="section-label">SLIDE & MODULE NAVIGATION</div>
+        <div class="btn-grid-4">
+            <button class="ctrl-btn" onclick="sendCmd('PREV')">← PREV SLIDE</button>
+            <button class="ctrl-btn" onclick="sendCmd('NEXT')">NEXT SLIDE →</button>
+            <button class="ctrl-btn" onclick="sendCmd('FIRST')">↑ FIRST SLIDE</button>
+            <button class="ctrl-btn" onclick="sendCmd('SKIP_MODULE')">↓ FIREWORKS + NEXT</button>
+        </div>
+
+        <div class="section-label">PLAYBACK & MIDNIGHT FIREWORKS TRIGGER</div>
+        <div class="btn-grid-3">
+            <button class="ctrl-btn gold" onclick="sendCmd('PAUSE_TOGGLE')">⏯ PAUSE / RESUME (SPACE)</button>
+            <button class="ctrl-btn" onclick="sendCmd('LOCK_TOGGLE')">🔒 LOCK / UNLOCK (0)</button>
+            <button class="ctrl-btn primary" onclick="sendCmd('FIREWORKS')">🎇 LAUNCH NYE FIREWORKS!</button>
+        </div>
+
+        <div class="section-label">REDWOOD CHRISTCHURCH SKY & SUNSET PREVIEW</div>
+        <div class="btn-grid-5">
+            <button class="ctrl-btn" onclick="setSky('REALTIME')">🌍 LIVE SOLAR</button>
+            <button class="ctrl-btn" onclick="setSky('SUNRISE')">🌅 SUNRISE</button>
+            <button class="ctrl-btn" onclick="setSky('NOON')">☀️ HIGH NOON</button>
+            <button class="ctrl-btn" onclick="setSky('SUNSET')">🌇 SUNSET</button>
+            <button class="ctrl-btn" onclick="setSky('NIGHT')">🌙 NIGHT SKY</button>
+        </div>
+
+        <div class="section-label">SLIDE DISPLAY DURATION (KEYS 1 - 9)</div>
+        <div class="btn-grid-9">
+            <button class="ctrl-btn" onclick="sendDuration(10)">10S</button>
+            <button class="ctrl-btn" onclick="sendDuration(20)">20S</button>
+            <button class="ctrl-btn" onclick="sendDuration(30)">30S</button>
+            <button class="ctrl-btn" onclick="sendDuration(40)">40S</button>
+            <button class="ctrl-btn" onclick="sendDuration(50)">50S</button>
+            <button class="ctrl-btn" onclick="sendDuration(60)">60S</button>
+            <button class="ctrl-btn" onclick="sendDuration(70)">70S</button>
+            <button class="ctrl-btn" onclick="sendDuration(80)">80S</button>
+            <button class="ctrl-btn" onclick="sendDuration(90)">90S</button>
+        </div>
+
+        <div class="links-bar">
+            <a href="index.html">OPEN LIVE DISPLAY (TV)</a>
+            <a href="admin.html">OPEN ADMIN PANEL</a>
+        </div>
+    </div>
+
+    <script>
+        const channel = ('BroadcastChannel' in window) ? new BroadcastChannel('ct_west_channel') : null;
+        function sendCmd(action) {
+            if (channel) channel.postMessage({ type: 'CMD', action });
+        }
+        function sendDuration(seconds) {
+            if (channel) channel.postMessage({ type: 'CMD', action: 'DURATION', seconds });
+        }
+        function setSky(mode) {
+            if (channel) channel.postMessage({ type: 'CMD', action: 'SKY_MODE', mode });
+        }
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('rH').textContent = String(now.getHours() % 12 || 12).padStart(2, '0');
+            document.getElementById('rM').textContent = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('rS').textContent = String(now.getSeconds()).padStart(2, '0');
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>

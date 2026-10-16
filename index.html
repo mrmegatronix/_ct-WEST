@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+    <title>Wild West New Year's Eve Countdown | Coasters Tavern Redwood</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@600;700&family=Inter:wght@600;700;900&family=Rye&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #ffcc33;
+            --gold-bright: #ffe885;
+            --amber: #ff7b00;
+            --crimson: #d91b2e;
+            --wood-dark: #1c0f07;
+            --wood-mid: #361d0e;
+            --brass: #d49b35;
+            --glass-dark: rgba(16, 10, 6, 0.84);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #050302;
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+        }
+
+        #stage-wrapper {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #stage {
+            position: relative;
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            background: #090604;
+            transform-origin: center center;
+            box-shadow: 0 0 90px rgba(0, 0, 0, 0.95);
+        }
+
+        canvas#westCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1920px;
+            height: 1080px;
+            z-index: 1;
+            display: block;
+        }
+
+        /* Cinematic Western Vignette & Warm Lantern Frame */
+        .western-vignette {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 88% 82% at 50% 48%, transparent 62%, rgba(10, 5, 2, 0.55) 88%, rgba(4, 2, 0, 0.9) 100%);
+            box-shadow: inset 0 0 0 4px rgba(212, 155, 53, 0.28);
+        }
+
+        /* Top Bar: Location / Astro / Weather Left + Venue & Blinking Clock Right */
+        .top-bar {
+            position: absolute;
+            top: 26px;
+            left: 36px;
+            right: 36px;
+            height: 88px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            pointer-events: none;
+        }
+
+        .astro-weather-pill {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--glass-dark);
+            border: 2px solid var(--brass);
+            border-left: 8px solid var(--amber);
+            border-radius: 14px;
+            padding: 12px 24px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .sky-phase-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #b85d00, #6e2b00);
+            border: 1px solid var(--gold);
+            color: var(--gold-bright);
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1.5px;
+            padding: 7px 16px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        .astro-details {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .astro-location {
+            font-family: 'Rye', serif;
+            font-size: 24px;
+            color: var(--gold);
+            letter-spacing: 1.2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .astro-metrics {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #e5e7eb;
+            letter-spacing: 1px;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+
+        .astro-metrics span.hl {
+            color: var(--gold-bright);
+        }
+
+        .venue-clock-pill {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            background: var(--glass-dark);
+            border: 2px solid var(--brass);
+            border-right: 8px solid var(--gold);
+            border-radius: 14px;
+            padding: 10px 26px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
+            white-space: nowrap;
+        }
+
+        .venue-logo {
+            height: 58px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.85));
+        }
+
+        .venue-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            white-space: nowrap;
+        }
+
+        .venue-name {
+            font-family: 'Rye', serif;
+            font-size: 26px;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            white-space: nowrap;
+        }
+
+        .venue-sub {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            margin-top: 2px;
+        }
+
+        .live-clock-box {
+            display: flex;
+            align-items: center;
+            background: rgba(5, 3, 2, 0.8);
+            border: 1px solid rgba(255, 204, 51, 0.4);
+            border-radius: 10px;
+            padding: 8px 18px;
+            font-family: 'Chakra Petch', monospace;
+            font-size: 38px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        .blink-colon {
+            display: inline-block;
+            color: var(--gold);
+            animation: blinkColon 1s steps(1, start) infinite;
+            margin: 0 2px;
+        }
+
+        @keyframes blinkColon {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .clock-ampm {
+            font-size: 18px;
+            color: var(--gold);
+            margin-left: 8px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* Center-Top Epic Western New Year's Eve Countdown Stage */
+        .countdown-stage {
+            position: absolute;
+            top: 138px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 12;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: none;
+            width: 1560px;
+        }
+
+        . saloon-header-plaque {
+            background: linear-gradient(180deg, #3b1e0d 0%, #1d0e05 100%);
+            border: 3px solid var(--brass);
+            border-radius: 999px;
+            padding: 8px 44px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 166, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 14px;
+            white-space: nowrap;
+        }
+
+        .star-icon {
+            color: var(--gold);
+            font-size: 24px;
+            text-shadow: 0 0 12px var(--amber);
+        }
+
+        .plaque-title {
+            font-family: 'Rye', serif;
+            font-size: 28px;
+            color: var(--gold-bright);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+            white-space: nowrap;
+        }
+
+        .countdown-board {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            background: linear-gradient(180deg, rgba(28, 14, 6, 0.88) 0%, rgba(12, 6, 3, 0.92) 100%);
+            border: 4px solid var(--brass);
+            border-radius: 24px;
+            padding: 18px 38px;
+            box-shadow:
+                0 22px 60px rgba(0, 0, 0, 0.88),
+                0 0 45px rgba(255, 145, 0, 0.28),
+                inset 0 2px 0 rgba(255, 230, 140, 0.35);
+            backdrop-filter: blur(10px);
+            white-space: nowrap;
+        }
+
+        .cd-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 185px;
+            background: radial-gradient(circle at 50% 25%, rgba(66, 34, 14, 0.9), rgba(15, 8, 4, 0.96));
+            border: 2px solid rgba(212, 155, 53, 0.55);
+            border-radius: 16px;
+            padding: 10px 22px;
+            box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.85);
+        }
+
+        .cd-digits {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 112px;
+            line-height: 0.92;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-shadow:
+                0 0 22px rgba(255, 166, 0, 0.75),
+                0 6px 14px rgba(0, 0, 0, 0.95);
+            white-space: nowrap;
+        }
+
+        .cd-unit.ms-unit {
+            min-width: 145px;
+        }
+
+        .cd-unit.ms-unit .cd-digits {
+            color: var(--gold);
+            font-size: 92px;
+        }
+
+        .cd-label {
+            font-family: 'Rye', serif;
+            font-size: 17px;
+            color: var(--gold);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            white-space: nowrap;
+        }
+
+        .cd-sep {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 96px;
+            line-height: 1;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(255, 153, 0, 0.85);
+            animation: blinkColon 1s steps(1, start) infinite;
+            padding-bottom: 20px;
+            white-space: nowrap;
+        }
+
+        /* Midnight Celebration Overlay Banner */
+        .midnight-banner {
+            position: absolute;
+            top: 145px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            z-index: 25;
+            background: linear-gradient(135deg, rgba(40, 16, 5, 0.96), rgba(145, 18, 30, 0.95), rgba(40, 16, 5, 0.96));
+            border: 5px solid var(--gold);
+            border-radius: 28px;
+            padding: 26px 68px;
+            text-align: center;
+            box-shadow: 0 0 90px rgba(255, 204, 51, 0.9), 0 25px 60px rgba(0, 0, 0, 0.95);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+        }
+
+        .midnight-banner.active {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .midnight-title {
+            font-family: 'Rye', serif;
+            font-size: 78px;
+            color: var(--gold-bright);
+            letter-spacing: 4px;
+            text-shadow: 0 0 30px rgba(255, 180, 0, 0.95), 0 6px 18px #000;
+            line-height: 1.05;
+            white-space: nowrap;
+        }
+
+        .midnight-sub {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 3px;
+            margin-top: 8px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* Lower-Third Western Saloon Promotional Slide Card */
+        .promo-wrap {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1500px;
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        .promo-saloon-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(24, 12, 5, 0.93) 0%, rgba(46, 21, 9, 0.93) 50%, rgba(20, 10, 4, 0.95) 100%);
+            border: 3px solid var(--brass);
+            border-radius: 20px;
+            padding: 20px 42px;
+            box-shadow:
+                0 20px 55px rgba(0, 0, 0, 0.9),
+                0 0 35px rgba(212, 155, 53, 0.25),
+                inset 0 1px 0 rgba(255, 228, 133, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            overflow: hidden;
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .promo-saloon-card.transitioning {
+            opacity: 0;
+            transform: translateY(16px) scale(0.985);
+        }
+
+        .rope-border-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 14px;
+            background: repeating-linear-gradient(
+                -45deg,
+                var(--brass),
+                var(--brass) 14px,
+                #5c2c10 14px,
+                #5c2c10 28px
+            );
+        }
+
+        .promo-content {
+            padding-left: 16px;
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .promo-kicker-line {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 4px;
+            white-space: nowrap;
+        }
+
+        .promo-badge {
+            background: var(--gold);
+            color: #1a0c04;
+            font-family: 'Rye', serif;
+            font-size: 16px;
+            padding: 4px 14px;
+            border-radius: 6px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .promo-date-tag {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: #ff9d42;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .promo-headline {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 70px;
+            letter-spacing: 3px;
+            color: #ffffff;
+            line-height: 0.98;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.9);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .promo-subline {
+            font-size: 23px;
+            font-weight: 800;
+            color: var(--gold-bright);
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .promo-wanted-cta {
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #c81e2b 0%, #7d0c16 100%);
+            border: 3px solid var(--gold);
+            border-radius: 16px;
+            padding: 14px 28px;
+            text-align: center;
+            box-shadow: 0 10px 28px rgba(200, 30, 43, 0.55);
+            white-space: nowrap;
+        }
+
+        .wanted-top {
+            font-family: 'Rye', serif;
+            font-size: 15px;
+            color: var(--gold-bright);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .wanted-main {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 44px;
+            color: #ffffff;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-top: 3px;
+            white-space: nowrap;
+        }
+
+        .slide-footer-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 0 12px;
+            white-space: nowrap;
+        }
+
+        .slide-dots {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slide-dot {
+            width: 36px;
+            height: 7px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .slide-dot.active {
+            width: 68px;
+            background: var(--gold);
+            box-shadow: 0 0 12px var(--gold);
+        }
+
+        .status-strip {
+            font-family: 'Chakra Petch', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: rgba(255, 235, 190, 0.8);
+            background: rgba(12, 6, 3, 0.72);
+            padding: 4px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(212, 155, 53, 0.3);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="stage-wrapper">
+        <div id="stage">
+            <canvas id="westCanvas" width="1920" height="1080"></canvas>
+            <div class="western-vignette"></div>
+
+            <!-- Top Broadcast & Astronomical Weather Bar -->
+            <div class="top-bar">
+                <div class="astro-weather-pill">
+                    <div class="sky-phase-badge" id="skyPhaseBadge">☀️ HIGH NOON SKY</div>
+                    <div class="astro-details">
+                        <div class="astro-location" id="locationHeading">REDWOOD, CHRISTCHURCH NZ • 43.48°S 172.62°E</div>
+                        <div class="astro-metrics">
+                            <span>WEATHER: <span class="hl" id="weatherDescText">CLEAR CANTERBURY SKY • 18°C</span></span>
+                            <span>•</span>
+                            <span>SUNRISE: <span class="hl" id="sunriseText">06:12 AM</span></span>
+                            <span>•</span>
+                            <span>SUNSET: <span class="hl" id="sunsetText">08:48 PM</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="venue-clock-pill">
+                    <img src="coasters_logo.png" alt="Coasters Tavern" class="venue-logo" onerror="this.style.display='none'">
+                    <div class="venue-text">
+                        <div class="venue-name" id="venueNameText">COASTERS TAVERN</div>
+                        <div class="venue-sub" id="venueSubText">WILD WEST NYE HOEDOWN</div>
+                    </div>
+                    <div class="live-clock-box" aria-label="Redwood Local Time">
+                        <span id="clkH">12</span><span class="blink-colon">:</span><span id="clkM">00</span><span class="blink-colon">:</span><span id="clkS">00</span><span class="clock-ampm" id="clkAmPm">PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Epic Western New Year's Eve Countdown Board -->
+            <div class="countdown-stage" id="countdownStage">
+                <div class="saloon-header-plaque">
+                    <span class="star-icon">★</span>
+                    <span class="plaque-title" id="countdownHeaderTitle">COUNTDOWN TO MIDNIGHT NEW YEAR'S EVE SHOWDOWN</span>
+                    <span class="star-icon">★</span>
+                </div>
+                <div class="countdown-board">
+                    <div class="cd-unit">
+                        <div class="cd-digits" id="cdDays">00</div>
+                        <div class="cd-label">DAYS</div>
+                    </div>
+                    <div class="cd-sep">:</div>
+                    <div class="cd-unit">
+                        <div class="cd-digits" id="cdHours">00</div>
+                        <div class="cd-label">HOURS</div>
+                    </div>
+                    <div class="cd-sep">:</div>
+                    <div class="cd-unit">
+                        <div class="cd-digits" id="cdMinutes">00</div>
+                        <div class="cd-label">MINUTES</div>
+                    </div>
+                    <div class="cd-sep">:</div>
+                    <div class="cd-unit">
+                        <div class="cd-digits" id="cdSeconds">00</div>
+                        <div class="cd-label">SECONDS</div>
+                    </div>
+                    <div class="cd-sep">:</div>
+                    <div class="cd-unit ms-unit">
+                        <div class="cd-digits" id="cdTenths">00</div>
+                        <div class="cd-label">1/100 SEC</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Midnight Fireworks Celebration Banner -->
+            <div class="midnight-banner" id="midnightBanner">
+                <div class="midnight-title" id="midnightBannerTitle">★ HAPPY NEW YEAR 2027! ★</div>
+                <div class="midnight-sub" id="midnightBannerSub">RAISE YOUR GLASSES AT COASTERS TAVERN REDWOOD!</div>
+            </div>
+
+            <!-- Bottom Western Saloon Promotional Slide Overlay -->
+            <div class="promo-wrap">
+                <div class="promo-saloon-card" id="promoCard">
+                    <div class="rope-border-left"></div>
+                    <div class="promo-content">
+                        <div class="promo-kicker-line">
+                            <span class="promo-badge" id="slideBadge">WILD WEST NEW YEAR'S EVE</span>
+                            <span class="promo-date-tag" id="slideDateTag">DECEMBER 31 • REDWOOD CHRISTCHURCH</span>
+                        </div>
+                        <div class="promo-headline" id="slideHeadline">SADDLE UP FOR NEW YEAR'S EVE AT COASTERS!</div>
+                        <div class="promo-subline" id="slideSubline">LIVE MUSIC • WESTERN SALOON SPECIALS • BEST DRESSED PRIZES • MIDNIGHT COUNTDOWN</div>
+                    </div>
+                    <div class="promo-wanted-cta">
+                        <div class="wanted-top" id="slideCtaTop">WANTED AT THE BAR</div>
+                        <div class="wanted-main" id="slideCtaMain">BOOK YOUR TABLE</div>
+                    </div>
+                </div>
+                <div class="slide-footer-bar">
+                    <div class="slide-dots" id="slideDots"></div>
+                    <div class="status-strip" id="statusStrip">LOOPING AD • 10S SLIDES • [SPACE] PAUSE • [0] LOCK • [↓] DEMO FIREWORKS • [A] ADMIN • [R] REMOTE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =========================================================================
+        // 1. CONFIGURATION & REDWOOD CHRISTCHURCH COORDINATES
+        // =========================================================================
+        const REDWOOD_LAT = -43.4764;
+        const REDWOOD_LON = 172.6169;
+        const STORAGE_KEY = 'ct_west_config_v1';
+
+        const DEFAULT_CONFIG = {
+            venueName: "COASTERS TAVERN",
+            venueSub: "WILD WEST NYE HOEDOWN",
+            countdownTitle: "COUNTDOWN TO MIDNIGHT NEW YEAR'S EVE SHOWDOWN",
+            targetDateISO: "", // Empty = automatic next Jan 1 00:00:00 local time
+            slideDurationSec: 10,
+            skyMode: "REALTIME", // REALTIME, SUNRISE, NOON, SUNSET, NIGHT
+            weatherOverride: "AUTO", // AUTO, CLEAR, WINDY_DUST, STORM
+            slides: [
+                {
+                    badge: "WILD WEST NEW YEAR'S EVE",
+                    dateTag: "DECEMBER 31 • COASTERS TAVERN REDWOOD",
+                    headline: "SADDLE UP FOR OUR EPIC NYE SALOON PARTY!",
+                    subline: "COLD BREWS • BOURBON & RYE SPECIALS • GREAT FOOD • MIDNIGHT SHOWDOWN",
+                    ctaTop: "WANTED AT COASTERS",
+                    ctaMain: "BOOK YOUR TABLE"
+                },
+                {
+                    badge: "BEST DRESSED OUTLAW PRIZES",
+                    dateTag: "COWBOYS • COWGIRLS • SHERIFFS & GAMBLERS",
+                    headline: "DUST OFF YOUR BOOTS & STETSON HATS!",
+                    subline: "PRIZES FOR BEST WESTERN OUTFITS • BAR TABS & SPOT PRIZES ALL NIGHT LONG",
+                    ctaTop: "DRESS TO IMPRESS",
+                    ctaMain: "WIN BAR TABS"
+                },
+                {
+                    badge: "REDWOOD'S FAVOURITE LOCAL",
+                    dateTag: "COUNTING DOWN TO MIDNIGHT TOGETHER",
+                    headline: "FEAST LIKE A RANCHER BEFORE MIDNIGHT",
+                    subline: "STEAKS, RIBS, BURGERS & PLATTERS • COURTESY VAN AVAILABLE • SEE BAR STAFF",
+                    ctaTop: "RESERVE NOW",
+                    ctaMain: "ASK AT THE BAR"
+                },
+                {
+                    badge: "MIDNIGHT FIREWORKS & CHEERS",
+                    dateTag: "RING IN THE NEW YEAR IN STYLE",
+                    headline: "WHEN THE CLOCK STRIKES TWELVE WE RIDE!",
+                    subline: "TOAST THE NEW YEAR WITH MATES AT COASTERS TAVERN REDWOOD CHRISTCHURCH",
+                    ctaTop: "NEW YEAR'S EVE",
+                    ctaMain: "FREE ENTRY"
+                }
+            ]
+        };
+
+        function loadConfig() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+                const parsed = JSON.parse(raw);
+                return Object.assign({}, DEFAULT_CONFIG, parsed, {
+                    slides: Array.isArray(parsed.slides) && parsed.slides.length > 0 ? parsed.slides : DEFAULT_CONFIG.slides
+                });
+            } catch (e) {
+                return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+            }
+        }
+
+        let appConfig = loadConfig();
+
+        function resizeStage() {
+            const stage = document.getElementById('stage');
+            const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+            stage.style.transform = `scale(${scale})`;
+        }
+        window.addEventListener('resize', resizeStage);
+        resizeStage();
+
+        // =========================================================================
+        // 2. REAL ASTRONOMICAL SUNRISE / SUNSET CALCULATOR FOR REDWOOD, CHRISTCHURCH
+        // =========================================================================
+        function computeRedwoodSunTimes(date) {
+            // NOAA Solar Equations for Latitude -43.4764, Longitude 172.6169
+            const rad = Math.PI / 180;
+            const deg = 180 / Math.PI;
+            const start = new Date(date.getFullYear(), 0, 0);
+            const dayOfYear = Math.floor((date - start) / 86400000);
+
+            const gamma = ((2 * Math.PI) / 365) * (dayOfYear - 1 + (12 - 12) / 24);
+            const eqTime = 229.18 * (
+                0.000075 +
+                0.001868 * Math.cos(gamma) -
+                0.032077 * Math.sin(gamma) -
+                0.014615 * Math.cos(2 * gamma) -
+                0.040849 * Math.sin(2 * gamma)
+            );
+            const decl =
+                0.006918 -
+                0.399912 * Math.cos(gamma) +
+                0.070257 * Math.sin(gamma) -
+                0.006758 * Math.cos(2 * gamma) +
+                0.000907 * Math.sin(2 * gamma) -
+                0.002697 * Math.cos(3 * gamma) +
+                0.00148 * Math.sin(3 * gamma);
+
+            const latRad = REDWOOD_LAT * rad;
+            const zenith = 90.833 * rad;
+            const cosHA = (Math.cos(zenith) / (Math.cos(latRad) * Math.cos(decl))) - Math.tan(latRad) * Math.tan(decl);
+            const clampedCos = Math.max(-1, Math.min(1, cosHA));
+            const haDeg = Math.acos(clampedCos) * deg;
+
+            const tzOffsetHours = -date.getTimezoneOffset() / 60; // +13 in NZDT, +12 in NZST
+            const solarNoonMin = 720 - 4 * REDWOOD_LON - eqTime + tzOffsetHours * 60;
+            const sunriseMin = solarNoonMin - haDeg * 4;
+            const sunsetMin = solarNoonMin + haDeg * 4;
+
+            return {
+                sunriseMin,
+                sunsetMin,
+                solarNoonMin
+            };
+        }
+
+        function formatMinutesTo12Hr(totalMins) {
+            const norm = ((Math.round(totalMins) % 1440) + 1440) % 1440;
+            const h24 = Math.floor(norm / 60);
+            const m = norm % 60;
+            const ampm = h24 >= 12 ? 'PM' : 'AM';
+            const h12 = h24 % 12 || 12;
+            return `${String(h12).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`;
+        }
+
+        const liveWeather = {
+            tempC: 19,
+            windKmh: 14,
+            cloudCover: 18,
+            weatherCode: 1,
+            description: "FINE CANTERBURY SKY",
+            sunriseMin: 360,
+            sunsetMin: 1245
+        };
+
+        async function fetchRedwoodWeather() {
+            const sunCalc = computeRedwoodSunTimes(new Date());
+            liveWeather.sunriseMin = sunCalc.sunriseMin;
+            liveWeather.sunsetMin = sunCalc.sunsetMin;
+
+            try {
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${REDWOOD_LAT}&longitude=${REDWOOD_LON}&current=temperature_2m,weather_code,wind_speed_10m,cloud_cover&timezone=Pacific%2FAuckland`;
+                const res = await fetch(url);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.current) {
+                        liveWeather.tempC = Math.round(data.current.temperature_2m);
+                        liveWeather.windKmh = Math.round(data.current.wind_speed_10m);
+                        liveWeather.cloudCover = data.current.cloud_cover || 15;
+                        liveWeather.weatherCode = data.current.weather_code || 0;
+
+                        const code = liveWeather.weatherCode;
+                        if (code === 0) liveWeather.description = "CLEAR REDWOOD SKY";
+                        else if (code <= 3) liveWeather.description = "PARTLY CLOUDY NOR'WEST";
+                        else if (code <= 48) liveWeather.description = "MISTY PLAINS";
+                        else if (code <= 67) liveWeather.description = "PRAIRIE RAIN";
+                        else if (code >= 95) liveWeather.description = "FRONTIER THUNDERSTORM";
+                        else liveWeather.description = "CANTERBURY BREEZE";
+                    }
+                }
+            } catch (_) {
+                // Offline fallback uses astronomical calculations seamlessly
+            }
+            updateAstroUI();
+        }
+
+        function updateAstroUI() {
+            document.getElementById('sunriseText').textContent = formatMinutesTo12Hr(liveWeather.sunriseMin);
+            document.getElementById('sunsetText').textContent = formatMinutesTo12Hr(liveWeather.sunsetMin);
+            document.getElementById('weatherDescText').textContent = `${liveWeather.description} • ${liveWeather.tempC}°C`;
+        }
+
+        fetchRedwoodWeather();
+        setInterval(fetchRedwoodWeather, 600000);
+
+        // =========================================================================
+        // 3. COUNTDOWN & BLINKING CLOCK CONTROLLER
+        // =========================================================================
+        let demoFireworksRemaining = 0; // Triggered via remote/keyboard or actual midnight
+
+        function getTargetNewYearDate(now) {
+            if (appConfig.targetDateISO) {
+                const custom = new Date(appConfig.targetDateISO);
+                if (!isNaN(custom.getTime())) return custom;
+            }
+            // Next Jan 1 00:00:00 local time
+            return new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0, 0);
+        }
+
+        function updateClocksAndCountdown() {
+            const now = new Date();
+            let h = now.getHours();
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12 || 12;
+
+            document.getElementById('clkH').textContent = String(h).padStart(2, '0');
+            document.getElementById('clkM').textContent = m;
+            document.getElementById('clkS').textContent = s;
+            document.getElementById('clkAmPm').textContent = ampm;
+
+            const target = getTargetNewYearDate(now);
+            let diffMs = target.getTime() - now.getTime();
+
+            // Check if within first 5 minutes after midnight New Year's Day or demo mode active
+            const isNewYearsMidnightWindow = (now.getMonth() === 0 && now.getDate() === 1 && now.getHours() === 0 && now.getMinutes() < 10);
+
+            if (diffMs <= 0 || isNewYearsMidnightWindow || demoFireworksRemaining > 0) {
+                document.getElementById('cdDays').textContent = '00';
+                document.getElementById('cdHours').textContent = '00';
+                document.getElementById('cdMinutes').textContent = '00';
+                document.getElementById('cdSeconds').textContent = '00';
+                document.getElementById('cdTenths').textContent = '00';
+                document.getElementById('midnightBannerTitle').textContent = `★ HAPPY NEW YEAR ${target.getFullYear()}! ★`;
+                document.getElementById('midnightBanner').classList.add('active');
+                document.getElementById('countdownStage').style.opacity = '0.18';
+                if (demoFireworksRemaining <= 0 && (diffMs <= 0 || isNewYearsMidnightWindow)) {
+                    demoFireworksRemaining = 5;
+                }
+            } else {
+                document.getElementById('midnightBanner').classList.remove('active');
+                document.getElementById('countdownStage').style.opacity = '1';
+
+                const days = Math.floor(diffMs / 86400000);
+                diffMs %= 86400000;
+                const hours = Math.floor(diffMs / 3600000);
+                diffMs %= 3600000;
+                const mins = Math.floor(diffMs / 60000);
+                diffMs %= 60000;
+                const secs = Math.floor(diffMs / 1000);
+                const hundredths = Math.floor((diffMs % 1000) / 10);
+
+                document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
+                document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('cdMinutes').textContent = String(mins).padStart(2, '0');
+                document.getElementById('cdSeconds').textContent = String(secs).padStart(2, '0');
+                document.getElementById('cdTenths').textContent = String(hundredths).padStart(2, '0');
+            }
+        }
+        setInterval(updateClocksAndCountdown, 40);
+        updateClocksAndCountdown();
+
+        // =========================================================================
+        // 4. SLIDESHOW & KEYBOARD CONTROLS (STRICT PROTOCOL)
+        // =========================================================================
+        let currentSlideIndex = 0;
+        let slideDurationMs = (appConfig.slideDurationSec || 10) * 1000;
+        let isPaused = false;
+        let isLocked = false;
+        let slideTimer = null;
+
+        function applyStaticBranding() {
+            document.getElementById('venueNameText').textContent = appConfig.venueName;
+            document.getElementById('venueSubText').textContent = appConfig.venueSub;
+            document.getElementById('countdownHeaderTitle').textContent = appConfig.countdownTitle;
+        }
+
+        function renderSlideDots() {
+            const wrap = document.getElementById('slideDots');
+            wrap.innerHTML = '';
+            appConfig.slides.forEach((_, idx) => {
+                const d = document.createElement('div');
+                d.className = 'slide-dot' + (idx === currentSlideIndex ? ' active' : '');
+                wrap.appendChild(d);
+            });
+        }
+
+        function updateStatusStrip() {
+            const sec = Math.round(slideDurationMs / 1000);
+            const state = isLocked ? '🔒 LOCKED (0)' : (isPaused ? '⏸ PAUSED (SPACE)' : `▶ LOOPING (${sec}S)`);
+            const skyLabel = appConfig.skyMode || 'REALTIME';
+            document.getElementById('statusStrip').textContent =
+                `${state} • SLIDE ${currentSlideIndex + 1}/${appConfig.slides.length} • SKY: ${skyLabel} • [↓] FIREWORKS • [A] ADMIN • [R] REMOTE`;
+        }
+
+        function showSlide(index, immediate = false) {
+            const slides = appConfig.slides;
+            if (!slides || !slides.length) return;
+            currentSlideIndex = ((index % slides.length) + slides.length) % slides.length;
+            const s = slides[currentSlideIndex];
+            const card = document.getElementById('promoCard');
+
+            const apply = () => {
+                document.getElementById('slideBadge').textContent = s.badge;
+                document.getElementById('slideDateTag').textContent = s.dateTag;
+                document.getElementById('slideHeadline').textContent = s.headline;
+                document.getElementById('slideSubline').textContent = s.subline;
+                document.getElementById('slideCtaTop').textContent = s.ctaTop;
+                document.getElementById('slideCtaMain').textContent = s.ctaMain;
+                renderSlideDots();
+                updateStatusStrip();
+            };
+
+            if (immediate) {
+                apply();
+                return;
+            }
+            card.classList.add('transitioning');
+            setTimeout(() => {
+                apply();
+                card.classList.remove('transitioning');
+            }, 210);
+        }
+
+        function restartSlideTimer() {
+            if (slideTimer) clearInterval(slideTimer);
+            slideTimer = setInterval(() => {
+                if (!isPaused && !isLocked) nextSlide();
+            }, slideDurationMs);
+            updateStatusStrip();
+        }
+
+        function nextSlide() { showSlide(currentSlideIndex + 1); }
+        function prevSlide() { showSlide(currentSlideIndex - 1); }
+        function resetModuleSlide() { showSlide(0); restartSlideTimer(); }
+
+        function triggerMidnightFireworksShow(durationSec = 14) {
+            demoFireworksRemaining = durationSec;
+            for (let i = 0; i < 6; i++) {
+                setTimeout(() => launchFireworkShell(), i * 260);
+            }
+        }
+
+        function skipNextModule() {
+            // Triggers an epic Midnight Fireworks Showcase & advances slide
+            triggerMidnightFireworksShow(12);
+            nextSlide();
+            restartSlideTimer();
+        }
+
+        function setSlideDurationSeconds(sec) {
+            slideDurationMs = sec * 1000;
+            appConfig.slideDurationSec = sec;
+            restartSlideTimer();
+        }
+
+        window.addEventListener('keydown', (e) => {
+            const tag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+            if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (!isLocked) { prevSlide(); restartSlideTimer(); }
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (!isLocked) { nextSlide(); restartSlideTimer(); }
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (!isLocked) resetModuleSlide();
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (!isLocked) skipNextModule();
+            } else if (e.key === ' ' || e.code === 'Space') {
+                e.preventDefault();
+                if (!isLocked) { isPaused = !isPaused; updateStatusStrip(); }
+            } else if (e.key === '0') {
+                e.preventDefault();
+                isLocked = !isLocked;
+                updateStatusStrip();
+            } else if (e.key >= '1' && e.key <= '9') {
+                e.preventDefault();
+                if (!isLocked) setSlideDurationSeconds(parseInt(e.key, 10) * 10);
+            } else if (e.key === 'a' || e.key === 'A') {
+                e.preventDefault();
+                window.open('admin.html', '_blank');
+            } else if (e.key === 'r' || e.key === 'R') {
+                e.preventDefault();
+                window.open('remote.html', '_blank');
+            }
+        });
+
+        const channel = ('BroadcastChannel' in window) ? new BroadcastChannel('ct_west_channel') : null;
+        function handleRemoteMsg(msg) {
+            if (!msg || !msg.type) return;
+            if (msg.type === 'CONFIG_UPDATE') {
+                appConfig = loadConfig();
+                slideDurationMs = (appConfig.slideDurationSec || 10) * 1000;
+                applyStaticBranding();
+                showSlide(currentSlideIndex, true);
+                restartSlideTimer();
+            } else if (msg.type === 'CMD') {
+                switch (msg.action) {
+                    case 'PREV': if (!isLocked) { prevSlide(); restartSlideTimer(); } break;
+                    case 'NEXT': if (!isLocked) { nextSlide(); restartSlideTimer(); } break;
+                    case 'FIRST': if (!isLocked) resetModuleSlide(); break;
+                    case 'SKIP_MODULE': if (!isLocked) skipNextModule(); break;
+                    case 'PAUSE_TOGGLE': if (!isLocked) { isPaused = !isPaused; updateStatusStrip(); } break;
+                    case 'LOCK_TOGGLE': isLocked = !isLocked; updateStatusStrip(); break;
+                    case 'DURATION': if (!isLocked && msg.seconds) setSlideDurationSeconds(msg.seconds); break;
+                    case 'FIREWORKS': triggerMidnightFireworksShow(15); break;
+                    case 'SKY_MODE':
+                        appConfig.skyMode = msg.mode || 'REALTIME';
+                        updateStatusStrip();
+                        break;
+                }
+            }
+        }
+        if (channel) channel.onmessage = (ev) => handleRemoteMsg(ev.data);
+        window.addEventListener('storage', (ev) => {
+            if (ev.key === STORAGE_KEY) {
+                appConfig = loadConfig();
+                slideDurationMs = (appConfig.slideDurationSec || 10) * 1000;
+                applyStaticBranding();
+                showSlide(currentSlideIndex, true);
+                restartSlideTimer();
+            }
+        });
+
+        // =========================================================================
+        // 5. DYNAMIC SKY, REAL SUNSET/SUNRISE, ANIMALS, ITEMS & FIREWORKS ENGINE
+        // =========================================================================
+        const canvas = document.getElementById('westCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Stars (including Southern Cross / Crux constellation)
+        const stars = [];
+        for (let i = 0; i < 160; i++) {
+            stars.push({
+                x: Math.random() * 1920,
+                y: Math.random() * 620,
+                r: 0.8 + Math.random() * 2.2,
+                phase: Math.random() * Math.PI * 2,
+                speed: 1.5 + Math.random() * 3
+            });
+        }
+        // Southern Cross prominent stars
+        const cruxStars = [
+            { x: 1480, y: 120, r: 3.8, name: 'Acrux' },
+            { x: 1475, y: 58,  r: 3.2, name: 'Gacrux' },
+            { x: 1442, y: 86,  r: 3.4, name: 'Mimosa' },
+            { x: 1512, y: 92,  r: 2.7, name: 'Delta' },
+            { x: 1495, y: 105, r: 2.1, name: 'Epsilon' }
+        ];
+
+        // Clouds
+        const clouds = [];
+        for (let i = 0; i < 9; i++) {
+            clouds.push({
+                x: Math.random() * 2200 - 200,
+                y: 80 + Math.random() * 260,
+                w: 220 + Math.random() * 260,
+                h: 45 + Math.random() * 55,
+                speed: 8 + Math.random() * 14
+            });
+        }
+
+        // Animated Animals: Hawks/Vultures (Day) & Bats (Night)
+        const skyBirds = [];
+        for (let i = 0; i < 6; i++) {
+            skyBirds.push({
+                baseX: 250 + i * 270,
+                baseY: 160 + (i % 3) * 55,
+                radiusX: 90 + (i % 2) * 45,
+                radiusY: 22 + (i % 3) * 10,
+                phase: i * 1.3,
+                flapPhase: i * 0.9
+            });
+        }
+
+        // Rolling Tumbleweeds
+        const tumbleweeds = [
+            { x: -80, y: 830, r: 28, vx: 115, rot: 0, bouncePhase: 0 },
+            { x: -650, y: 855, r: 22, vx: 145, rot: 1.2, bouncePhase: 2.1 },
+            { x: -1250, y: 842, r: 32, vx: 98, rot: 0.4, bouncePhase: 4.0 }
+        ];
+
+        // Steam Train ("The Redwood Express") on Distant Trestle Bridge
+        const train = {
+            x: -550,
+            speed: 88,
+            smokeParticles: []
+        };
+
+        // Mounted Cowboy & Galloping Mustang on Midground Ridge
+        const rider = {
+            x: 2100,
+            speed: 105,
+            stride: 0
+        };
+
+        // Campfire Embers
+        const embers = [];
+        for (let i = 0; i < 35; i++) {
+            embers.push({
+                x: 1380 + (Math.random() - 0.5) * 36,
+                y: 815 - Math.random() * 90,
+                vx: (Math.random() - 0.5) * 18,
+                vy: 28 + Math.random() * 42,
+                size: 1.5 + Math.random() * 3,
+                alpha: Math.random()
+            });
+        }
+
+        // Fireworks System (Shells + Sparks + Shockwaves)
+        const fireworkShells = [];
+        const fireworkSparks = [];
+        const fireworkRings = [];
+        const FW_PALETTES = [
+            ['#ffcc33', '#ffe885', '#ffffff'],
+            ['#ff2a4b', '#ff9900', '#ffff66'],
+            ['#00f5d4', '#38bdf8', '#ffffff'],
+            ['#f472b6', '#c084fc', '#fef08a'],
+            ['#22c55e', '#facc15', '#ffffff']
+        ];
+
+        function launchFireworkShell() {
+            const x = 220 + Math.random() * 1480;
+            const targetY = 120 + Math.random() * 310;
+            const palette = FW_PALETTES[Math.floor(Math.random() * FW_PALETTES.length)];
+            fireworkShells.push({
+                x,
+                y: 760,
+                vx: (Math.random() - 0.5) * 65,
+                vy: -(540 + Math.random() * 240),
+                targetY,
+                palette,
+                trail: []
+            });
+        }
+
+        function explodeShell(sh) {
+            const count = 95 + Math.floor(Math.random() * 55);
+            const isDoubleRing = Math.random() > 0.6;
+            fireworkRings.push({
+                x: sh.x,
+                y: sh.y,
+                r: 6,
+                maxR: 165,
+                alpha: 0.75,
+                color: sh.palette[0]
+            });
+
+            for (let i = 0; i < count; i++) {
+                const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.1;
+                const speed = isDoubleRing
+                    ? (i % 2 === 0 ? 220 : 125) + Math.random() * 25
+                    : 65 + Math.random() * 240;
+                const color = sh.palette[i % sh.palette.length];
+                fireworkSparks.push({
+                    x: sh.x,
+                    y: sh.y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    color,
+                    alpha: 1,
+                    decay: 0.45 + Math.random() * 0.4,
+                    size: 2.2 + Math.random() * 2.5,
+                    gravity: 115
+                });
+            }
+        }
+
+        // Color Interpolation Helper
+        function lerpColor(hexA, hexB, t) {
+            const cA = parseInt(hexA.slice(1), 16);
+            const cB = parseInt(hexB.slice(1), 16);
+            const r = Math.round(((cA >> 16) & 255) * (1 - t) + ((cB >> 16) & 255) * t);
+            const g = Math.round(((cA >> 8) & 255) * (1 - t) + ((cB >> 8) & 255) * t);
+            const b = Math.round((cA & 255) * (1 - t) + (cB & 255) * t);
+            return `rgb(${r},${g},${b})`;
+        }
+
+        // Determine Sky Palette & Sun/Moon Position from Redwood Christchurch Time
+        function getSkyEnvironment(now) {
+            let currentMins = now.getHours() * 60 + now.getMinutes() + now.getSeconds() / 60;
+            const sr = liveWeather.sunriseMin;
+            const ss = liveWeather.sunsetMin;
+
+            // Support manual preview overrides from Admin/Remote
+            if (appConfig.skyMode === 'SUNRISE') currentMins = sr + 8;
+            else if (appConfig.skyMode === 'NOON') currentMins = (sr + ss) / 2;
+            else if (appConfig.skyMode === 'SUNSET') currentMins = ss - 10;
+            else if (appConfig.skyMode === 'NIGHT' || demoFireworksRemaining > 0) currentMins = 1435;
+
+            let topCol, midCol, botCol, starAlpha = 0, sunElevation = -1, phaseLabel = "🌙 STARRY NIGHT";
+
+            if (currentMins < sr - 45 || currentMins > ss + 50) {
+                // Deep Southern Starry Night
+                topCol = "#040711";
+                midCol = "#0c1428";
+                botCol = "#1f192e";
+                starAlpha = 1.0;
+                phaseLabel = "🌙 REDWOOD NIGHT SKY";
+            } else if (currentMins >= sr - 45 && currentMins < sr + 35) {
+                // Sunrise / Dawn Transition
+                const t = (currentMins - (sr - 45)) / 80;
+                topCol = lerpColor("#080f24", "#1f4e78", t);
+                midCol = lerpColor("#2b193d", "#d95f25", t);
+                botCol = lerpColor("#6e2236", "#ffcf6b", t);
+                starAlpha = Math.max(0, 1 - t * 1.4);
+                sunElevation = (t - 0.3) * 0.25;
+                phaseLabel = "🌅 REDWOOD SUNRISE";
+            } else if (currentMins >= sr + 35 && currentMins < ss - 50) {
+                // Daytime Sky
+                const dayFrac = (currentMins - (sr + 35)) / ((ss - 50) - (sr + 35));
+                sunElevation = 0.2 + Math.sin(dayFrac * Math.PI) * 0.75;
+                topCol = "#0d3b66";
+                midCol = "#2a6f97";
+                botCol = "#89c2d9";
+                starAlpha = 0;
+                phaseLabel = "☀️ DAYLIGHT SKY";
+            } else {
+                // Golden Hour & Western Crimson Sunset
+                const t = (currentMins - (ss - 50)) / 100;
+                topCol = lerpColor("#14284b", "#060916", t);
+                midCol = lerpColor("#b8332a", "#1c132b", t);
+                botCol = lerpColor("#ff9914", "#2e1623", t);
+                starAlpha = Math.max(0, (t - 0.35) * 1.5);
+                sunElevation = Math.max(-0.15, (0.65 - t) * 0.35);
+                phaseLabel = "🌇 GOLDEN WESTERN SUNSET";
+            }
+
+            const dayProgress = Math.max(0, Math.min(1, (currentMins - sr) / (ss - sr)));
+            return { topCol, midCol, botCol, starAlpha, sunElevation, dayProgress, phaseLabel };
+        }
+
+        // Draw Western Saguaro Cactus
+        function drawCactus(ctx, x, y, scale, color) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.scale(scale, scale);
+            ctx.fillStyle = color;
+            ctx.lineCap = "round";
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 18;
+
+            // Main trunk
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(0, -145);
+            ctx.stroke();
+
+            // Left arm
+            ctx.lineWidth = 13;
+            ctx.beginPath();
+            ctx.moveTo(0, -75);
+            ctx.quadraticCurveTo(-36, -75, -36, -100);
+            ctx.lineTo(-36, -125);
+            ctx.stroke();
+
+            // Right arm
+            ctx.beginPath();
+            ctx.moveTo(0, -55);
+            ctx.quadraticCurveTo(34, -55, 34, -80);
+            ctx.lineTo(34, -112);
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        // Draw Coasters Western Saloon, Windmill, Water Tower & Hitching Post
+        function drawSaloonAndTown(ctx, timeSec, isNight) {
+            const baseY = 795;
+
+            // 1. Distant Trestle Bridge for Steam Train
+            ctx.strokeStyle = "#170d08";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(0, 695);
+            ctx.lineTo(1920, 695);
+            ctx.stroke();
+            for (let bx = 40; bx < 1920; bx += 75) {
+                ctx.beginPath();
+                ctx.moveTo(bx, 695);
+                ctx.lineTo(bx - 12, 745);
+                ctx.moveTo(bx, 695);
+                ctx.lineTo(bx + 12, 745);
+                ctx.stroke();
+            }
+
+            // 2. Steam Train ("The Redwood Express")
+            ctx.save();
+            ctx.translate(train.x, 695);
+            // Locomotive
+            ctx.fillStyle = "#120905";
+            ctx.fillRect(0, -34, 78, 34);
+            ctx.fillRect(52, -48, 12, 16); // Smokestack
+            ctx.fillRect(-5, -44, 28, 22); // Cab
+            // Tender & 3 Lit Passenger Coaches
+            for (let c = 1; c <= 3; c++) {
+                const cx = -c * 92;
+                ctx.fillStyle = "#120905";
+                ctx.fillRect(cx, -30, 82, 30);
+                // Glowing Warm Coach Windows
+                ctx.fillStyle = isNight ? "#ffcc33" : "#ffe699";
+                for (let w = 0; w < 4; w++) {
+                    ctx.fillRect(cx + 10 + w * 17, -22, 11, 10);
+                }
+            }
+            // Locomotive Headlamp Beam
+            const beamGrad = ctx.createLinearGradient(78, -22, 260, -5);
+            beamGrad.addColorStop(0, "rgba(255, 230, 130, 0.7)");
+            beamGrad.addColorStop(1, "rgba(255, 230, 130, 0)");
+            ctx.fillStyle = beamGrad;
+            ctx.beginPath();
+            ctx.moveTo(78, -24);
+            ctx.lineTo(260, -48);
+            ctx.lineTo(260, 4);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+
+            // 3. Midground Mesa & Canterbury Foothills
+            ctx.fillStyle = "#1a0e07";
+            ctx.beginPath();
+            ctx.moveTo(0, baseY);
+            ctx.lineTo(0, 680);
+            ctx.lineTo(260, 645);
+            ctx.lineTo(390, 690);
+            ctx.lineTo(840, 690);
+            ctx.lineTo(960, 635);
+            ctx.lineTo(1180, 635);
+            ctx.lineTo(1290, 688);
+            ctx.lineTo(1640, 675);
+            ctx.lineTo(1760, 620);
+            ctx.lineTo(1920, 640);
+            ctx.lineTo(1920, baseY);
+            ctx.closePath();
+            ctx.fill();
+
+            // 4. Howling Coyote on Right Mesa Cliff (x=1755, y=620)
+            ctx.save();
+            ctx.translate(1755, 622);
+            ctx.fillStyle = "#0d0603";
+            const headTilt = Math.sin(timeSec * 1.4) * 0.15;
+            ctx.beginPath();
+            ctx.ellipse(0, -12, 16, 9, -0.3, 0, Math.PI * 2); // Body
+            ctx.fill();
+            ctx.fillRect(-12, -10, 4, 12);
+            ctx.fillRect(6, -10, 4, 12);
+            ctx.rotate(-0.4 + headTilt);
+            ctx.fillRect(8, -24, 12, 7); // Muzzle raised howling
+            ctx.restore();
+
+            // 5. Rotating Western Wooden Windmill (Left, x=195)
+            ctx.save();
+            ctx.translate(195, baseY);
+            ctx.strokeStyle = "#120804";
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.moveTo(-36, 0);
+            ctx.lineTo(-8, -225);
+            ctx.moveTo(36, 0);
+            ctx.lineTo(8, -225);
+            ctx.stroke();
+            ctx.lineWidth = 3;
+            for (let y = -45; y >= -190; y -= 45) {
+                const w = (1 - Math.abs(y) / 240) * 36;
+                ctx.beginPath();
+                ctx.moveTo(-w, y);
+                ctx.lineTo(w, y);
+                ctx.stroke();
+            }
+            // Rotating Turbine Wheel
+            ctx.translate(0, -225);
+            ctx.rotate(timeSec * 1.15);
+            ctx.strokeStyle = "#261308";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(0, 0, 52, 0, Math.PI * 2);
+            ctx.stroke();
+            for (let b = 0; b < 12; b++) {
+                ctx.save();
+                ctx.rotate((b * Math.PI * 2) / 12);
+                ctx.fillStyle = "#1f0f06";
+                ctx.fillRect(-3, 12, 7, 38);
+                ctx.restore();
+            }
+            ctx.restore();
+
+            // 6. Coasters Western Saloon Building (Left-Center, x=430)
+            ctx.save();
+            ctx.translate(430, baseY);
+
+            // Warm Ground Spill Glow from Saloon Porch
+            const porchGlow = ctx.createRadialGradient(0, 5, 10, 0, 5, 220);
+            porchGlow.addColorStop(0, "rgba(255, 165, 30, 0.45)");
+            porchGlow.addColorStop(1, "rgba(255, 140, 0, 0)");
+            ctx.fillStyle = porchGlow;
+            ctx.fillRect(-220, -40, 440, 95);
+
+            // Main False-Front Timber Saloon Structure
+            ctx.fillStyle = "#170b05";
+            ctx.fillRect(-130, -175, 260, 175);
+            // Stepped Western False Front Pediment
+            ctx.fillRect(-142, -230, 284, 60);
+            ctx.beginPath();
+            ctx.arc(0, -230, 75, Math.PI, 0);
+            ctx.fill();
+
+            // Gold Trim & Saloon Signboard
+            ctx.strokeStyle = "#b57c24";
+            ctx.lineWidth = 3;
+            ctx.strokeRect(-126, -218, 252, 38);
+            ctx.fillStyle = "#ffcc33";
+            ctx.font = "400 22px 'Rye', serif";
+            ctx.textAlign = "center";
+            ctx.fillText("COASTERS SALOON", 0, -191);
+
+            // Saloon Porch Roof & Posts
+            ctx.fillStyle = "#0e0603";
+            ctx.beginPath();
+            ctx.moveTo(-155, -92);
+            ctx.lineTo(155, -92);
+            ctx.lineTo(138, -112);
+            ctx.lineTo(-138, -112);
+            ctx.closePath();
+            ctx.fill();
+            [-135, -55, 55, 135].forEach(px => {
+                ctx.fillRect(px - 3, -92, 6, 92);
+            });
+
+            // Glowing Saloon Windows (Upstairs & Downstairs)
+            const flicker = 0.88 + Math.sin(timeSec * 11) * 0.06 + Math.cos(timeSec * 17) * 0.06;
+            ctx.fillStyle = `rgba(255, 190, 55, ${flicker})`;
+            // Upper windows
+            ctx.fillRect(-95, -158, 42, 34);
+            ctx.fillRect(-21, -158, 42, 34);
+            ctx.fillRect(53, -158, 42, 34);
+            // Lower windows
+            ctx.fillRect(-105, -68, 48, 40);
+            ctx.fillRect(57, -68, 48, 40);
+
+            // Swinging Batwing Saloon Doors
+            const doorSwing = Math.sin(timeSec * 2.5) * 4;
+            ctx.fillStyle = `rgba(255, 165, 30, ${flicker})`;
+            ctx.fillRect(-28, -74, 56, 74);
+            ctx.fillStyle = "#2b1306";
+            ctx.fillRect(-28, -56, 25 + doorSwing, 42);
+            ctx.fillRect(3 - doorSwing, -56, 25 + doorSwing, 42);
+
+            // Hanging Flickering Lanterns
+            [-95, 95].forEach(lx => {
+                ctx.fillStyle = "#ffdd55";
+                ctx.beginPath();
+                ctx.arc(lx, -82, 6, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Hitching Post & Tied Horse Outside Saloon (x = 195 relative to saloon)
+            ctx.strokeStyle = "#291408";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(170, 0);
+            ctx.lineTo(170, -34);
+            ctx.lineTo(235, -34);
+            ctx.lineTo(235, 0);
+            ctx.stroke();
+
+            // Tied Horse Silhouette with Bobbing Head & Swishing Tail
+            const horseHeadBob = Math.sin(timeSec * 2.2) * 5;
+            const tailSwish = Math.cos(timeSec * 3.8) * 6;
+            ctx.fillStyle = "#120803";
+            ctx.beginPath();
+            ctx.ellipse(265, -36, 28, 15, 0, 0, Math.PI * 2); // Barrel
+            ctx.fill();
+            // Legs
+            ctx.fillRect(244, -26, 5, 26);
+            ctx.fillRect(253, -26, 5, 26);
+            ctx.fillRect(277, -26, 5, 26);
+            ctx.fillRect(285, -26, 5, 26);
+            // Neck & Head
+            ctx.beginPath();
+            ctx.moveTo(242, -42);
+            ctx.lineTo(226, -62 + horseHeadBob);
+            ctx.lineTo(214, -54 + horseHeadBob);
+            ctx.lineTo(234, -32);
+            ctx.closePath();
+            ctx.fill();
+            // Tail
+            ctx.strokeStyle = "#120803";
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(292, -40);
+            ctx.quadraticCurveTo(302 + tailSwish, -24, 298 + tailSwish, -10);
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+        // Draw Animated Campfire & Cowboy Silhouette (Right Foreground x=1380)
+        function drawCampfireAndScene(ctx, timeSec, dt) {
+            const baseY = 815;
+
+            // Foreground Ground Plane
+            const groundGrad = ctx.createLinearGradient(0, 785, 0, 1080);
+            groundGrad.addColorStop(0, "#140a04");
+            groundGrad.addColorStop(0.35, "#0d0603");
+            groundGrad.addColorStop(1, "#040201");
+            ctx.fillStyle = groundGrad;
+            ctx.fillRect(0, 785, 1920, 295);
+
+            // Cacti & Wagon Wheel Silhouettes
+            drawCactus(ctx, 88, 810, 0.92, "#0c0502");
+            drawCactus(ctx, 1615, 805, 1.05, "#0c0502");
+            drawCactus(ctx, 1835, 825, 0.78, "#090402");
+
+            // Wooden Wagon Wheel Leaning Against Rock (x=1220)
+            ctx.save();
+            ctx.translate(1220, 800);
+            ctx.strokeStyle = "#261308";
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.arc(0, 0, 34, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.lineWidth = 3;
+            for (let s = 0; s < 8; s++) {
+                const a = (s * Math.PI) / 4;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(Math.cos(a) * 34, Math.sin(a) * 34);
+                ctx.stroke();
+            }
+            ctx.restore();
+
+            // Campfire Glow & Dancing Flames (x=1380, y=815)
+            const fireX = 1380;
+            const fireGlow = ctx.createRadialGradient(fireX, baseY - 12, 6, fireX, baseY - 12, 160);
+            fireGlow.addColorStop(0, "rgba(255, 140, 20, 0.55)");
+            fireGlow.addColorStop(0.5, "rgba(230, 60, 10, 0.18)");
+            fireGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
+            ctx.fillStyle = fireGlow;
+            ctx.beginPath();
+            ctx.arc(fireX, baseY - 12, 160, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Logs
+            ctx.strokeStyle = "#2b1306";
+            ctx.lineWidth = 9;
+            ctx.beginPath();
+            ctx.moveTo(fireX - 28, baseY + 4);
+            ctx.lineTo(fireX + 28, baseY - 8);
+            ctx.moveTo(fireX - 24, baseY - 8);
+            ctx.lineTo(fireX + 26, baseY + 4);
+            ctx.stroke();
+
+            // Animated Tongues of Flame
+            for (let f = 0; f < 5; f++) {
+                const fx = fireX + (f - 2) * 8;
+                const fh = 28 + Math.sin(timeSec * 14 + f * 1.7) * 12;
+                const sway = Math.cos(timeSec * 10 + f) * 7;
+                ctx.fillStyle = f % 2 === 0 ? "#ff6a00" : "#ffcc22";
+                ctx.beginPath();
+                ctx.moveTo(fx - 9, baseY);
+                ctx.quadraticCurveTo(fx + sway, baseY - fh, fx + 9, baseY);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            // Rising Glowing Campfire Embers
+            for (const em of embers) {
+                em.y -= em.vy * dt;
+                em.x += Math.sin(timeSec * 3 + em.y * 0.05) * 14 * dt;
+                em.alpha -= 0.35 * dt;
+                if (em.alpha <= 0 || em.y < 690) {
+                    em.x = fireX + (Math.random() - 0.5) * 28;
+                    em.y = baseY - 8;
+                    em.alpha = 0.7 + Math.random() * 0.3;
+                }
+                ctx.fillStyle = `rgba(255, 190, 50, ${em.alpha})`;
+                ctx.beginPath();
+                ctx.arc(em.x, em.y, em.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Main 60FPS Animation Loop
+        let lastTime = performance.now();
+        let autoFireworkTimer = 0;
+
+        function renderScene(nowMs) {
+            const dt = Math.min(0.05, (nowMs - lastTime) / 1000);
+            lastTime = nowMs;
+            const timeSec = nowMs / 1000;
+            const nowDate = new Date();
+
+            if (demoFireworksRemaining > 0) {
+                demoFireworksRemaining = Math.max(0, demoFireworksRemaining - dt);
+            }
+
+            // 1. Dynamic Sky Gradient for Redwood, Christchurch
+            const env = getSkyEnvironment(nowDate);
+            document.getElementById('skyPhaseBadge').textContent = env.phaseLabel;
+
+            const skyGrad = ctx.createLinearGradient(0, 0, 0, 795);
+            skyGrad.addColorStop(0, env.topCol);
+            skyGrad.addColorStop(0.55, env.midCol);
+            skyGrad.addColorStop(1, env.botCol);
+            ctx.fillStyle = skyGrad;
+            ctx.fillRect(0, 0, 1920, 800);
+
+            // 2. Stars & Southern Cross (Crux) at Dusk/Night
+            if (env.starAlpha > 0.02) {
+                for (const st of stars) {
+                    const tw = 0.45 + 0.55 * Math.sin(timeSec * st.speed + st.phase);
+                    ctx.fillStyle = `rgba(255, 250, 235, ${env.starAlpha * tw})`;
+                    ctx.beginPath();
+                    ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                // Highlight Southern Cross
+                for (const cs of cruxStars) {
+                    ctx.fillStyle = `rgba(255, 240, 180, ${env.starAlpha})`;
+                    ctx.beginPath();
+                    ctx.arc(cs.x, cs.y, cs.r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // 3. Sun or Crescent Moon Across Redwood Sky Arc
+            if (env.sunElevation > -0.08) {
+                const sunX = 240 + env.dayProgress * 1440;
+                const sunY = 670 - env.sunElevation * 490;
+                const sunGlow = ctx.createRadialGradient(sunX, sunY, 12, sunX, sunY, 260);
+                sunGlow.addColorStop(0, "rgba(255, 250, 210, 0.95)");
+                sunGlow.addColorStop(0.25, "rgba(255, 175, 50, 0.45)");
+                sunGlow.addColorStop(1, "rgba(255, 110, 10, 0)");
+                ctx.fillStyle = sunGlow;
+                ctx.beginPath();
+                ctx.arc(sunX, sunY, 260, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = "#fff6cc";
+                ctx.beginPath();
+                ctx.arc(sunX, sunY, 38, 0, Math.PI * 2);
+                ctx.fill();
+            } else {
+                // Glowing Moon
+                const moonX = 1620;
+                const moonY = 145;
+                const moonGlow = ctx.createRadialGradient(moonX, moonY, 10, moonX, moonY, 130);
+                moonGlow.addColorStop(0, "rgba(255, 245, 210, 0.45)");
+                moonGlow.addColorStop(1, "rgba(255, 245, 210, 0)");
+                ctx.fillStyle = moonGlow;
+                ctx.beginPath();
+                ctx.arc(moonX, moonY, 130, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = "#fef3c7";
+                ctx.beginPath();
+                ctx.arc(moonX, moonY, 30, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // 4. Drifting Canterbury Nor'west Clouds
+            for (const cl of clouds) {
+                cl.x += cl.speed * dt;
+                if (cl.x > 2150) cl.x = -350;
+                ctx.fillStyle = env.starAlpha > 0.5
+                    ? "rgba(35, 30, 52, 0.36)"
+                    : "rgba(255, 215, 165, 0.22)";
+                ctx.beginPath();
+                ctx.ellipse(cl.x, cl.y, cl.w * 0.5, cl.h * 0.5, 0, 0, Math.PI * 2);
+                ctx.ellipse(cl.x - cl.w * 0.25, cl.y + 8, cl.w * 0.35, cl.h * 0.4, 0, 0, Math.PI * 2);
+                ctx.ellipse(cl.x + cl.w * 0.25, cl.y + 6, cl.w * 0.35, cl.h * 0.4, 0, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // 5. Soaring Hawks/Vultures (Day) or Flying Bats (Night)
+            for (const b of skyBirds) {
+                const bx = b.baseX + Math.cos(timeSec * 0.45 + b.phase) * b.radiusX;
+                const by = b.baseY + Math.sin(timeSec * 0.9 + b.phase) * b.radiusY;
+                const wingY = Math.sin(timeSec * 6.5 + b.flapPhase) * 9;
+
+                ctx.strokeStyle = env.starAlpha > 0.5 ? "#090504" : "#1c0e06";
+                ctx.lineWidth = 2.8;
+                ctx.beginPath();
+                ctx.moveTo(bx - 16, by - wingY);
+                ctx.quadraticCurveTo(bx - 6, by - 5, bx, by);
+                ctx.quadraticCurveTo(bx + 6, by - 5, bx + 16, by - wingY);
+                ctx.stroke();
+            }
+
+            // 6. Update Steam Train & Billowing Smoke Clouds
+            train.x += train.speed * dt;
+            if (train.x > 2350) train.x = -450;
+            if (Math.random() < 0.45) {
+                train.smokeParticles.push({
+                    x: train.x + 58,
+                    y: 645,
+                    r: 6,
+                    alpha: 0.55
+                });
+            }
+            for (let i = train.smokeParticles.length - 1; i >= 0; i--) {
+                const sp = train.smokeParticles[i];
+                sp.x -= 18 * dt;
+                sp.y -= 26 * dt;
+                sp.r += 16 * dt;
+                sp.alpha -= 0.18 * dt;
+                if (sp.alpha <= 0) {
+                    train.smokeParticles.splice(i, 1);
+                    continue;
+                }
+                ctx.fillStyle = `rgba(215, 200, 185, ${sp.alpha})`;
+                ctx.beginPath();
+                ctx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // 7. Draw Saloon, Windmill, Coyote & Hitching Post
+            drawSaloonAndTown(ctx, timeSec, env.starAlpha > 0.4);
+
+            // 8. Galloping Cowboy & Mustang Across Midground Trail (y=792)
+            rider.x -= rider.speed * dt;
+            rider.stride += dt * 13;
+            if (rider.x < -180) rider.x = 2150;
+
+            ctx.save();
+            ctx.translate(rider.x, 785 + Math.sin(rider.stride) * 4);
+            ctx.fillStyle = "#0b0502";
+            // Horse body
+            ctx.beginPath();
+            ctx.ellipse(0, -24, 26, 12, 0, 0, Math.PI * 2);
+            ctx.fill();
+            // Horse head
+            ctx.beginPath();
+            ctx.moveTo(-18, -28);
+            ctx.lineTo(-34, -42);
+            ctx.lineTo(-42, -34);
+            ctx.lineTo(-22, -18);
+            ctx.closePath();
+            ctx.fill();
+            // Galloping legs
+            const legSwing = Math.sin(rider.stride) * 14;
+            ctx.strokeStyle = "#0b0502";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(-16, -18); ctx.lineTo(-22 - legSwing, 0);
+            ctx.moveTo(-10, -18); ctx.lineTo(-8 + legSwing, 0);
+            ctx.moveTo(14, -18);  ctx.lineTo(18 + legSwing, 0);
+            ctx.moveTo(20, -18);  ctx.lineTo(24 - legSwing, 0);
+            ctx.stroke();
+            // Cowboy rider & Stetson hat
+            ctx.fillRect(-6, -48, 12, 22);
+            ctx.beginPath();
+            ctx.ellipse(0, -50, 14, 4, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            // 9. Draw Campfire, Cacti & Foreground
+            drawCampfireAndScene(ctx, timeSec, dt);
+
+            // 10. Rolling Tumbleweeds Across Foreground Dust Trail
+            for (const tw of tumbleweeds) {
+                tw.x += tw.vx * dt;
+                tw.rot += (tw.vx / tw.r) * dt;
+                tw.bouncePhase += 4.8 * dt;
+                if (tw.x > 2050) tw.x = -120 - Math.random() * 400;
+
+                const ty = tw.y - Math.abs(Math.sin(tw.bouncePhase)) * 28;
+                ctx.save();
+                ctx.translate(tw.x, ty);
+                ctx.rotate(tw.rot);
+                ctx.strokeStyle = "#5c3818";
+                ctx.lineWidth = 2.2;
+                for (let ring = 0; ring < 5; ring++) {
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, tw.r, tw.r * (0.45 + ring * 0.12), ring * 0.6, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+                ctx.restore();
+            }
+
+            // 11. Epic Fireworks Display (Continuous celebratory bursts during Midnight / Demo + Periodic Teasers)
+            autoFireworkTimer += dt;
+            const fwInterval = demoFireworksRemaining > 0 ? 0.32 : 2.6;
+            if (autoFireworkTimer >= fwInterval) {
+                autoFireworkTimer = 0;
+                launchFireworkShell();
+                if (demoFireworksRemaining > 0 && Math.random() > 0.35) {
+                    launchFireworkShell();
+                }
+            }
+
+            // Update & Render Rising Firework Shells
+            for (let i = fireworkShells.length - 1; i >= 0; i--) {
+                const sh = fireworkShells[i];
+                sh.trail.push({ x: sh.x, y: sh.y });
+                if (sh.trail.length > 10) sh.trail.shift();
+
+                sh.x += sh.vx * dt;
+                sh.y += sh.vy * dt;
+                sh.vy += 260 * dt;
+
+                // Draw Golden Rocket Trail
+                ctx.strokeStyle = "rgba(255, 215, 110, 0.75)";
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                sh.trail.forEach((pt, idx) => {
+                    if (idx === 0) ctx.moveTo(pt.x, pt.y);
+                    else ctx.lineTo(pt.x, pt.y);
+                });
+                ctx.stroke();
+
+                if (sh.y <= sh.targetY || sh.vy >= -20) {
+                    explodeShell(sh);
+                    fireworkShells.splice(i, 1);
+                }
+            }
+
+            // Update & Render Expanding Shockwave Rings
+            for (let i = fireworkRings.length - 1; i >= 0; i--) {
+                const rg = fireworkRings[i];
+                rg.r += 260 * dt;
+                rg.alpha -= 1.2 * dt;
+                if (rg.alpha <= 0) {
+                    fireworkRings.splice(i, 1);
+                    continue;
+                }
+                ctx.strokeStyle = rg.color;
+                ctx.globalAlpha = rg.alpha;
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.arc(rg.x, rg.y, rg.r, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.globalAlpha = 1;
+            }
+
+            // Update & Render Firework Sparks
+            for (let i = fireworkSparks.length - 1; i >= 0; i--) {
+                const sp = fireworkSparks[i];
+                sp.x += sp.vx * dt;
+                sp.y += sp.vy * dt;
+                sp.vy += sp.gravity * dt;
+                sp.vx *= 0.985;
+                sp.alpha -= sp.decay * dt;
+
+                if (sp.alpha <= 0) {
+                    fireworkSparks.splice(i, 1);
+                    continue;
+                }
+                ctx.fillStyle = sp.color;
+                ctx.globalAlpha = Math.max(0, sp.alpha);
+                ctx.beginPath();
+                ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+
+            requestAnimationFrame(renderScene);
+        }
+
+        // Initialize
+        applyStaticBranding();
+        showSlide(0, true);
+        restartSlideTimer();
+        requestAnimationFrame(renderScene);
+    </script>
+</body>
+</html>

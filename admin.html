@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0">
+    <title>Admin Panel — Wild West NYE Countdown | Coasters Tavern Redwood</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@600;700&family=Inter:wght@500;700;800&family=Rye&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #ffcc33;
+            --brass: #d49b35;
+            --red: #c81e2b;
+            --bg: #0a0604;
+            --panel: #170e08;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 26px 40px;
+            overflow-x: hidden;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--panel);
+            border: 2px solid var(--brass);
+            border-left: 8px solid var(--red);
+            border-radius: 14px;
+            padding: 16px 28px;
+            margin-bottom: 24px;
+            white-space: nowrap;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .header-left img { height: 50px; }
+        .header-title {
+            font-family: 'Rye', serif;
+            font-size: 28px;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .clock-pill {
+            font-family: 'Chakra Petch', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            background: #060302;
+            border: 1px solid rgba(255,204,51,0.35);
+            padding: 8px 18px;
+            border-radius: 10px;
+        }
+        .blink-colon {
+            color: var(--gold);
+            animation: blink 1s steps(1, start) infinite;
+        }
+        @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+        .btn {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1px;
+            padding: 11px 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.18);
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+            background: #29180d;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        .btn:hover { border-color: var(--gold); transform: translateY(-1px); }
+        .btn-gold { background: var(--gold); color: #140903; border-color: #fff; }
+        .btn-red { background: var(--red); border-color: var(--gold); }
+        .grid {
+            display: grid;
+            grid-template-columns: 460px 1fr;
+            gap: 24px;
+        }
+        .card {
+            background: var(--panel);
+            border: 1px solid rgba(212, 155, 53, 0.35);
+            border-radius: 14px;
+            padding: 22px;
+        }
+        .card h2 {
+            font-family: 'Rye', serif;
+            font-size: 20px;
+            color: var(--gold);
+            letter-spacing: 1.2px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            padding-bottom: 8px;
+            white-space: nowrap;
+        }
+        .field { margin-bottom: 14px; }
+        .field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #d1d5db;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            white-space: nowrap;
+        }
+        .field input, .field select {
+            width: 100%;
+            background: #090503;
+            border: 1px solid rgba(212,155,53,0.4);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .slides-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .slide-box {
+            background: #0d0704;
+            border: 1px solid rgba(212, 155, 53, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .slide-box h3 {
+            font-family: 'Rye', serif;
+            font-size: 15px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            white-space: nowrap;
+        }
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .toast {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: #10b981;
+            color: #041f14;
+            font-weight: 800;
+            padding: 14px 26px;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .toast.show { opacity: 1; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <img src="coasters_logo.png" alt="Coasters" onerror="this.style.display='none'">
+            <div class="header-title">WILD WEST NYE — ADMIN CONTROL</div>
+        </div>
+        <div class="header-right">
+            <a href="index.html" class="btn">OPEN LIVE DISPLAY</a>
+            <a href="remote.html" class="btn">OPEN REMOTE</a>
+            <button class="btn btn-red" id="fwBtn">🎇 TEST MIDNIGHT FIREWORKS</button>
+            <button class="btn btn-gold" id="saveBtn">SAVE & PUSH LIVE</button>
+            <button class="btn" id="resetBtn">RESET DEFAULTS</button>
+            <div class="clock-pill">
+                <span id="aH">12</span><span class="blink-colon">:</span><span id="aM">00</span><span class="blink-colon">:</span><span id="aS">00</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>REDWOOD SKY, COUNTDOWN & VENUE SETTINGS</h2>
+            <div class="row-2">
+                <div class="field">
+                    <label>Venue Name</label>
+                    <input type="text" id="venueName">
+                </div>
+                <div class="field">
+                    <label>Venue Subtitle</label>
+                    <input type="text" id="venueSub">
+                </div>
+            </div>
+            <div class="field">
+                <label>Countdown Plaque Title</label>
+                <input type="text" id="countdownTitle">
+            </div>
+            <div class="field">
+                <label>Sky Mode (Redwood Christchurch Solar Match or Override)</label>
+                <select id="skyMode">
+                    <option value="REALTIME">REALTIME (Match Redwood Christchurch Sunrise/Sunset)</option>
+                    <option value="SUNRISE">DAWN / SUNRISE PREVIEW</option>
+                    <option value="NOON">HIGH NOON DAYLIGHT PREVIEW</option>
+                    <option value="SUNSET">GOLDEN WESTERN SUNSET PREVIEW</option>
+                    <option value="NIGHT">STARRY SOUTHERN CROSS NIGHT PREVIEW</option>
+                </select>
+            </div>
+            <div class="row-2">
+                <div class="field">
+                    <label>Slide Duration (Seconds)</label>
+                    <input type="number" id="slideDurationSec" min="5" max="120">
+                </div>
+                <div class="field">
+                    <label>Custom Target ISO (Optional)</label>
+                    <input type="text" id="targetDateISO" placeholder="Auto: Next Jan 1 00:00:00">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>WESTERN SALOON PROMOTIONAL SLIDES (1 - 4)</h2>
+            <div class="slides-grid" id="slidesEditor"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">SAVED & SYNCED TO LIVE DISPLAY!</div>
+
+    <script>
+        const STORAGE_KEY = 'ct_west_config_v1';
+        const channel = ('BroadcastChannel' in window) ? new BroadcastChannel('ct_west_channel') : null;
+
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('aH').textContent = String(now.getHours() % 12 || 12).padStart(2, '0');
+            document.getElementById('aM').textContent = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('aS').textContent = String(now.getSeconds()).padStart(2, '0');
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        const DEFAULT_CONFIG = {
+            venueName: "COASTERS TAVERN",
+            venueSub: "WILD WEST NYE HOEDOWN",
+            countdownTitle: "COUNTDOWN TO MIDNIGHT NEW YEAR'S EVE SHOWDOWN",
+            targetDateISO: "",
+            slideDurationSec: 10,
+            skyMode: "REALTIME",
+            slides: [
+                {
+                    badge: "WILD WEST NEW YEAR'S EVE",
+                    dateTag: "DECEMBER 31 • COASTERS TAVERN REDWOOD",
+                    headline: "SADDLE UP FOR OUR EPIC NYE SALOON PARTY!",
+                    subline: "COLD BREWS • BOURBON & RYE SPECIALS • GREAT FOOD • MIDNIGHT SHOWDOWN",
+                    ctaTop: "WANTED AT COASTERS",
+                    ctaMain: "BOOK YOUR TABLE"
+                },
+                {
+                    badge: "BEST DRESSED OUTLAW PRIZES",
+                    dateTag: "COWBOYS • COWGIRLS • SHERIFFS & GAMBLERS",
+                    headline: "DUST OFF YOUR BOOTS & STETSON HATS!",
+                    subline: "PRIZES FOR BEST WESTERN OUTFITS • BAR TABS & SPOT PRIZES ALL NIGHT LONG",
+                    ctaTop: "DRESS TO IMPRESS",
+                    ctaMain: "WIN BAR TABS"
+                },
+                {
+                    badge: "REDWOOD'S FAVOURITE LOCAL",
+                    dateTag: "COUNTING DOWN TO MIDNIGHT TOGETHER",
+                    headline: "FEAST LIKE A RANCHER BEFORE MIDNIGHT",
+                    subline: "STEAKS, RIBS, BURGERS & PLATTERS • COURTESY VAN AVAILABLE • SEE BAR STAFF",
+                    ctaTop: "RESERVE NOW",
+                    ctaMain: "ASK AT THE BAR"
+                },
+                {
+                    badge: "MIDNIGHT FIREWORKS & CHEERS",
+                    dateTag: "RING IN THE NEW YEAR IN STYLE",
+                    headline: "WHEN THE CLOCK STRIKES TWELVE WE RIDE!",
+                    subline: "TOAST THE NEW YEAR WITH MATES AT COASTERS TAVERN REDWOOD CHRISTCHURCH",
+                    ctaTop: "NEW YEAR'S EVE",
+                    ctaMain: "FREE ENTRY"
+                }
+            ]
+        };
+
+        function loadConfig() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                return raw ? Object.assign({}, DEFAULT_CONFIG, JSON.parse(raw)) : JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+            } catch (e) {
+                return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+            }
+        }
+
+        let cfg = loadConfig();
+
+        function renderForm() {
+            document.getElementById('venueName').value = cfg.venueName;
+            document.getElementById('venueSub').value = cfg.venueSub;
+            document.getElementById('countdownTitle').value = cfg.countdownTitle;
+            document.getElementById('skyMode').value = cfg.skyMode || 'REALTIME';
+            document.getElementById('slideDurationSec').value = cfg.slideDurationSec || 10;
+            document.getElementById('targetDateISO').value = cfg.targetDateISO || '';
+
+            const container = document.getElementById('slidesEditor');
+            container.innerHTML = cfg.slides.map((s, idx) => `
+                <div class="slide-box">
+                    <h3>SLIDE #${idx + 1}</h3>
+                    <div class="row-2">
+                        <div class="field"><label>Badge</label><input type="text" data-idx="${idx}" data-key="badge" value="${s.badge}"></div>
+                        <div class="field"><label>Date / Location Tag</label><input type="text" data-idx="${idx}" data-key="dateTag" value="${s.dateTag}"></div>
+                    </div>
+                    <div class="field"><label>Main Headline</label><input type="text" data-idx="${idx}" data-key="headline" value="${s.headline}"></div>
+                    <div class="field"><label>Subline</label><input type="text" data-idx="${idx}" data-key="subline" value="${s.subline}"></div>
+                    <div class="row-2">
+                        <div class="field"><label>CTA Top</label><input type="text" data-idx="${idx}" data-key="ctaTop" value="${s.ctaTop}"></div>
+                        <div class="field"><label>CTA Main</label><input type="text" data-idx="${idx}" data-key="ctaMain" value="${s.ctaMain}"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2200);
+        }
+
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            cfg.venueName = document.getElementById('venueName').value;
+            cfg.venueSub = document.getElementById('venueSub').value;
+            cfg.countdownTitle = document.getElementById('countdownTitle').value;
+            cfg.skyMode = document.getElementById('skyMode').value;
+            cfg.slideDurationSec = Number(document.getElementById('slideDurationSec').value) || 10;
+            cfg.targetDateISO = document.getElementById('targetDateISO').value.trim();
+
+            document.querySelectorAll('#slidesEditor input').forEach(inp => {
+                const idx = Number(inp.dataset.idx);
+                const key = inp.dataset.key;
+                cfg.slides[idx][key] = inp.value;
+            });
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+            if (channel) channel.postMessage({ type: 'CONFIG_UPDATE' });
+            showToast('SAVED & SYNCED TO LIVE DISPLAY!');
+        });
+
+        document.getElementById('fwBtn').addEventListener('click', () => {
+            if (channel) channel.postMessage({ type: 'CMD', action: 'FIREWORKS' });
+            showToast('LAUNCHED MIDNIGHT FIREWORKS EXTRAVAGANZA!');
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            cfg = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+            renderForm();
+            if (channel) channel.postMessage({ type: 'CONFIG_UPDATE' });
+            showToast('DEFAULTS RESTORED!');
+        });
+
+        renderForm();
+    </script>
+</body>
+</html>
