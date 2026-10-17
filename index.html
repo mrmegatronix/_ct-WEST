@@ -134,9 +134,9 @@
 
         .plaque-title {
             font-family: 'Rye', serif;
-            font-size: 50px;
+            font-size: 46px;
             color: #fff9db;
-            letter-spacing: 4px;
+            letter-spacing: 3.5px;
             text-transform: uppercase;
             line-height: 1.05;
             text-shadow:
@@ -735,7 +735,7 @@
             <div class="saloon-header-banner" id="saloonHeaderBanner">
                 <div class="banner-inner">
                     <div class="banner-center-content">
-                        <div class="plaque-title" id="countdownHeaderTitle">WILD WEST N.Y.E. KARAOKE PARTY!</div>
+                        <div class="plaque-title" id="countdownHeaderTitle">JOIN US FOR WILD WEST N.Y.E. KARAOKE PARTY!</div>
                         <div class="banner-datetime">THURSDAY 31ST DECEMBER • 8:00 PM TILL LATE</div>
                     </div>
                 </div>
@@ -1118,9 +1118,9 @@
         function applyStaticBranding() {
             const titleEl = document.getElementById('countdownHeaderTitle');
             if (titleEl) {
-                const titleText = (appConfig.countdownTitle && appConfig.countdownTitle !== "WILD WEST KARAOKE NYE COUNTDOWN SHOWDOWN")
+                const titleText = (appConfig.countdownTitle && appConfig.countdownTitle !== "WILD WEST KARAOKE NYE COUNTDOWN SHOWDOWN" && appConfig.countdownTitle !== "WILD WEST N.Y.E. KARAOKE PARTY!")
                     ? appConfig.countdownTitle
-                    : "WILD WEST N.Y.E. KARAOKE PARTY!";
+                    : "JOIN US FOR WILD WEST N.Y.E. KARAOKE PARTY!";
                 titleEl.textContent = titleText;
             }
         }
@@ -2415,15 +2415,15 @@
             ctx.stroke();
             ctx.restore();
 
-            // Campfire Glow & Dancing Flames (Centered in middle: x=960, y=815)
+            // Campfire Glow & Dancing Flames (Toned down cozy warm glow)
             const fireX = 960;
-            const fireGlow = ctx.createRadialGradient(fireX, baseY - 12, 6, fireX, baseY - 12, 260);
-            fireGlow.addColorStop(0, "rgba(255, 175, 45, 0.78)");
-            fireGlow.addColorStop(0.5, "rgba(245, 95, 20, 0.36)");
+            const fireGlow = ctx.createRadialGradient(fireX, baseY - 12, 4, fireX, baseY - 12, 90);
+            fireGlow.addColorStop(0, "rgba(255, 150, 30, 0.28)");
+            fireGlow.addColorStop(0.5, "rgba(220, 75, 10, 0.08)");
             fireGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
             ctx.fillStyle = fireGlow;
             ctx.beginPath();
-            ctx.arc(fireX, baseY - 12, 260, 0, Math.PI * 2);
+            ctx.arc(fireX, baseY - 12, 90, 0, Math.PI * 2);
             ctx.fill();
 
             // Cast-Iron Tripod & Swinging Coffee Kettle Over Campfire
