@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WILD WEST NEW YEAR'S EVE POSTER | Coasters Tavern Redwood</title>
+    <title>WILD WEST NEW YEAR'S EVE KARAOKE PARTY POSTER | Coasters Tavern Redwood</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Rye&family=Smokum&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Rye&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold-bright: #ffd54f;
-            --gold-deep: #ffb300;
-            --gold-foil: #f9a825;
-            --crimson-fire: #d32f2f;
-            --ink-dark: #0a0402;
-            --wood-dark: #1f0b03;
+            --gold-bright: #ffe066;
+            --gold-burnished: #ffb703;
+            --gold-border: #fca311;
+            --crimson: #d90429;
+            --dark-bg: #0b0401;
         }
 
         * {
@@ -24,8 +23,8 @@
         }
 
         body {
-            background-color: #050201;
-            background-image: radial-gradient(ellipse at 50% 30%, #1a0a03 0%, #030100 100%);
+            background-color: #080301;
+            background-image: radial-gradient(ellipse at 50% 25%, #1f0b04 0%, #050201 100%);
             color: #ffffff;
             font-family: 'Playfair Display', Georgia, serif;
             display: flex;
@@ -80,23 +79,23 @@
             color: #fff;
         }
 
-        /* The A3 Portrait Poster Wrapper (Exact 297mm x 420mm ratio: 1 : 1.414) */
+        /* A3 Portrait Event Poster Canvas (297mm x 420mm -> 1 : 1.414) */
         .poster-wrapper {
             position: relative;
             width: 100%;
             max-width: 780px;
             aspect-ratio: 297 / 420;
-            background-color: #0a0402;
-            background-image: url('poster_bg.jpg');
+            background-color: var(--dark-bg);
+            background-image: url('poster_karaoke_bg.jpg');
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
-            border: 4px solid #b87b1c;
+            border: 4px solid var(--gold-border);
             border-radius: 6px;
             box-shadow:
                 0 30px 90px rgba(0, 0, 0, 0.98),
-                0 0 80px rgba(255, 150, 30, 0.35),
-                inset 0 0 50px rgba(0, 0, 0, 0.9);
+                0 0 90px rgba(255, 160, 20, 0.4),
+                inset 0 0 40px rgba(0, 0, 0, 0.85);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -104,14 +103,14 @@
             box-sizing: border-box;
         }
 
-        /* Heavy Cinematic Vignette Overlays for Maximum Text Legibility & Contrast */
+        /* Atmospheric Vignettes to Guarantee 100% Readability Over Artwork */
         .poster-overlay-top {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 38%;
-            background: linear-gradient(180deg, rgba(6, 2, 1, 0.95) 0%, rgba(8, 3, 1, 0.82) 55%, rgba(10, 4, 1, 0.25) 85%, transparent 100%);
+            background: linear-gradient(180deg, rgba(8, 3, 1, 0.96) 0%, rgba(10, 4, 1, 0.84) 52%, rgba(12, 5, 2, 0.25) 82%, transparent 100%);
             pointer-events: none;
             z-index: 2;
         }
@@ -121,20 +120,19 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 44%;
-            background: linear-gradient(0deg, rgba(5, 2, 1, 0.98) 0%, rgba(8, 3, 1, 0.92) 50%, rgba(10, 4, 1, 0.4) 80%, transparent 100%);
+            height: 42%;
+            background: linear-gradient(0deg, rgba(6, 2, 1, 0.98) 0%, rgba(9, 3, 1, 0.92) 55%, rgba(12, 5, 2, 0.3) 85%, transparent 100%);
             pointer-events: none;
             z-index: 2;
         }
 
-        /* Outer Double Frontier Gold Frame */
+        /* Gold Framed Inner Margins */
         .poster-frame {
             position: relative;
             width: 100%;
             height: 100%;
-            border: 2px solid rgba(255, 213, 79, 0.55);
-            margin: 0;
-            padding: 22px 24px;
+            border: 2px solid rgba(255, 224, 102, 0.55);
+            padding: 20px 22px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -144,14 +142,14 @@
             box-sizing: border-box;
         }
 
-        /* Corner Gold Studs */
+        /* 4 Gold Corner Rivets */
         .corner-rivet {
             position: absolute;
             width: 14px;
             height: 14px;
-            background: radial-gradient(circle at 35% 35%, #ffe680 0%, #b87b1c 65%, #422005 100%);
+            background: radial-gradient(circle at 35% 35%, #fff2a3 0%, #ffb703 60%, #572d02 100%);
             border-radius: 50%;
-            box-shadow: 0 0 8px rgba(255, 200, 50, 0.7), inset 0 1px 1px #fff;
+            box-shadow: 0 0 8px rgba(255, 200, 50, 0.8), inset 0 1px 1px #fff;
             z-index: 10;
         }
         .cr-tl { top: 8px; left: 8px; }
@@ -159,8 +157,8 @@
         .cr-bl { bottom: 8px; left: 8px; }
         .cr-br { bottom: 8px; right: 8px; }
 
-        /* Top Header Block */
-        .top-header {
+        /* Top Saloon Presenter Strip */
+        .top-presenter-strip {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -168,32 +166,30 @@
             gap: 2px;
         }
 
-        .herald-saloon-name {
+        .venue-herald {
             font-family: 'Rye', serif;
-            font-size: 34px;
-            letter-spacing: 5px;
+            font-size: 32px;
+            letter-spacing: 4px;
             color: #ffffff;
             text-transform: uppercase;
             line-height: 1;
-            text-shadow:
-                0 0 16px rgba(255, 200, 50, 0.6),
-                0 2px 8px rgba(0, 0, 0, 0.95);
+            text-shadow: 0 0 16px rgba(255, 200, 50, 0.6), 0 2px 6px #000;
             white-space: nowrap;
         }
 
-        .herald-location {
+        .venue-herald-sub {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 800;
-            font-size: 13.5px;
-            letter-spacing: 5px;
+            font-size: 13px;
+            letter-spacing: 4.5px;
             color: var(--gold-bright);
             text-transform: uppercase;
-            text-shadow: 0 2px 6px #000;
+            text-shadow: 0 2px 4px #000;
             white-space: nowrap;
         }
 
-        /* Huge Cinematic Event Title */
-        .event-hero-title {
+        /* Giant Headline: IT'S A WILD WEST NEW YEAR'S EVE KARAOKE PARTY */
+        .hero-title-group {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -204,76 +200,93 @@
 
         .title-wild-west {
             font-family: 'Rye', serif;
-            font-size: 84px;
+            font-size: 78px;
             line-height: 0.92;
-            letter-spacing: 8px;
-            color: #fff9db;
+            letter-spacing: 7px;
+            color: #fff8e7;
             text-transform: uppercase;
             text-shadow:
                 0 2px 0 #ffe680,
                 0 4px 0 #d98818,
                 0 6px 0 #9c5806,
                 0 8px 0 #572d02,
-                0 12px 28px rgba(0, 0, 0, 0.95),
-                0 0 35px rgba(255, 170, 0, 0.65);
+                0 12px 24px rgba(0, 0, 0, 0.95),
+                0 0 30px rgba(255, 170, 0, 0.7);
             white-space: nowrap;
         }
 
-        .title-nye-banner {
+        .title-nye-sub {
             font-family: 'Rye', serif;
-            font-size: 38px;
+            font-size: 36px;
             letter-spacing: 5px;
             color: var(--gold-bright);
             text-transform: uppercase;
             line-height: 1;
             text-shadow:
-                0 2px 0 #8f1618,
-                0 4px 12px rgba(0, 0, 0, 0.95),
-                0 0 20px rgba(255, 120, 0, 0.7);
+                0 2px 0 #b71c1c,
+                0 4px 10px rgba(0, 0, 0, 0.95),
+                0 0 20px rgba(255, 140, 0, 0.8);
             white-space: nowrap;
         }
 
-        .title-karaoke-showdown {
-            background: linear-gradient(90deg, rgba(163, 28, 30, 0.95) 0%, rgba(211, 47, 47, 0.95) 50%, rgba(163, 28, 30, 0.95) 100%);
-            border: 2px solid var(--gold-bright);
-            color: #ffffff;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 44px;
-            letter-spacing: 5px;
-            padding: 3px 34px;
+        /* Dominant Event Headline: KARAOKE PARTY SHOWDOWN */
+        .karaoke-event-banner {
+            width: 100%;
+            background: linear-gradient(90deg, rgba(183, 28, 28, 0.96) 0%, rgba(229, 57, 53, 0.98) 50%, rgba(183, 28, 28, 0.96) 100%);
+            border: 2.5px solid var(--gold-bright);
             border-radius: 999px;
-            text-transform: uppercase;
-            margin-top: 6px;
+            padding: 4px 20px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             box-shadow:
-                0 6px 20px rgba(0, 0, 0, 0.8),
-                0 0 25px rgba(255, 100, 20, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+                0 8px 24px rgba(0, 0, 0, 0.9),
+                0 0 35px rgba(255, 80, 20, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
             white-space: nowrap;
         }
 
-        /* Center Breathing Window - Allows Artwork to Shine Through */
-        .artwork-window {
+        .karaoke-banner-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 50px;
+            letter-spacing: 5px;
+            color: #ffffff;
+            text-transform: uppercase;
+            line-height: 1;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+            white-space: nowrap;
+        }
+
+        .karaoke-mic-icon {
+            font-size: 26px;
+            filter: drop-shadow(0 0 8px #ffd54f);
+        }
+
+        /* Center Window: Lets the Stetson Mic & Fireworks Shine */
+        .artwork-center-window {
             flex: 1;
             width: 100%;
-            min-height: 80px;
+            min-height: 60px;
         }
 
-        /* Bottom Section: Date, Best Dressed, Highlights, Address */
-        .bottom-cluster {
+        /* Bottom Event Information Section */
+        .bottom-event-section {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
-        /* High-Impact Date & Time Card */
-        .date-plaque {
+        /* Date & Time Plaque */
+        .event-date-card {
             width: 100%;
-            background: rgba(18, 7, 2, 0.88);
+            background: rgba(18, 7, 2, 0.9);
             border: 2px solid var(--gold-bright);
             border-radius: 8px;
-            padding: 8px 16px;
+            padding: 7px 14px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -286,7 +299,7 @@
             -webkit-backdrop-filter: blur(8px);
         }
 
-        .date-day-text {
+        .event-date-headline {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
             font-size: 28px;
@@ -298,7 +311,7 @@
             white-space: nowrap;
         }
 
-        .date-time-text {
+        .event-time-headline {
             font-family: 'Playfair Display', serif;
             font-size: 15px;
             font-weight: 900;
@@ -309,13 +322,13 @@
             white-space: nowrap;
         }
 
-        /* THE WOW FACTOR: Mega Best Dressed Bounty Plaque */
+        /* Standout BEST DRESSED Feature */
         .best-dressed-spotlight {
             width: 100%;
-            background: linear-gradient(135deg, rgba(82, 17, 10, 0.95) 0%, rgba(138, 22, 18, 0.96) 50%, rgba(82, 17, 10, 0.95) 100%);
+            background: linear-gradient(135deg, rgba(82, 17, 10, 0.95) 0%, rgba(142, 24, 20, 0.97) 50%, rgba(82, 17, 10, 0.95) 100%);
             border: 3px solid var(--gold-bright);
             border-radius: 10px;
-            padding: 10px 18px;
+            padding: 9px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -337,7 +350,7 @@
             white-space: nowrap;
         }
 
-        .bd-headline {
+        .bd-title {
             font-family: 'Rye', serif;
             font-size: 34px;
             letter-spacing: 2.5px;
@@ -354,16 +367,16 @@
         .bd-categories {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            font-size: 15px;
+            font-size: 14.5px;
             letter-spacing: 3px;
             color: var(--gold-bright);
             text-transform: uppercase;
             white-space: nowrap;
         }
 
-        .bd-bounty-badge {
+        .bd-bounty {
             font-family: 'Playfair Display', serif;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 900;
             letter-spacing: 1.5px;
             color: #ffffff;
@@ -372,8 +385,8 @@
             white-space: nowrap;
         }
 
-        /* Highlights Row */
-        .party-highlights-strip {
+        /* Karaoke Features Row */
+        .karaoke-features-strip {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -388,18 +401,18 @@
             white-space: nowrap;
         }
 
-        /* Bottom Venue Address & Table Booking Footer */
-        .bottom-venue-strip {
+        /* Venue Address & Booking Footer */
+        .venue-footer-block {
             width: 100%;
-            border-top: 2px solid rgba(255, 213, 79, 0.45);
-            padding-top: 8px;
+            border-top: 2px solid rgba(255, 224, 102, 0.45);
+            padding-top: 7px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 3px;
         }
 
-        .address-line {
+        .address-text {
             font-family: 'Playfair Display', serif;
             font-size: 16px;
             font-weight: 900;
@@ -410,7 +423,7 @@
             white-space: nowrap;
         }
 
-        .booking-line {
+        .booking-text {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 800;
             font-size: 12.5px;
@@ -421,7 +434,7 @@
             white-space: nowrap;
         }
 
-        .free-admission-callout {
+        .free-entry-pill {
             font-family: 'Rye', serif;
             font-size: 14px;
             letter-spacing: 3px;
@@ -465,64 +478,68 @@
         <a class="btn btn-outline" href="admin.html">⚙️ ADMIN PANEL</a>
     </div>
 
-    <!-- Cinematic Wild West A3 Event Poster -->
+    <!-- The Wild West New Year's Eve Karaoke Event Poster -->
     <div class="poster-wrapper">
-        <!-- Top & Bottom Gradient Vignettes for Maximum Contrast -->
+        <!-- Top & Bottom Gradient Shadows for Sharp Contrast -->
         <div class="poster-overlay-top"></div>
         <div class="poster-overlay-bottom"></div>
 
-        <!-- Gold Border Frame with Corner Studs -->
+        <!-- Ornate Gold Framing -->
         <div class="poster-frame">
             <div class="corner-rivet cr-tl"></div>
             <div class="corner-rivet cr-tr"></div>
             <div class="corner-rivet cr-bl"></div>
             <div class="corner-rivet cr-br"></div>
 
-            <!-- Top Header & Hero Title Group -->
-            <div class="top-header">
-                <div class="herald-saloon-name">COASTERS TAVERN & SALOON</div>
-                <div class="herald-location">REDWOOD • CHRISTCHURCH</div>
+            <!-- Header & Giant Event Title -->
+            <div class="top-presenter-strip">
+                <div class="venue-herald">COASTERS TAVERN & SALOON</div>
+                <div class="venue-herald-sub">REDWOOD • CHRISTCHURCH</div>
 
-                <div class="event-hero-title">
+                <div class="hero-title-group">
                     <div class="title-wild-west">WILD WEST</div>
-                    <div class="title-nye-banner">★ NEW YEAR'S EVE ★</div>
-                    <div class="title-karaoke-showdown">KARAOKE PARTY SHOWDOWN</div>
+                    <div class="title-nye-sub">★ NEW YEAR'S EVE ★</div>
+                    <div class="karaoke-event-banner">
+                        <span class="karaoke-mic-icon">🤠 🎤</span>
+                        <span class="karaoke-banner-text">KARAOKE PARTY SHOWDOWN!</span>
+                        <span class="karaoke-mic-icon">🎤 🤠</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Breathing Center Window for Sunset & Firework Artwork -->
-            <div class="artwork-window"></div>
+            <!-- Artwork Window: Stetson Mic, Confetti & Midnight Fireworks -->
+            <div class="artwork-center-window"></div>
 
-            <!-- Bottom Cluster: Date, Best Dressed, Highlights, Address -->
-            <div class="bottom-cluster">
-                <!-- Date & Saloon Time Plaque -->
-                <div class="date-plaque">
-                    <div class="date-day-text">THURSDAY • 31ST DECEMBER 2026</div>
-                    <div class="date-time-text">SALOON DOORS OPEN AT 8:00 PM TILL LATE</div>
+            <!-- Bottom Event Cluster -->
+            <div class="bottom-event-section">
+                <!-- Date & Saloon Times -->
+                <div class="event-date-card">
+                    <div class="event-date-headline">THURSDAY • 31ST DECEMBER 2026</div>
+                    <div class="event-time-headline">SALOON DOORS OPEN AT 8:00 PM TILL LATE</div>
                 </div>
 
-                <!-- Mega "Best Dressed" Bounty Spotlight -->
+                <!-- Mega BEST DRESSED Feature -->
                 <div class="best-dressed-spotlight">
                     <div class="bd-tagline">★ DRESS TO IMPRESS IN YER FINEST WESTERN ATTIRE ★</div>
-                    <div class="bd-headline">PRIZES FOR BEST DRESSED!</div>
+                    <div class="bd-title">PRIZES FOR BEST DRESSED!</div>
                     <div class="bd-categories">COWBOYS • COWGIRLS • OUTLAWS • SHERIFFS</div>
-                    <div class="bd-bounty-badge">★ $100 IN BAR TAB BOUNTIES & SPOT PRIZES ★</div>
+                    <div class="bd-bounty">★ $100 IN BAR TAB BOUNTIES & SPOT PRIZES ★</div>
                 </div>
 
-                <!-- Highlights Row -->
-                <div class="party-highlights-strip">
-                    <span>★ LIVE KARAOKE</span>
+                <!-- Karaoke Party Highlights -->
+                <div class="karaoke-features-strip">
+                    <span>★ NON-STOP KARAOKE</span>
                     <span>•</span>
                     <span>ICE COLD BEERS</span>
                     <span>•</span>
                     <span>MIDNIGHT FIREWORKS ★</span>
                 </div>
 
-                <!-- Address & Bookings Footer -->
-                <div class="bottom-venue-strip">
-                    <div class="address-line">1 DANIELS ROAD, REDWOOD, CHRISTCHURCH</div>
-                    <div class="booking-line">TABLE BOOKINGS & WALK-INS WELCOME • PH: (03) 352 9083</div>
-                    <div class="free-admission-callout">★ 100% FREE ADMISSION ALL NIGHT ★</div>
+                <!-- Venue Address & Bookings Footer -->
+                <div class="venue-footer-block">
+                    <div class="address-text">1 DANIELS ROAD, REDWOOD, CHRISTCHURCH</div>
+                    <div class="booking-text">TABLE BOOKINGS & WALK-INS WELCOME • PH: (03) 352 9083</div>
+                    <div class="free-admission-pill">★ 100% FREE ADMISSION ALL NIGHT ★</div>
                 </div>
             </div>
         </div>
