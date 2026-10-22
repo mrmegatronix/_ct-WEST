@@ -6,17 +6,15 @@
     <title>WILD WEST NEW YEAR'S EVE POSTER | Coasters Tavern Redwood</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Rye&family=Smokum&family=Sancreek&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Rye&display=swap" rel="stylesheet">
     <style>
         :root {
-            --paper-bg: #f7f1e1;
-            --paper-dark: #d8c095;
-            --ink-black: #110703;
-            --ink-brown: #381807;
-            --ink-red: #941719;
-            --gold-leaf: #b87a1c;
-            --gold-bright: #e8a933;
-            --border-wood: #261005;
+            --bg-parchment: #fdfaf2;
+            --ink-black: #1a0f07;
+            --ink-red: #a31c1e;
+            --ink-gold: #c9881e;
+            --ink-subtle: #52341d;
+            --border-dark: #241106;
         }
 
         * {
@@ -26,24 +24,23 @@
         }
 
         body {
-            background-color: #080301;
-            background-image: 
-                radial-gradient(ellipse at 50% 25%, #231005 0%, #080301 100%);
+            background-color: #0d0703;
+            background-image: radial-gradient(ellipse at 50% 30%, #201107 0%, #060301 100%);
             color: var(--ink-black);
             font-family: 'Playfair Display', Georgia, serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 16px 50px;
+            padding: 24px 16px 48px;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Top Action Bar */
+        /* Top Action Buttons */
         .controls-bar {
             display: flex;
             gap: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             z-index: 100;
         }
 
@@ -51,7 +48,7 @@
             background: linear-gradient(180deg, #d49a37 0%, #996317 100%);
             color: #140801;
             font-family: 'Rye', serif;
-            font-size: 14.5px;
+            font-size: 14px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             text-decoration: none;
@@ -83,430 +80,229 @@
             color: #fff;
         }
 
-        /* The Poster Canvas - Exact A3 Proportions (1 : 1.414) */
+        /* Simple, Clean A3 Portrait Canvas (1 : 1.414) */
         .poster-wrapper {
             position: relative;
             width: 100%;
-            max-width: 820px;
+            max-width: 760px;
             aspect-ratio: 297 / 420;
-            background-color: var(--paper-bg);
+            background-color: var(--bg-parchment);
             background-image:
-                radial-gradient(ellipse at 50% 50%, rgba(255, 253, 246, 0.9) 0%, rgba(235, 218, 188, 0.6) 65%, rgba(165, 122, 68, 0.92) 100%),
-                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(70, 32, 10, 0.04) 3px, rgba(70, 32, 10, 0.04) 6px),
-                repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(70, 32, 10, 0.03) 4px, rgba(70, 32, 10, 0.03) 8px);
-            border: 3px solid #4a220b;
+                radial-gradient(ellipse at 50% 50%, #ffffff 0%, #f6edd8 70%, #edd8b4 100%);
+            border: 4px solid var(--border-dark);
             border-radius: 4px;
-            padding: 22px 26px;
+            padding: 24px;
             box-shadow:
-                0 30px 85px rgba(0, 0, 0, 0.98),
-                0 0 120px rgba(180, 110, 45, 0.35),
-                inset 0 0 65px rgba(90, 45, 14, 0.48);
+                0 25px 75px rgba(0, 0, 0, 0.95),
+                0 0 80px rgba(180, 110, 45, 0.25);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             overflow: hidden;
+            box-sizing: border-box;
         }
 
-        /* Scorched / Aged Perimeter Vignette */
-        .poster-wrapper::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 50%, transparent 64%, rgba(80, 38, 12, 0.42) 86%, rgba(25, 10, 3, 0.82) 100%);
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        /* Weathered Fold Creases */
-        .crease-h1 {
-            position: absolute;
-            top: 32%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, rgba(90, 45, 15, 0.22) 20%, rgba(55, 24, 7, 0.35) 50%, rgba(90, 45, 15, 0.22) 80%, transparent 100%);
-            pointer-events: none;
-            z-index: 3;
-        }
-        .crease-h2 {
-            position: absolute;
-            top: 68%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, rgba(90, 45, 15, 0.2) 20%, rgba(55, 24, 7, 0.3) 50%, rgba(90, 45, 15, 0.2) 80%, transparent 100%);
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        /* 4 Authentic Forged Iron Tacks */
-        .tack {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background: radial-gradient(circle at 35% 35%, #777 0%, #222 65%, #050505 100%);
-            border-radius: 50%;
-            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.5);
-            z-index: 10;
-        }
-        .tack-tl { top: 12px; left: 14px; }
-        .tack-tr { top: 12px; right: 14px; }
-        .tack-bl { bottom: 12px; left: 14px; }
-        .tack-br { bottom: 12px; right: 14px; }
-
-        /* Realistic Frontier Bullet Holes */
-        .bullet-hole {
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 45% 45%, #000 0%, #150904 45%, #3d1b09 70%, transparent 85%);
-            box-shadow: 
-                inset 1px 1px 3px rgba(255, 255, 255, 0.2),
-                2px 3px 6px rgba(0, 0, 0, 0.8),
-                0 0 14px rgba(45, 18, 6, 0.7);
-            z-index: 8;
-            pointer-events: none;
-        }
-        .bh-1 { top: 20px; right: 60px; transform: scale(1.1); }
-        .bh-2 { bottom: 28px; left: 50px; transform: scale(0.9); }
-
-        /* Multi-Tiered Authentic Letterpress Framing */
-        .outer-border-box {
+        /* Clean Classic Double Letterpress Border */
+        .poster-border {
             position: relative;
             width: 100%;
             height: 100%;
-            border: 6px solid var(--ink-black);
-            padding: 7px;
-            z-index: 5;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .inner-border-box {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border: 2px dashed var(--ink-black);
-            padding: 8px 12px;
+            border: 3px solid var(--border-dark);
+            padding: 20px 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
             text-align: center;
+            box-sizing: border-box;
         }
 
-        /* Victorian Ornate Corner Rosettes */
-        .corner-star {
-            position: absolute;
-            font-size: 19px;
-            color: var(--ink-red);
-            line-height: 1;
-            z-index: 6;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
-        }
-        .cs-tl { top: -14px; left: -14px; }
-        .cs-tr { top: -14px; right: -14px; }
-        .cs-bl { bottom: -14px; left: -14px; }
-        .cs-br { bottom: -14px; right: -14px; }
-
-        /* Top Saloon Herald & Curved Heading */
-        .top-herald-block {
+        /* Section 1: Clean Saloon Header */
+        .header-block {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1px;
+            gap: 4px;
+            border-bottom: 2.5px solid var(--border-dark);
+            padding-bottom: 16px;
         }
 
-        .herald-location {
-            font-family: 'Playfair Display', serif;
-            font-size: 13.5px;
-            font-weight: 900;
-            letter-spacing: 5px;
-            color: var(--ink-brown);
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            white-space: nowrap;
-        }
-        .herald-location::before,
-        .herald-location::after {
-            content: "❖";
-            color: var(--ink-red);
-            font-size: 11px;
-        }
-
-        .saloon-banner-title {
+        .venue-name {
             font-family: 'Rye', serif;
             font-size: 38px;
             letter-spacing: 4px;
             color: var(--ink-black);
             text-transform: uppercase;
-            line-height: 1.05;
-            margin: 2px 0;
-            text-shadow: 2px 2px 0 rgba(140, 75, 25, 0.35);
+            line-height: 1.1;
             white-space: nowrap;
         }
 
-        .herald-ribbon-sub {
+        .venue-sub {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 800;
+            font-size: 15px;
+            letter-spacing: 4.5px;
+            color: var(--ink-subtle);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* Section 2: Huge, Bold Event Title */
+        .title-block {
+            width: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 14px;
-            width: 90%;
-            margin: 1px 0 2px;
+            margin: 4px 0;
+            gap: 6px;
         }
-        .herald-ribbon-sub .h-line {
-            flex: 1;
-            height: 2px;
-            background: var(--ink-black);
+
+        .title-wild-west {
+            font-family: 'Rye', serif;
+            font-size: 88px;
+            line-height: 0.95;
+            letter-spacing: 7px;
+            color: var(--ink-black);
+            text-transform: uppercase;
+            text-shadow: 4px 4px 0 rgba(180, 130, 70, 0.4);
+            white-space: nowrap;
         }
-        .herald-ribbon-sub .h-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 13px;
-            font-style: italic;
-            font-weight: 900;
-            letter-spacing: 3px;
+
+        .title-nye {
+            font-family: 'Rye', serif;
+            font-size: 46px;
+            line-height: 1;
+            letter-spacing: 5px;
             color: var(--ink-red);
             text-transform: uppercase;
             white-space: nowrap;
         }
 
-        /* Centerpiece Grand Headline with 3D Woodblock Bevel */
-        .main-headline-group {
+        .title-karaoke {
+            background: var(--ink-black);
+            color: #ffe699;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 52px;
+            letter-spacing: 6px;
+            padding: 6px 36px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            margin-top: 6px;
+            white-space: nowrap;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section 3: Clean Date & Time Stamp */
+        .date-block {
             width: 100%;
+            border-top: 3px solid var(--border-dark);
+            border-bottom: 3px solid var(--border-dark);
+            padding: 16px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 1px 0;
+            gap: 6px;
+            background: rgba(163, 28, 30, 0.05);
         }
 
-        .title-wild-west {
-            font-family: 'Smokum', 'Rye', serif;
-            font-size: 96px;
-            line-height: 0.85;
-            letter-spacing: 9px;
-            color: var(--ink-black);
+        .date-day {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 900;
+            font-size: 32px;
+            letter-spacing: 4px;
+            color: var(--ink-red);
             text-transform: uppercase;
-            text-shadow: 
-                3px 4px 0 #baa076,
-                6px 6px 0 rgba(50, 20, 5, 0.45);
-            transform: scaleY(1.1);
+            line-height: 1.1;
             white-space: nowrap;
         }
 
-        .title-nye-block {
+        .date-time {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--ink-black);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* Section 4: Standout BEST DRESSED Feature */
+        .best-dressed-block {
+            width: 100%;
+            border: 3.5px solid var(--ink-red);
+            background: #fff8eb;
+            border-radius: 8px;
+            padding: 18px 24px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 14px;
+            gap: 6px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
+        }
+
+        .bd-title {
+            font-family: 'Rye', serif;
+            font-size: 33px;
+            letter-spacing: 2px;
+            color: var(--ink-red);
+            text-transform: uppercase;
+            line-height: 1.1;
+            white-space: nowrap;
+        }
+
+        .bd-sub {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: 3.5px;
+            color: var(--ink-subtle);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .bd-bounty {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--ink-black);
+            text-transform: uppercase;
             margin-top: 4px;
             white-space: nowrap;
         }
 
-        .title-nye-text {
-            font-family: 'Rye', serif;
-            font-size: 42px;
-            letter-spacing: 6px;
-            color: var(--ink-red);
-            text-transform: uppercase;
-            line-height: 1;
-            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.22);
-            white-space: nowrap;
-        }
-
-        .title-star-flourish {
-            color: var(--gold-leaf);
-            font-size: 24px;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
-        }
-
-        /* Badass Woodcut Engraving Emblem (Crossed Pistols, Cowboy Hat & Horseshoe) */
-        .woodcut-centerpiece {
-            width: 100%;
+        /* Section 5: Highlights List */
+        .highlights-row {
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin: 2px 0;
-            position: relative;
-        }
-
-        .woodcut-svg-emblem {
-            width: 580px;
-            height: 94px;
-            filter: drop-shadow(1px 2px 0 rgba(0, 0, 0, 0.35));
-        }
-
-        /* Black Velvet & Gold Leaf Karaoke Banner */
-        .feature-showdown-bar {
+            gap: 24px;
             width: 100%;
-            background: linear-gradient(90deg, #180902 0%, #0d0502 50%, #180902 100%);
-            border: 3px solid var(--ink-black);
-            border-radius: 4px;
-            padding: 7px 18px;
-            margin: 3px 0 5px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.9);
-        }
-
-        .bar-mic-icon {
-            font-size: 22px;
-            filter: drop-shadow(0 0 6px rgba(255, 200, 50, 0.6));
-        }
-
-        .showdown-text {
-            font-family: 'Rye', serif;
-            font-size: 34px;
-            line-height: 1;
-            letter-spacing: 3.5px;
-            color: #ffe18f;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 0 #000, 0 0 12px rgba(255, 185, 45, 0.4);
-            white-space: nowrap;
-        }
-
-        /* High-Impact Date & Time Notice Block */
-        .date-notice-card {
-            width: 100%;
-            border-top: 3.5px double var(--ink-black);
-            border-bottom: 3.5px double var(--ink-black);
-            padding: 7px 16px;
-            margin: 2px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            background: rgba(148, 23, 25, 0.06);
-        }
-
-        .date-day-stamp {
-            font-family: 'Chakra Petch', sans-serif;
-            font-weight: 900;
-            font-size: 30px;
-            letter-spacing: 4px;
-            color: var(--ink-red);
-            text-transform: uppercase;
-            line-height: 1;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15);
-            white-space: nowrap;
-        }
-
-        .time-admission-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            white-space: nowrap;
-        }
-
-        .time-badge {
             font-family: 'Playfair Display', serif;
-            font-size: 14px;
-            font-weight: 900;
-            letter-spacing: 1.5px;
-            color: var(--ink-black);
-            text-transform: uppercase;
-        }
-
-        .admission-badge {
-            font-family: 'Rye', serif;
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            background: rgba(22, 10, 4, 0.88);
-            color: #ffe699;
-            padding: 2px 12px;
-            border-radius: 999px;
-            text-transform: uppercase;
-            border: 1px solid #c48b26;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-        }
-
-        /* Saloon Attractions 2-Column Frontier Cards */
-        .attractions-grid {
-            width: 100%;
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            gap: 12px;
-            margin: 3px 0;
-            box-sizing: border-box;
-        }
-
-        .attraction-card {
-            border: 2px solid var(--ink-black);
-            padding: 7px 10px;
-            background: rgba(255, 255, 255, 0.45);
-            box-shadow: inset 0 0 10px rgba(100, 50, 15, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        .ac-title {
-            font-family: 'Rye', serif;
             font-size: 14.5px;
-            color: var(--ink-red);
-            letter-spacing: 1.2px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--ink-subtle);
             text-transform: uppercase;
-            border-bottom: 1.5px solid var(--ink-black);
-            padding-bottom: 2px;
-            width: 100%;
-            text-align: center;
             white-space: nowrap;
+            padding: 4px 0;
         }
 
-        .ac-desc {
-            font-family: 'Playfair Display', serif;
-            font-size: 11.5px;
-            font-weight: 700;
-            color: var(--ink-black);
-            line-height: 1.3;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        /* High-Voltage WOW FACTOR: Best Dressed Bounty Poster Box */
-        .best-dressed-bounty-box {
+        /* Section 6: Clean Address & Booking Footer */
+        .footer-block {
             width: 100%;
-            border: 3.5px solid var(--ink-black);
-            background: 
-                repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(148, 23, 25, 0.06) 12px, rgba(148, 23, 25, 0.06) 24px),
-                linear-gradient(180deg, rgba(255, 236, 178, 0.75) 0%, rgba(228, 185, 102, 0.55) 100%);
-            border-radius: 6px;
-            padding: 8px 14px;
-            margin: 3px 0;
+            border-top: 2.5px solid var(--border-dark);
+            padding-top: 14px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
-            box-shadow: inset 0 0 16px rgba(130, 70, 15, 0.3), 0 3px 8px rgba(0, 0, 0, 0.15);
-            position: relative;
+            gap: 5px;
         }
 
-        .bd-badge-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .bd-badge-header .bd-line {
-            flex: 1;
-            height: 1.5px;
-            background: var(--ink-black);
-        }
-
-        .bd-badge-title {
+        .address-text {
             font-family: 'Playfair Display', serif;
-            font-size: 11.5px;
+            font-size: 18px;
             font-weight: 900;
             letter-spacing: 2.5px;
             color: var(--ink-black);
@@ -514,90 +310,23 @@
             white-space: nowrap;
         }
 
-        .bd-main-title {
-            font-family: 'Rye', serif;
-            font-size: 36px;
-            line-height: 1.05;
-            letter-spacing: 3.5px;
-            color: #941719;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 0 #baa076, 3px 3px 0 rgba(0, 0, 0, 0.28);
-            white-space: nowrap;
-        }
-
-        .bd-categories-strip {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
+        .contact-text {
             font-family: 'Chakra Petch', sans-serif;
-            font-weight: 900;
-            font-size: 14.5px;
+            font-weight: 800;
+            font-size: 13.5px;
             letter-spacing: 2.5px;
-            color: var(--ink-brown);
+            color: var(--ink-subtle);
             text-transform: uppercase;
             white-space: nowrap;
         }
 
-        .bd-rewards-strip {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            font-family: 'Playfair Display', serif;
-            font-size: 11.5px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            color: var(--ink-black);
-            text-transform: uppercase;
-            background: rgba(22, 9, 3, 0.08);
-            border: 1px dashed var(--ink-black);
-            border-radius: 4px;
-            padding: 3px 14px;
-            width: 100%;
-            margin-top: 1px;
-            white-space: nowrap;
-        }
-
-        /* Bottom Frontier Footnote Strip */
-        .bottom-tavern-strip {
-            width: 100%;
-            border-top: 2.5px solid var(--ink-black);
-            padding-top: 6px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .tavern-table-booking {
-            font-family: 'Chakra Petch', sans-serif;
-            font-weight: 900;
-            font-size: 11.5px;
-            letter-spacing: 1.5px;
-            color: var(--ink-brown);
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .tavern-address {
-            font-family: 'Playfair Display', serif;
-            font-size: 13.5px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: var(--ink-black);
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .midnight-toast-callout {
+        .free-entry-tag {
             font-family: 'Rye', serif;
-            font-size: 13.5px;
-            letter-spacing: 2px;
+            font-size: 16px;
+            letter-spacing: 3px;
             color: var(--ink-red);
             text-transform: uppercase;
-            margin-top: 1px;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15);
+            margin-top: 3px;
             white-space: nowrap;
         }
 
@@ -617,7 +346,7 @@
                 border: none !important;
                 box-shadow: none !important;
                 border-radius: 0 !important;
-                padding: 16mm !important;
+                padding: 14mm !important;
             }
             @page {
                 size: A3 portrait;
@@ -635,174 +364,52 @@
         <a class="btn btn-outline" href="admin.html">⚙️ ADMIN PANEL</a>
     </div>
 
-    <!-- Authentic Wild West Event Poster -->
+    <!-- Clean, High-Impact A3 Wild West Event Poster -->
     <div class="poster-wrapper">
-        <!-- 4 Forged Corner Tacks -->
-        <div class="tack tack-tl"></div>
-        <div class="tack tack-tr"></div>
-        <div class="tack tack-bl"></div>
-        <div class="tack tack-br"></div>
+        <div class="poster-border">
 
-        <!-- Scorched Bullet Holes -->
-        <div class="bullet-hole bh-1"></div>
-        <div class="bullet-hole bh-2"></div>
-
-        <!-- Paper Creases -->
-        <div class="crease-h1"></div>
-        <div class="crease-h2"></div>
-
-        <!-- Outer & Inner Letterpress Frames -->
-        <div class="outer-border-box">
-            <div class="inner-border-box">
-                <!-- 4 Corner Rosettes -->
-                <div class="corner-star cs-tl">★</div>
-                <div class="corner-star cs-tr">★</div>
-                <div class="corner-star cs-bl">★</div>
-                <div class="corner-star cs-br">★</div>
-
-                <!-- Top Saloon Herald -->
-                <div class="top-herald-block">
-                    <div class="herald-location">1 DANIELS ROAD • REDWOOD • CHRISTCHURCH</div>
-                    <div class="saloon-banner-title">COASTERS TAVERN & SALOON</div>
-                    <div class="herald-ribbon-sub">
-                        <span class="h-line"></span>
-                        <span class="h-text">CORDIALLY INVITES YOU TO JOIN US FOR</span>
-                        <span class="h-line"></span>
-                    </div>
-                </div>
-
-                <!-- Grand 3D Woodblock Headline -->
-                <div class="main-headline-group">
-                    <div class="title-wild-west">WILD WEST</div>
-                    <div class="title-nye-block">
-                        <span class="title-star-flourish">★ ★ ★</span>
-                        <span class="title-nye-text">NEW YEAR'S EVE</span>
-                        <span class="title-star-flourish">★ ★ ★</span>
-                    </div>
-                </div>
-
-                <!-- Badass Woodcut Engraving Graphic (Crossed Revolvers & Western Filigree) -->
-                <div class="woodcut-centerpiece">
-                    <svg class="woodcut-svg-emblem" viewBox="0 0 580 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Left Filigree Flourish -->
-                        <path d="M 20,48 C 55,20 95,26 130,48 C 95,70 55,76 20,48 Z" stroke="#110703" stroke-width="3" fill="none"/>
-                        <circle cx="18" cy="48" r="5" fill="#941719"/>
-                        <path d="M 50,48 C 75,32 105,34 125,48" stroke="#941719" stroke-width="2.5"/>
-                        <line x1="130" y1="48" x2="180" y2="48" stroke="#110703" stroke-width="3"/>
-
-                        <!-- Left Revolver Silhouette (Facing Right) -->
-                        <g transform="translate(190, 48) rotate(-12) scale(0.85)">
-                            <!-- Barrel & Cylinder -->
-                            <rect x="-10" y="-9" width="68" height="14" rx="2" fill="#110703"/>
-                            <rect x="-8" y="-13" width="26" height="22" rx="4" fill="#381807" stroke="#110703" stroke-width="2.5"/>
-                            <!-- Grip -->
-                            <path d="M -8,8 C -14,20 -28,42 -18,52 C -7,56 7,50 5,38 L 0,8 Z" fill="#941719" stroke="#110703" stroke-width="3"/>
-                            <!-- Trigger Guard -->
-                            <path d="M 2,10 C 2,26 20,26 20,10 Z" stroke="#110703" stroke-width="3" fill="none"/>
-                            <!-- Front sight -->
-                            <polygon points="56,-9 58,-16 52,-9" fill="#110703"/>
-                        </g>
-
-                        <!-- Center Stetson Cowboy Hat & Horseshoe Medallion -->
-                        <g transform="translate(290, 48) scale(1.22)">
-                            <!-- Horseshoe Crest -->
-                            <path d="M -32,22 C -42,-18 -24,-38 0,-38 C 24,-38 42,-18 32,22 L 20,18 C 28,-12 16,-26 0,-26 C -16,-26 -28,-12 -20,18 Z" fill="#b87a1c" stroke="#110703" stroke-width="3"/>
-                            <!-- Horseshoe Nail Holes -->
-                            <circle cx="-25" cy="-6" r="2.2" fill="#110703"/>
-                            <circle cx="-21" cy="-20" r="2.2" fill="#110703"/>
-                            <circle cx="21" cy="-20" r="2.2" fill="#110703"/>
-                            <circle cx="25" cy="-6" r="2.2" fill="#110703"/>
-
-                            <!-- Center 5-Point Sheriff Star -->
-                            <polygon points="0,-16 4,-4 16,-4 7,3 10,15 0,8 -10,15 -7,3 -16,-4 -4,-4" fill="#941719" stroke="#110703" stroke-width="2"/>
-                        </g>
-
-                        <!-- Right Revolver Silhouette (Facing Left) -->
-                        <g transform="translate(390, 48) scale(-1, 1) rotate(-12) scale(0.85)">
-                            <rect x="-10" y="-9" width="68" height="14" rx="2" fill="#110703"/>
-                            <rect x="-8" y="-13" width="26" height="22" rx="4" fill="#381807" stroke="#110703" stroke-width="2.5"/>
-                            <path d="M -8,8 C -14,20 -28,42 -18,52 C -7,56 7,50 5,38 L 0,8 Z" fill="#941719" stroke="#110703" stroke-width="3"/>
-                            <path d="M 2,10 C 2,26 20,26 20,10 Z" stroke="#110703" stroke-width="3" fill="none"/>
-                            <polygon points="56,-9 58,-16 52,-9" fill="#110703"/>
-                        </g>
-
-                        <!-- Right Filigree Flourish -->
-                        <line x1="400" y1="48" x2="450" y2="48" stroke="#110703" stroke-width="3"/>
-                        <path d="M 560,48 C 525,20 485,26 450,48 C 485,70 525,76 560,48 Z" stroke="#110703" stroke-width="3" fill="none"/>
-                        <circle cx="562" cy="48" r="5" fill="#941719"/>
-                        <path d="M 530,48 C 505,32 475,34 455,48" stroke="#941719" stroke-width="2.5"/>
-                    </svg>
-                </div>
-
-                <!-- Main Karaoke Ribbon Bar -->
-                <div class="feature-showdown-bar">
-                    <span class="bar-mic-icon">🤠 🎤</span>
-                    <div class="showdown-text">KARAOKE PARTY SHOWDOWN</div>
-                    <span class="bar-mic-icon">🎤 🤠</span>
-                </div>
-
-                <!-- Event Date & Admission Notice -->
-                <div class="date-notice-card">
-                    <div class="date-day-stamp">THURSDAY • 31ST DECEMBER 2026</div>
-                    <div class="time-admission-row">
-                        <span class="time-badge">SALOON DOORS OPEN AT 8:00 PM TILL LATE</span>
-                        <span class="admission-badge">★ FREE ADMISSION ★</span>
-                    </div>
-                </div>
-
-                <!-- Attractions Grid -->
-                <div class="attractions-grid">
-                    <div class="attraction-card">
-                        <div class="ac-title">★ LIVE ON THE SALOON STAGE ★</div>
-                        <div class="ac-desc">
-                            NON-STOP POPULAR KARAOKE HITS<br>
-                            COUNTRY ANTHEMS • 80s & 90s CLASSICS<br>
-                            SOLOS, DUETS & SALOON SING-ALONGS
-                        </div>
-                    </div>
-                    <div class="attraction-card">
-                        <div class="ac-title">★ BEERS, BOURBON & BBQ ★</div>
-                        <div class="ac-desc">
-                            ICE-COLD TAVERN TAPS ALL NIGHT<br>
-                            BOURBON & WHISKEY SALOON SPECIALS<br>
-                            DELICIOUS FULL KITCHEN MENU AVAILABLE
-                        </div>
-                    </div>
-                </div>
-
-                <!-- High-Impact Wild West Best Dressed Bounty Panel -->
-                <div class="best-dressed-bounty-box">
-                    <div class="bd-badge-header">
-                        <span class="bd-line"></span>
-                        <span class="bd-badge-title">★ WANTED DEAD OR ALIVE • DRESS IN YOUR WESTERN BEST ★</span>
-                        <span class="bd-line"></span>
-                    </div>
-                    <div class="bd-main-title">PRIZES FOR BEST DRESSED!</div>
-                    <div class="bd-categories-strip">
-                        <span>COWBOYS</span>
-                        <span>•</span>
-                        <span>COWGIRLS</span>
-                        <span>•</span>
-                        <span>OUTLAWS</span>
-                        <span>•</span>
-                        <span>SHERIFFS</span>
-                    </div>
-                    <div class="bd-rewards-strip">
-                        <span>🏆 BAR TAB BOUNTIES</span>
-                        <span>★</span>
-                        <span>BEST OVERALL WESTERN OUTFIT</span>
-                        <span>★</span>
-                        <span>CROWD FAVOURITES</span>
-                    </div>
-                </div>
-
-                <!-- Bottom Tavern Services & Midnight Countdown -->
-                <div class="bottom-tavern-strip">
-                    <div class="tavern-table-booking">NO COVER CHARGE • TABLE BOOKINGS & WALK-INS WELCOME • PH: (03) 352 9083</div>
-                    <div class="tavern-address">COASTERS TAVERN • 1 DANIELS ROAD, REDWOOD, CHRISTCHURCH</div>
-                    <div class="midnight-toast-callout">★ RING IN 2027 WITH MIDNIGHT CHEERS, FIREWORKS & CHAMPAGNE! ★</div>
-                </div>
+            <!-- 1. Saloon Header -->
+            <div class="header-block">
+                <div class="venue-name">COASTERS TAVERN & SALOON</div>
+                <div class="venue-sub">REDWOOD • CHRISTCHURCH</div>
             </div>
+
+            <!-- 2. Main Title -->
+            <div class="title-block">
+                <div class="title-wild-west">WILD WEST</div>
+                <div class="title-nye">★ NEW YEAR'S EVE ★</div>
+                <div class="title-karaoke">KARAOKE PARTY SHOWDOWN</div>
+            </div>
+
+            <!-- 3. Date & Time -->
+            <div class="date-block">
+                <div class="date-day">THURSDAY • 31ST DECEMBER 2026</div>
+                <div class="date-time">DOORS OPEN AT 8:00 PM TILL LATE</div>
+            </div>
+
+            <!-- 4. Standout BEST DRESSED Feature -->
+            <div class="best-dressed-block">
+                <div class="bd-title">PRIZES FOR BEST DRESSED!</div>
+                <div class="bd-sub">COWBOYS • COWGIRLS • OUTLAWS • SHERIFFS</div>
+                <div class="bd-bounty">★ $100 IN BAR TAB BOUNTIES & SPOT PRIZES ★</div>
+            </div>
+
+            <!-- 5. Highlights Row -->
+            <div class="highlights-row">
+                <span>★ LIVE KARAOKE</span>
+                <span>•</span>
+                <span>ICE COLD BEERS</span>
+                <span>•</span>
+                <span>MIDNIGHT TOAST ★</span>
+            </div>
+
+            <!-- 6. Address & Contact -->
+            <div class="footer-block">
+                <div class="address-text">1 DANIELS ROAD, REDWOOD, CHRISTCHURCH</div>
+                <div class="contact-text">TABLE BOOKINGS & WALK-INS WELCOME • PH: (03) 352 9083</div>
+                <div class="free-entry-tag">★ 100% FREE ADMISSION ALL NIGHT ★</div>
+            </div>
+
         </div>
     </div>
 
