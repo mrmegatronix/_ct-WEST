@@ -93,18 +93,20 @@
             box-shadow: inset 0 0 0 4px rgba(255, 195, 75, 0.42);
         }
 
-        /* Full-Width Top Western Title Banner (Spanning 100% Page Width) */
+        /* Full-Width Top Western Title Banner (With 1080p TV Safe-Area Margin & Borders) */
         .saloon-header-banner {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 98px;
+            top: 20px;
+            left: 24px;
+            right: 24px;
+            width: calc(100% - 48px);
+            height: 104px;
             z-index: 24;
             background:
                 repeating-linear-gradient(90deg, transparent 0px, transparent 140px, rgba(0, 0, 0, 0.45) 140px, rgba(0, 0, 0, 0.45) 142px),
                 linear-gradient(180deg, #441c09 0%, #2b1105 52%, #170702 100%);
-            border-bottom: 3.5px solid var(--gold-bright);
+            border: 3.5px solid var(--gold-bright);
+            border-radius: 12px;
             box-shadow:
                 0 10px 32px rgba(0, 0, 0, 0.92),
                 0 0 35px rgba(255, 185, 45, 0.4),
@@ -162,7 +164,7 @@
         /* Top Screen Epic Western Countdown Stage (Fitted Between Left Margin & Billboard) */
         .countdown-stage {
             position: absolute;
-            top: 114px;
+            top: 138px;
             left: 40px;
             width: 1040px;
             transform: none;
@@ -373,7 +375,7 @@
         /* Huge Western Frontier Billboard in the Distance (Right Hand Side, Angled South-West) */
         .promo-wrap {
             position: absolute;
-            top: 114px;
+            top: 138px;
             right: 38px;
             left: auto;
             transform-origin: right center;
@@ -874,7 +876,7 @@
                     badge: "MIDNIGHT FIREWORKS & CHEERS",
                     dateTag: "REDWOOD'S BIGGEST NEW YEAR'S EVE PARTY",
                     headline: "WHEN THE CLOCK STRIKES TWELVE WE SING & RIDE!",
-                    subline: "GREAT FOOD, COURTESY VAN & GOOD MATES AT COASTERS TAVERN REDWOOD",
+                    subline: "GREAT FOOD, COLD BEERS & GOOD MATES AT COASTERS TAVERN REDWOOD",
                     ctaTop: "NEW YEAR'S EVE",
                     ctaMain: "FREE ENTRY"
                 }

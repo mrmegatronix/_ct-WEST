@@ -359,10 +359,10 @@
         }
 
         .showdown-text {
-            font-family: 'Smokum', 'Rye', serif;
-            font-size: 38px;
+            font-family: 'Rye', serif;
+            font-size: 34px;
             line-height: 1;
-            letter-spacing: 4px;
+            letter-spacing: 3.5px;
             color: #ffe18f;
             text-transform: uppercase;
             text-shadow: 2px 2px 0 #000, 0 0 12px rgba(255, 185, 45, 0.4);
@@ -472,41 +472,90 @@
             text-align: center;
         }
 
-        /* Gold Bullion & Bounty Prize Callout */
-        .bounty-prize-panel {
+        /* High-Voltage "X-Factor" Best Dressed Bounty Poster Box */
+        .best-dressed-bounty-box {
             width: 100%;
-            border: 2.5px solid var(--ink-black);
+            border: 3px solid var(--ink-black);
             background: 
-                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(184, 123, 28, 0.08) 10px, rgba(184, 123, 28, 0.08) 20px),
-                rgba(217, 154, 46, 0.18);
-            border-radius: 4px;
-            padding: 8px 16px;
+                repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(143, 22, 24, 0.05) 12px, rgba(143, 22, 24, 0.05) 24px),
+                linear-gradient(180deg, rgba(255, 235, 175, 0.65) 0%, rgba(225, 180, 95, 0.45) 100%);
+            border-radius: 6px;
+            padding: 7px 14px;
             margin: 3px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 2px;
-            box-shadow: inset 0 0 12px rgba(130, 70, 15, 0.25);
+            box-shadow: inset 0 0 16px rgba(130, 70, 15, 0.3), 0 3px 8px rgba(0, 0, 0, 0.15);
+            position: relative;
         }
 
-        .prize-headline {
-            font-family: 'Smokum', 'Rye', serif;
-            font-size: 32px;
-            line-height: 1;
-            letter-spacing: 3.5px;
-            color: var(--ink-red);
+        .bd-badge-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .bd-badge-header .bd-line {
+            flex: 1;
+            height: 1.5px;
+            background: var(--ink-black);
+        }
+
+        .bd-badge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 2.5px;
+            color: var(--ink-black);
             text-transform: uppercase;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
             white-space: nowrap;
         }
 
-        .prize-categories {
-            font-family: 'Playfair Display', serif;
-            font-size: 11.5px;
+        .bd-main-title {
+            font-family: 'Rye', serif;
+            font-size: 34px;
+            line-height: 1.1;
+            letter-spacing: 3.5px;
+            color: #8f1618;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0 #baa076, 3px 3px 0 rgba(0, 0, 0, 0.28);
+            white-space: nowrap;
+        }
+
+        .bd-categories-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            letter-spacing: 0.6px;
+            font-size: 14px;
+            letter-spacing: 2.5px;
             color: var(--ink-brown);
             text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .bd-rewards-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--ink-black);
+            text-transform: uppercase;
+            background: rgba(22, 9, 3, 0.08);
+            border: 1px dashed var(--ink-black);
+            border-radius: 4px;
+            padding: 3px 14px;
+            width: 100%;
+            margin-top: 1px;
             white-space: nowrap;
         }
 
@@ -521,7 +570,7 @@
             gap: 2px;
         }
 
-        .tavern-services {
+        .tavern-table-booking {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
             font-size: 11.5px;
@@ -533,9 +582,9 @@
 
         .tavern-address {
             font-family: 'Playfair Display', serif;
-            font-size: 12.5px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
+            font-size: 13.5px;
+            font-weight: 900;
+            letter-spacing: 2px;
             color: var(--ink-black);
             text-transform: uppercase;
             white-space: nowrap;
@@ -613,7 +662,7 @@
 
                 <!-- Top Saloon Herald -->
                 <div class="top-herald-block">
-                    <div class="herald-location">REDWOOD • CHRISTCHURCH</div>
+                    <div class="herald-location">1 DANIELS ROAD • REDWOOD • CHRISTCHURCH</div>
                     <div class="saloon-banner-title">COASTERS TAVERN & SALOON</div>
                     <div class="herald-ribbon-sub">
                         <span class="h-line"></span>
@@ -636,52 +685,52 @@
                 <div class="woodcut-centerpiece">
                     <svg class="woodcut-svg-emblem" viewBox="0 0 580 96" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <!-- Left Filigree Flourish -->
-                        <path d="M 30,48 C 65,22 105,28 140,48 C 105,68 65,74 30,48 Z" stroke="#120904" stroke-width="2.5" fill="none"/>
-                        <circle cx="28" cy="48" r="4.5" fill="#8f1618"/>
-                        <path d="M 60,48 C 85,34 115,36 135,48" stroke="#8f1618" stroke-width="2"/>
-                        <line x1="140" y1="48" x2="200" y2="48" stroke="#120904" stroke-width="2.5"/>
+                        <path d="M 20,48 C 55,20 95,26 130,48 C 95,70 55,76 20,48 Z" stroke="#120904" stroke-width="3" fill="none"/>
+                        <circle cx="18" cy="48" r="5" fill="#8f1618"/>
+                        <path d="M 50,48 C 75,32 105,34 125,48" stroke="#8f1618" stroke-width="2.5"/>
+                        <line x1="130" y1="48" x2="180" y2="48" stroke="#120904" stroke-width="3"/>
 
                         <!-- Left Revolver Silhouette (Facing Right) -->
-                        <g transform="translate(205, 48) rotate(-14) scale(0.65)">
+                        <g transform="translate(190, 48) rotate(-12) scale(0.85)">
                             <!-- Barrel & Cylinder -->
-                            <rect x="-10" y="-8" width="62" height="12" rx="2" fill="#120904"/>
-                            <rect x="-8" y="-12" width="24" height="20" rx="4" fill="#331706" stroke="#120904" stroke-width="2"/>
+                            <rect x="-10" y="-9" width="68" height="14" rx="2" fill="#120904"/>
+                            <rect x="-8" y="-13" width="26" height="22" rx="4" fill="#331706" stroke="#120904" stroke-width="2.5"/>
                             <!-- Grip -->
-                            <path d="M -8,8 C -14,18 -26,38 -18,48 C -8,52 6,46 4,36 L 0,8 Z" fill="#8f1618" stroke="#120904" stroke-width="2.5"/>
+                            <path d="M -8,8 C -14,20 -28,42 -18,52 C -7,56 7,50 5,38 L 0,8 Z" fill="#8f1618" stroke="#120904" stroke-width="3"/>
                             <!-- Trigger Guard -->
-                            <path d="M 2,10 C 2,24 18,24 18,10 Z" stroke="#120904" stroke-width="2.5" fill="none"/>
+                            <path d="M 2,10 C 2,26 20,26 20,10 Z" stroke="#120904" stroke-width="3" fill="none"/>
                             <!-- Front sight -->
-                            <polygon points="50,-8 52,-14 46,-8" fill="#120904"/>
+                            <polygon points="56,-9 58,-16 52,-9" fill="#120904"/>
                         </g>
 
                         <!-- Center Stetson Cowboy Hat & Horseshoe Medallion -->
-                        <g transform="translate(290, 48)">
+                        <g transform="translate(290, 48) scale(1.22)">
                             <!-- Horseshoe Crest -->
-                            <path d="M -32,22 C -42,-18 -24,-38 0,-38 C 24,-38 42,-18 32,22 L 20,18 C 28,-12 16,-26 0,-26 C -16,-26 -28,-12 -20,18 Z" fill="#b87b1c" stroke="#120904" stroke-width="2.5"/>
+                            <path d="M -32,22 C -42,-18 -24,-38 0,-38 C 24,-38 42,-18 32,22 L 20,18 C 28,-12 16,-26 0,-26 C -16,-26 -28,-12 -20,18 Z" fill="#b87b1c" stroke="#120904" stroke-width="3"/>
                             <!-- Horseshoe Nail Holes -->
-                            <circle cx="-25" cy="-6" r="2" fill="#120904"/>
-                            <circle cx="-21" cy="-20" r="2" fill="#120904"/>
-                            <circle cx="21" cy="-20" r="2" fill="#120904"/>
-                            <circle cx="25" cy="-6" r="2" fill="#120904"/>
+                            <circle cx="-25" cy="-6" r="2.2" fill="#120904"/>
+                            <circle cx="-21" cy="-20" r="2.2" fill="#120904"/>
+                            <circle cx="21" cy="-20" r="2.2" fill="#120904"/>
+                            <circle cx="25" cy="-6" r="2.2" fill="#120904"/>
 
                             <!-- Center 5-Point Sheriff Star -->
-                            <polygon points="0,-16 4,-4 16,-4 7,3 10,15 0,8 -10,15 -7,3 -16,-4 -4,-4" fill="#8f1618" stroke="#120904" stroke-width="1.8"/>
+                            <polygon points="0,-16 4,-4 16,-4 7,3 10,15 0,8 -10,15 -7,3 -16,-4 -4,-4" fill="#8f1618" stroke="#120904" stroke-width="2"/>
                         </g>
 
                         <!-- Right Revolver Silhouette (Facing Left) -->
-                        <g transform="translate(375, 48) scale(-1, 1) rotate(-14) scale(0.65)">
-                            <rect x="-10" y="-8" width="62" height="12" rx="2" fill="#120904"/>
-                            <rect x="-8" y="-12" width="24" height="20" rx="4" fill="#331706" stroke="#120904" stroke-width="2"/>
-                            <path d="M -8,8 C -14,18 -26,38 -18,48 C -8,52 6,46 4,36 L 0,8 Z" fill="#8f1618" stroke="#120904" stroke-width="2.5"/>
-                            <path d="M 2,10 C 2,24 18,24 18,10 Z" stroke="#120904" stroke-width="2.5" fill="none"/>
-                            <polygon points="50,-8 52,-14 46,-8" fill="#120904"/>
+                        <g transform="translate(390, 48) scale(-1, 1) rotate(-12) scale(0.85)">
+                            <rect x="-10" y="-9" width="68" height="14" rx="2" fill="#120904"/>
+                            <rect x="-8" y="-13" width="26" height="22" rx="4" fill="#331706" stroke="#120904" stroke-width="2.5"/>
+                            <path d="M -8,8 C -14,20 -28,42 -18,52 C -7,56 7,50 5,38 L 0,8 Z" fill="#8f1618" stroke="#120904" stroke-width="3"/>
+                            <path d="M 2,10 C 2,26 20,26 20,10 Z" stroke="#120904" stroke-width="3" fill="none"/>
+                            <polygon points="56,-9 58,-16 52,-9" fill="#120904"/>
                         </g>
 
                         <!-- Right Filigree Flourish -->
-                        <line x1="380" y1="48" x2="440" y2="48" stroke="#120904" stroke-width="2.5"/>
-                        <path d="M 550,48 C 515,22 475,28 440,48 C 475,68 515,74 550,48 Z" stroke="#120904" stroke-width="2.5" fill="none"/>
-                        <circle cx="552" cy="48" r="4.5" fill="#8f1618"/>
-                        <path d="M 520,48 C 495,34 465,36 445,48" stroke="#8f1618" stroke-width="2"/>
+                        <line x1="400" y1="48" x2="450" y2="48" stroke="#120904" stroke-width="3"/>
+                        <path d="M 560,48 C 525,20 485,26 450,48 C 485,70 525,76 560,48 Z" stroke="#120904" stroke-width="3" fill="none"/>
+                        <circle cx="562" cy="48" r="5" fill="#8f1618"/>
+                        <path d="M 530,48 C 505,32 475,34 455,48" stroke="#8f1618" stroke-width="2.5"/>
                     </svg>
                 </div>
 
@@ -721,16 +770,36 @@
                     </div>
                 </div>
 
-                <!-- Gold Bounty & Bar Tab Prizes Box -->
-                <div class="bounty-prize-panel">
-                    <div class="prize-headline">★ $100 IN BAR TAB BOUNTIES ★</div>
-                    <div class="prize-categories">BEST DRESSED COWBOY & COWGIRL • CROWD FAVOURITES • BEST OUTLAW SINGER</div>
+                <!-- High-Impact Wild West Best Dressed Bounty Panel -->
+                <div class="best-dressed-bounty-box">
+                    <div class="bd-badge-header">
+                        <span class="bd-line"></span>
+                        <span class="bd-badge-title">★ WANTED DEAD OR ALIVE • DRESS IN YOUR WESTERN BEST ★</span>
+                        <span class="bd-line"></span>
+                    </div>
+                    <div class="bd-main-title">PRIZES FOR BEST DRESSED!</div>
+                    <div class="bd-categories-strip">
+                        <span>COWBOYS</span>
+                        <span>•</span>
+                        <span>COWGIRLS</span>
+                        <span>•</span>
+                        <span>OUTLAWS</span>
+                        <span>•</span>
+                        <span>SHERIFFS</span>
+                    </div>
+                    <div class="bd-rewards-strip">
+                        <span>🏆 BAR TAB BOUNTIES</span>
+                        <span>★</span>
+                        <span>BEST OVERALL WESTERN OUTFIT</span>
+                        <span>★</span>
+                        <span>CROWD FAVOURITES</span>
+                    </div>
                 </div>
 
                 <!-- Bottom Tavern Services & Midnight Countdown -->
                 <div class="bottom-tavern-strip">
-                    <div class="tavern-services">COURTESY VAN SERVICE AVAILABLE • SECURE YOUR TABLE EARLY</div>
-                    <div class="tavern-address">COASTERS TAVERN • 156 MAIN NORTH ROAD, REDWOOD, CHRISTCHURCH</div>
+                    <div class="tavern-table-booking">NO COVER CHARGE • TABLE BOOKINGS & WALK-INS WELCOME • PH: (03) 352 9083</div>
+                    <div class="tavern-address">COASTERS TAVERN • 1 DANIELS ROAD, REDWOOD, CHRISTCHURCH</div>
                     <div class="midnight-toast-callout">★ RING IN 2027 WITH MIDNIGHT CHEERS, FIREWORKS & CHAMPAGNE! ★</div>
                 </div>
             </div>
