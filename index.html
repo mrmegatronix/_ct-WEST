@@ -93,14 +93,14 @@
             box-shadow: inset 0 0 0 4px rgba(255, 195, 75, 0.42);
         }
 
-        /* Full-Width Top Western Title Banner (With 1080p TV Safe-Area Margin & Borders) */
+        /* Full-Width Top Western Title Banner (With 1080p TV Overscan Safe-Area) */
         .saloon-header-banner {
             position: absolute;
-            top: 20px;
-            left: 24px;
-            right: 24px;
-            width: calc(100% - 48px);
-            height: 104px;
+            top: 42px;
+            left: 54px;
+            right: 54px;
+            width: calc(100% - 108px);
+            height: 98px;
             z-index: 24;
             background:
                 repeating-linear-gradient(90deg, transparent 0px, transparent 140px, rgba(0, 0, 0, 0.45) 140px, rgba(0, 0, 0, 0.45) 142px),
@@ -130,15 +130,15 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 3px;
+            gap: 2px;
             white-space: nowrap;
         }
 
         .plaque-title {
             font-family: 'Rye', serif;
-            font-size: 46px;
+            font-size: 42px;
             color: #fff9db;
-            letter-spacing: 3.5px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             line-height: 1.05;
             text-shadow:
@@ -153,8 +153,8 @@
         .banner-datetime {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            font-size: 20px;
-            letter-spacing: 3.5px;
+            font-size: 19px;
+            letter-spacing: 3px;
             color: #ffd866;
             text-transform: uppercase;
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
@@ -164,9 +164,9 @@
         /* Top Screen Epic Western Countdown Stage (Fitted Between Left Margin & Billboard) */
         .countdown-stage {
             position: absolute;
-            top: 138px;
-            left: 40px;
-            width: 1040px;
+            top: 154px;
+            left: 54px;
+            width: 1020px;
             transform: none;
             z-index: 18;
             display: flex;
@@ -375,12 +375,12 @@
         /* Huge Western Frontier Billboard in the Distance (Right Hand Side, Angled South-West) */
         .promo-wrap {
             position: absolute;
-            top: 138px;
-            right: 38px;
+            top: 154px;
+            right: 54px;
             left: auto;
             transform-origin: right center;
             transform: perspective(1200px) rotateY(-8deg);
-            width: 780px;
+            width: 765px;
             z-index: 12;
             pointer-events: none;
         }
@@ -901,8 +901,10 @@
         function resizeStage() {
             const stage = document.getElementById('stage');
             if (!stage) return;
-            const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-            stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            const baseScale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+            const isTvSafe = appConfig.overscanSafe !== false;
+            const safeFactor = isTvSafe ? 0.96 : 1.0;
+            stage.style.transform = `translate(-50%, -50%) scale(${baseScale * safeFactor})`;
         }
         window.addEventListener('resize', resizeStage);
         resizeStage();
@@ -1257,6 +1259,10 @@
             } else if (e.key === 'p' || e.key === 'P') {
                 e.preventDefault();
                 window.open('poster.html', '_blank');
+            } else if (e.key === 'o' || e.key === 'O') {
+                e.preventDefault();
+                appConfig.overscanSafe = !(appConfig.overscanSafe !== false);
+                resizeStage();
             } else if (e.key === 'a' || e.key === 'A') {
                 e.preventDefault();
                 window.open('admin.html', '_blank');

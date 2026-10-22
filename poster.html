@@ -9,13 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Rye&family=Smokum&family=Sancreek&display=swap" rel="stylesheet">
     <style>
         :root {
-            --paper-bg: #f5eedc;
-            --paper-dark: #d8c199;
-            --ink-black: #120904;
-            --ink-brown: #331706;
-            --ink-red: #8f1618;
-            --gold-leaf: #b87b1c;
-            --gold-bright: #d99a2e;
+            --paper-bg: #f7f1e1;
+            --paper-dark: #d8c095;
+            --ink-black: #110703;
+            --ink-brown: #381807;
+            --ink-red: #941719;
+            --gold-leaf: #b87a1c;
+            --gold-bright: #e8a933;
+            --border-wood: #261005;
         }
 
         * {
@@ -25,24 +26,24 @@
         }
 
         body {
-            background-color: #0c0502;
+            background-color: #080301;
             background-image: 
-                radial-gradient(ellipse at 50% 20%, #241105 0%, #060201 100%);
+                radial-gradient(ellipse at 50% 25%, #231005 0%, #080301 100%);
             color: var(--ink-black);
             font-family: 'Playfair Display', Georgia, serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 24px 16px 54px;
+            padding: 20px 16px 50px;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Top Action Buttons */
+        /* Top Action Bar */
         .controls-bar {
             display: flex;
             gap: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             z-index: 100;
         }
 
@@ -50,11 +51,11 @@
             background: linear-gradient(180deg, #d49a37 0%, #996317 100%);
             color: #140801;
             font-family: 'Rye', serif;
-            font-size: 15px;
+            font-size: 14.5px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             text-decoration: none;
-            padding: 11px 26px;
+            padding: 10px 24px;
             border-radius: 6px;
             border: 2px solid #ffd88a;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.4);
@@ -90,28 +91,28 @@
             aspect-ratio: 297 / 420;
             background-color: var(--paper-bg);
             background-image:
-                radial-gradient(ellipse at 50% 50%, rgba(255, 252, 244, 0.85) 0%, rgba(230, 212, 182, 0.55) 70%, rgba(165, 125, 75, 0.85) 100%),
-                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(70, 32, 10, 0.038) 3px, rgba(70, 32, 10, 0.038) 6px),
-                repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(70, 32, 10, 0.028) 4px, rgba(70, 32, 10, 0.028) 8px);
-            border: 2px solid #5a2e10;
+                radial-gradient(ellipse at 50% 50%, rgba(255, 253, 246, 0.9) 0%, rgba(235, 218, 188, 0.6) 65%, rgba(165, 122, 68, 0.92) 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(70, 32, 10, 0.04) 3px, rgba(70, 32, 10, 0.04) 6px),
+                repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(70, 32, 10, 0.03) 4px, rgba(70, 32, 10, 0.03) 8px);
+            border: 3px solid #4a220b;
             border-radius: 4px;
-            padding: 24px 28px;
+            padding: 22px 26px;
             box-shadow:
                 0 30px 85px rgba(0, 0, 0, 0.98),
-                0 0 110px rgba(180, 110, 45, 0.28),
-                inset 0 0 60px rgba(90, 45, 14, 0.45);
+                0 0 120px rgba(180, 110, 45, 0.35),
+                inset 0 0 65px rgba(90, 45, 14, 0.48);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             overflow: hidden;
         }
 
-        /* Burned / Aged Perimeter Vignette */
+        /* Scorched / Aged Perimeter Vignette */
         .poster-wrapper::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 50% 50%, transparent 66%, rgba(80, 38, 12, 0.38) 88%, rgba(35, 15, 4, 0.75) 100%);
+            background: radial-gradient(ellipse at 50% 50%, transparent 64%, rgba(80, 38, 12, 0.42) 86%, rgba(25, 10, 3, 0.82) 100%);
             pointer-events: none;
             z-index: 2;
         }
@@ -119,7 +120,7 @@
         /* Weathered Fold Creases */
         .crease-h1 {
             position: absolute;
-            top: 31%;
+            top: 32%;
             left: 0;
             right: 0;
             height: 2px;
@@ -129,7 +130,7 @@
         }
         .crease-h2 {
             position: absolute;
-            top: 67%;
+            top: 68%;
             left: 0;
             right: 0;
             height: 2px;
@@ -138,20 +139,20 @@
             z-index: 3;
         }
 
-        /* Four Authentic Forged Iron Tacks */
+        /* 4 Authentic Forged Iron Tacks */
         .tack {
             position: absolute;
             width: 18px;
             height: 18px;
-            background: radial-gradient(circle at 35% 35%, #666 0%, #222 65%, #050505 100%);
+            background: radial-gradient(circle at 35% 35%, #777 0%, #222 65%, #050505 100%);
             border-radius: 50%;
-            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.75), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.5);
             z-index: 10;
         }
-        .tack-tl { top: 14px; left: 16px; }
-        .tack-tr { top: 14px; right: 16px; }
-        .tack-bl { bottom: 14px; left: 16px; }
-        .tack-br { bottom: 14px; right: 16px; }
+        .tack-tl { top: 12px; left: 14px; }
+        .tack-tr { top: 12px; right: 14px; }
+        .tack-bl { bottom: 12px; left: 14px; }
+        .tack-br { bottom: 12px; right: 14px; }
 
         /* Realistic Frontier Bullet Holes */
         .bullet-hole {
@@ -167,16 +168,16 @@
             z-index: 8;
             pointer-events: none;
         }
-        .bh-1 { top: 22px; right: 65px; transform: scale(1.1); }
-        .bh-2 { bottom: 32px; left: 55px; transform: scale(0.9); }
+        .bh-1 { top: 20px; right: 60px; transform: scale(1.1); }
+        .bh-2 { bottom: 28px; left: 50px; transform: scale(0.9); }
 
-        /* Triple Frontier Letterpress Border with Inset Corner Blocks */
+        /* Multi-Tiered Authentic Letterpress Framing */
         .outer-border-box {
             position: relative;
             width: 100%;
             height: 100%;
             border: 6px solid var(--ink-black);
-            padding: 8px;
+            padding: 7px;
             z-index: 5;
             display: flex;
             flex-direction: column;
@@ -188,7 +189,7 @@
             width: 100%;
             height: 100%;
             border: 2px dashed var(--ink-black);
-            padding: 10px 14px;
+            padding: 8px 12px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -221,9 +222,9 @@
 
         .herald-location {
             font-family: 'Playfair Display', serif;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 900;
-            letter-spacing: 6px;
+            letter-spacing: 5px;
             color: var(--ink-brown);
             text-transform: uppercase;
             display: flex;
@@ -240,7 +241,7 @@
 
         .saloon-banner-title {
             font-family: 'Rye', serif;
-            font-size: 36px;
+            font-size: 38px;
             letter-spacing: 4px;
             color: var(--ink-black);
             text-transform: uppercase;
@@ -255,8 +256,8 @@
             align-items: center;
             justify-content: center;
             gap: 14px;
-            width: 88%;
-            margin: 1px 0 4px;
+            width: 90%;
+            margin: 1px 0 2px;
         }
         .herald-ribbon-sub .h-line {
             flex: 1;
@@ -265,10 +266,10 @@
         }
         .herald-ribbon-sub .h-text {
             font-family: 'Playfair Display', serif;
-            font-size: 13.5px;
+            font-size: 13px;
             font-style: italic;
             font-weight: 900;
-            letter-spacing: 3.5px;
+            letter-spacing: 3px;
             color: var(--ink-red);
             text-transform: uppercase;
             white-space: nowrap;
@@ -280,19 +281,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 2px 0;
+            margin: 1px 0;
         }
 
         .title-wild-west {
             font-family: 'Smokum', 'Rye', serif;
-            font-size: 94px;
+            font-size: 96px;
             line-height: 0.85;
             letter-spacing: 9px;
             color: var(--ink-black);
             text-transform: uppercase;
             text-shadow: 
                 3px 4px 0 #baa076,
-                5px 6px 0 rgba(50, 20, 5, 0.45);
+                6px 6px 0 rgba(50, 20, 5, 0.45);
             transform: scaleY(1.1);
             white-space: nowrap;
         }
@@ -308,7 +309,7 @@
 
         .title-nye-text {
             font-family: 'Rye', serif;
-            font-size: 40px;
+            font-size: 42px;
             letter-spacing: 6px;
             color: var(--ink-red);
             text-transform: uppercase;
@@ -329,14 +330,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 4px 0;
+            margin: 2px 0;
             position: relative;
         }
 
         .woodcut-svg-emblem {
             width: 580px;
-            height: 96px;
-            filter: drop-shadow(1px 2px 0 rgba(0, 0, 0, 0.3));
+            height: 94px;
+            filter: drop-shadow(1px 2px 0 rgba(0, 0, 0, 0.35));
         }
 
         /* Black Velvet & Gold Leaf Karaoke Banner */
@@ -345,8 +346,8 @@
             background: linear-gradient(90deg, #180902 0%, #0d0502 50%, #180902 100%);
             border: 3px solid var(--ink-black);
             border-radius: 4px;
-            padding: 8px 18px;
-            margin: 4px 0 6px;
+            padding: 7px 18px;
+            margin: 3px 0 5px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -374,13 +375,13 @@
             width: 100%;
             border-top: 3.5px double var(--ink-black);
             border-bottom: 3.5px double var(--ink-black);
-            padding: 8px 16px;
+            padding: 7px 16px;
             margin: 2px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-            background: rgba(143, 22, 24, 0.06);
+            gap: 3px;
+            background: rgba(148, 23, 25, 0.06);
         }
 
         .date-day-stamp {
@@ -416,7 +417,6 @@
             font-family: 'Rye', serif;
             font-size: 13px;
             letter-spacing: 1.5px;
-            color: var(--gold-leaf);
             background: rgba(22, 10, 4, 0.88);
             color: #ffe699;
             padding: 2px 12px;
@@ -432,14 +432,14 @@
             display: grid;
             grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             gap: 12px;
-            margin: 4px 0;
+            margin: 3px 0;
             box-sizing: border-box;
         }
 
         .attraction-card {
             border: 2px solid var(--ink-black);
-            padding: 8px 10px;
-            background: rgba(255, 255, 255, 0.42);
+            padding: 7px 10px;
+            background: rgba(255, 255, 255, 0.45);
             box-shadow: inset 0 0 10px rgba(100, 50, 15, 0.1);
             display: flex;
             flex-direction: column;
@@ -451,7 +451,7 @@
 
         .ac-title {
             font-family: 'Rye', serif;
-            font-size: 15px;
+            font-size: 14.5px;
             color: var(--ink-red);
             letter-spacing: 1.2px;
             text-transform: uppercase;
@@ -464,7 +464,7 @@
 
         .ac-desc {
             font-family: 'Playfair Display', serif;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 700;
             color: var(--ink-black);
             line-height: 1.3;
@@ -472,15 +472,15 @@
             text-align: center;
         }
 
-        /* High-Voltage "X-Factor" Best Dressed Bounty Poster Box */
+        /* High-Voltage WOW FACTOR: Best Dressed Bounty Poster Box */
         .best-dressed-bounty-box {
             width: 100%;
-            border: 3px solid var(--ink-black);
+            border: 3.5px solid var(--ink-black);
             background: 
-                repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(143, 22, 24, 0.05) 12px, rgba(143, 22, 24, 0.05) 24px),
-                linear-gradient(180deg, rgba(255, 235, 175, 0.65) 0%, rgba(225, 180, 95, 0.45) 100%);
+                repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(148, 23, 25, 0.06) 12px, rgba(148, 23, 25, 0.06) 24px),
+                linear-gradient(180deg, rgba(255, 236, 178, 0.75) 0%, rgba(228, 185, 102, 0.55) 100%);
             border-radius: 6px;
-            padding: 7px 14px;
+            padding: 8px 14px;
             margin: 3px 0;
             display: flex;
             flex-direction: column;
@@ -506,7 +506,7 @@
 
         .bd-badge-title {
             font-family: 'Playfair Display', serif;
-            font-size: 11px;
+            font-size: 11.5px;
             font-weight: 900;
             letter-spacing: 2.5px;
             color: var(--ink-black);
@@ -516,10 +516,10 @@
 
         .bd-main-title {
             font-family: 'Rye', serif;
-            font-size: 34px;
-            line-height: 1.1;
+            font-size: 36px;
+            line-height: 1.05;
             letter-spacing: 3.5px;
-            color: #8f1618;
+            color: #941719;
             text-transform: uppercase;
             text-shadow: 2px 2px 0 #baa076, 3px 3px 0 rgba(0, 0, 0, 0.28);
             white-space: nowrap;
@@ -532,7 +532,7 @@
             gap: 12px;
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            font-size: 14px;
+            font-size: 14.5px;
             letter-spacing: 2.5px;
             color: var(--ink-brown);
             text-transform: uppercase;
@@ -545,7 +545,7 @@
             justify-content: center;
             gap: 12px;
             font-family: 'Playfair Display', serif;
-            font-size: 11px;
+            font-size: 11.5px;
             font-weight: 900;
             letter-spacing: 1px;
             color: var(--ink-black);
@@ -685,52 +685,52 @@
                 <div class="woodcut-centerpiece">
                     <svg class="woodcut-svg-emblem" viewBox="0 0 580 96" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <!-- Left Filigree Flourish -->
-                        <path d="M 20,48 C 55,20 95,26 130,48 C 95,70 55,76 20,48 Z" stroke="#120904" stroke-width="3" fill="none"/>
-                        <circle cx="18" cy="48" r="5" fill="#8f1618"/>
-                        <path d="M 50,48 C 75,32 105,34 125,48" stroke="#8f1618" stroke-width="2.5"/>
-                        <line x1="130" y1="48" x2="180" y2="48" stroke="#120904" stroke-width="3"/>
+                        <path d="M 20,48 C 55,20 95,26 130,48 C 95,70 55,76 20,48 Z" stroke="#110703" stroke-width="3" fill="none"/>
+                        <circle cx="18" cy="48" r="5" fill="#941719"/>
+                        <path d="M 50,48 C 75,32 105,34 125,48" stroke="#941719" stroke-width="2.5"/>
+                        <line x1="130" y1="48" x2="180" y2="48" stroke="#110703" stroke-width="3"/>
 
                         <!-- Left Revolver Silhouette (Facing Right) -->
                         <g transform="translate(190, 48) rotate(-12) scale(0.85)">
                             <!-- Barrel & Cylinder -->
-                            <rect x="-10" y="-9" width="68" height="14" rx="2" fill="#120904"/>
-                            <rect x="-8" y="-13" width="26" height="22" rx="4" fill="#331706" stroke="#120904" stroke-width="2.5"/>
+                            <rect x="-10" y="-9" width="68" height="14" rx="2" fill="#110703"/>
+                            <rect x="-8" y="-13" width="26" height="22" rx="4" fill="#381807" stroke="#110703" stroke-width="2.5"/>
                             <!-- Grip -->
-                            <path d="M -8,8 C -14,20 -28,42 -18,52 C -7,56 7,50 5,38 L 0,8 Z" fill="#8f1618" stroke="#120904" stroke-width="3"/>
+                            <path d="M -8,8 C -14,20 -28,42 -18,52 C -7,56 7,50 5,38 L 0,8 Z" fill="#941719" stroke="#110703" stroke-width="3"/>
                             <!-- Trigger Guard -->
-                            <path d="M 2,10 C 2,26 20,26 20,10 Z" stroke="#120904" stroke-width="3" fill="none"/>
+                            <path d="M 2,10 C 2,26 20,26 20,10 Z" stroke="#110703" stroke-width="3" fill="none"/>
                             <!-- Front sight -->
-                            <polygon points="56,-9 58,-16 52,-9" fill="#120904"/>
+                            <polygon points="56,-9 58,-16 52,-9" fill="#110703"/>
                         </g>
 
                         <!-- Center Stetson Cowboy Hat & Horseshoe Medallion -->
                         <g transform="translate(290, 48) scale(1.22)">
                             <!-- Horseshoe Crest -->
-                            <path d="M -32,22 C -42,-18 -24,-38 0,-38 C 24,-38 42,-18 32,22 L 20,18 C 28,-12 16,-26 0,-26 C -16,-26 -28,-12 -20,18 Z" fill="#b87b1c" stroke="#120904" stroke-width="3"/>
+                            <path d="M -32,22 C -42,-18 -24,-38 0,-38 C 24,-38 42,-18 32,22 L 20,18 C 28,-12 16,-26 0,-26 C -16,-26 -28,-12 -20,18 Z" fill="#b87a1c" stroke="#110703" stroke-width="3"/>
                             <!-- Horseshoe Nail Holes -->
-                            <circle cx="-25" cy="-6" r="2.2" fill="#120904"/>
-                            <circle cx="-21" cy="-20" r="2.2" fill="#120904"/>
-                            <circle cx="21" cy="-20" r="2.2" fill="#120904"/>
-                            <circle cx="25" cy="-6" r="2.2" fill="#120904"/>
+                            <circle cx="-25" cy="-6" r="2.2" fill="#110703"/>
+                            <circle cx="-21" cy="-20" r="2.2" fill="#110703"/>
+                            <circle cx="21" cy="-20" r="2.2" fill="#110703"/>
+                            <circle cx="25" cy="-6" r="2.2" fill="#110703"/>
 
                             <!-- Center 5-Point Sheriff Star -->
-                            <polygon points="0,-16 4,-4 16,-4 7,3 10,15 0,8 -10,15 -7,3 -16,-4 -4,-4" fill="#8f1618" stroke="#120904" stroke-width="2"/>
+                            <polygon points="0,-16 4,-4 16,-4 7,3 10,15 0,8 -10,15 -7,3 -16,-4 -4,-4" fill="#941719" stroke="#110703" stroke-width="2"/>
                         </g>
 
                         <!-- Right Revolver Silhouette (Facing Left) -->
                         <g transform="translate(390, 48) scale(-1, 1) rotate(-12) scale(0.85)">
-                            <rect x="-10" y="-9" width="68" height="14" rx="2" fill="#120904"/>
-                            <rect x="-8" y="-13" width="26" height="22" rx="4" fill="#331706" stroke="#120904" stroke-width="2.5"/>
-                            <path d="M -8,8 C -14,20 -28,42 -18,52 C -7,56 7,50 5,38 L 0,8 Z" fill="#8f1618" stroke="#120904" stroke-width="3"/>
-                            <path d="M 2,10 C 2,26 20,26 20,10 Z" stroke="#120904" stroke-width="3" fill="none"/>
-                            <polygon points="56,-9 58,-16 52,-9" fill="#120904"/>
+                            <rect x="-10" y="-9" width="68" height="14" rx="2" fill="#110703"/>
+                            <rect x="-8" y="-13" width="26" height="22" rx="4" fill="#381807" stroke="#110703" stroke-width="2.5"/>
+                            <path d="M -8,8 C -14,20 -28,42 -18,52 C -7,56 7,50 5,38 L 0,8 Z" fill="#941719" stroke="#110703" stroke-width="3"/>
+                            <path d="M 2,10 C 2,26 20,26 20,10 Z" stroke="#110703" stroke-width="3" fill="none"/>
+                            <polygon points="56,-9 58,-16 52,-9" fill="#110703"/>
                         </g>
 
                         <!-- Right Filigree Flourish -->
-                        <line x1="400" y1="48" x2="450" y2="48" stroke="#120904" stroke-width="3"/>
-                        <path d="M 560,48 C 525,20 485,26 450,48 C 485,70 525,76 560,48 Z" stroke="#120904" stroke-width="3" fill="none"/>
-                        <circle cx="562" cy="48" r="5" fill="#8f1618"/>
-                        <path d="M 530,48 C 505,32 475,34 455,48" stroke="#8f1618" stroke-width="2.5"/>
+                        <line x1="400" y1="48" x2="450" y2="48" stroke="#110703" stroke-width="3"/>
+                        <path d="M 560,48 C 525,20 485,26 450,48 C 485,70 525,76 560,48 Z" stroke="#110703" stroke-width="3" fill="none"/>
+                        <circle cx="562" cy="48" r="5" fill="#941719"/>
+                        <path d="M 530,48 C 505,32 475,34 455,48" stroke="#941719" stroke-width="2.5"/>
                     </svg>
                 </div>
 
