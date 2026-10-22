@@ -6,15 +6,15 @@
     <title>WILD WEST NEW YEAR'S EVE POSTER | Coasters Tavern Redwood</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Rye&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Rye&family=Smokum&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-parchment: #fdfaf2;
-            --ink-black: #1a0f07;
-            --ink-red: #a31c1e;
-            --ink-gold: #c9881e;
-            --ink-subtle: #52341d;
-            --border-dark: #241106;
+            --gold-bright: #ffd54f;
+            --gold-deep: #ffb300;
+            --gold-foil: #f9a825;
+            --crimson-fire: #d32f2f;
+            --ink-dark: #0a0402;
+            --wood-dark: #1f0b03;
         }
 
         * {
@@ -24,23 +24,23 @@
         }
 
         body {
-            background-color: #0d0703;
-            background-image: radial-gradient(ellipse at 50% 30%, #201107 0%, #060301 100%);
-            color: var(--ink-black);
+            background-color: #050201;
+            background-image: radial-gradient(ellipse at 50% 30%, #1a0a03 0%, #030100 100%);
+            color: #ffffff;
             font-family: 'Playfair Display', Georgia, serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 24px 16px 48px;
+            padding: 20px 16px 48px;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Top Action Buttons */
+        /* Top Action Bar */
         .controls-bar {
             display: flex;
             gap: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             z-index: 100;
         }
 
@@ -80,21 +80,23 @@
             color: #fff;
         }
 
-        /* Simple, Clean A3 Portrait Canvas (1 : 1.414) */
+        /* The A3 Portrait Poster Wrapper (Exact 297mm x 420mm ratio: 1 : 1.414) */
         .poster-wrapper {
             position: relative;
             width: 100%;
-            max-width: 760px;
+            max-width: 780px;
             aspect-ratio: 297 / 420;
-            background-color: var(--bg-parchment);
-            background-image:
-                radial-gradient(ellipse at 50% 50%, #ffffff 0%, #f6edd8 70%, #edd8b4 100%);
-            border: 4px solid var(--border-dark);
-            border-radius: 4px;
-            padding: 24px;
+            background-color: #0a0402;
+            background-image: url('poster_bg.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            border: 4px solid #b87b1c;
+            border-radius: 6px;
             box-shadow:
-                0 25px 75px rgba(0, 0, 0, 0.95),
-                0 0 80px rgba(180, 110, 45, 0.25);
+                0 30px 90px rgba(0, 0, 0, 0.98),
+                0 0 80px rgba(255, 150, 30, 0.35),
+                inset 0 0 50px rgba(0, 0, 0, 0.9);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -102,231 +104,330 @@
             box-sizing: border-box;
         }
 
-        /* Clean Classic Double Letterpress Border */
-        .poster-border {
+        /* Heavy Cinematic Vignette Overlays for Maximum Text Legibility & Contrast */
+        .poster-overlay-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 38%;
+            background: linear-gradient(180deg, rgba(6, 2, 1, 0.95) 0%, rgba(8, 3, 1, 0.82) 55%, rgba(10, 4, 1, 0.25) 85%, transparent 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .poster-overlay-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 44%;
+            background: linear-gradient(0deg, rgba(5, 2, 1, 0.98) 0%, rgba(8, 3, 1, 0.92) 50%, rgba(10, 4, 1, 0.4) 80%, transparent 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Outer Double Frontier Gold Frame */
+        .poster-frame {
             position: relative;
             width: 100%;
             height: 100%;
-            border: 3px solid var(--border-dark);
-            padding: 20px 24px;
+            border: 2px solid rgba(255, 213, 79, 0.55);
+            margin: 0;
+            padding: 22px 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
             text-align: center;
+            z-index: 5;
             box-sizing: border-box;
         }
 
-        /* Section 1: Clean Saloon Header */
-        .header-block {
+        /* Corner Gold Studs */
+        .corner-rivet {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle at 35% 35%, #ffe680 0%, #b87b1c 65%, #422005 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 200, 50, 0.7), inset 0 1px 1px #fff;
+            z-index: 10;
+        }
+        .cr-tl { top: 8px; left: 8px; }
+        .cr-tr { top: 8px; right: 8px; }
+        .cr-bl { bottom: 8px; left: 8px; }
+        .cr-br { bottom: 8px; right: 8px; }
+
+        /* Top Header Block */
+        .top-header {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-            border-bottom: 2.5px solid var(--border-dark);
-            padding-bottom: 16px;
+            gap: 2px;
         }
 
-        .venue-name {
+        .herald-saloon-name {
             font-family: 'Rye', serif;
-            font-size: 38px;
-            letter-spacing: 4px;
-            color: var(--ink-black);
+            font-size: 34px;
+            letter-spacing: 5px;
+            color: #ffffff;
             text-transform: uppercase;
-            line-height: 1.1;
+            line-height: 1;
+            text-shadow:
+                0 0 16px rgba(255, 200, 50, 0.6),
+                0 2px 8px rgba(0, 0, 0, 0.95);
             white-space: nowrap;
         }
 
-        .venue-sub {
+        .herald-location {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 800;
-            font-size: 15px;
-            letter-spacing: 4.5px;
-            color: var(--ink-subtle);
+            font-size: 13.5px;
+            letter-spacing: 5px;
+            color: var(--gold-bright);
             text-transform: uppercase;
+            text-shadow: 0 2px 6px #000;
             white-space: nowrap;
         }
 
-        /* Section 2: Huge, Bold Event Title */
-        .title-block {
+        /* Huge Cinematic Event Title */
+        .event-hero-title {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 4px 0;
-            gap: 6px;
+            margin-top: 4px;
+            gap: 2px;
         }
 
         .title-wild-west {
             font-family: 'Rye', serif;
-            font-size: 88px;
-            line-height: 0.95;
-            letter-spacing: 7px;
-            color: var(--ink-black);
+            font-size: 84px;
+            line-height: 0.92;
+            letter-spacing: 8px;
+            color: #fff9db;
             text-transform: uppercase;
-            text-shadow: 4px 4px 0 rgba(180, 130, 70, 0.4);
+            text-shadow:
+                0 2px 0 #ffe680,
+                0 4px 0 #d98818,
+                0 6px 0 #9c5806,
+                0 8px 0 #572d02,
+                0 12px 28px rgba(0, 0, 0, 0.95),
+                0 0 35px rgba(255, 170, 0, 0.65);
             white-space: nowrap;
         }
 
-        .title-nye {
+        .title-nye-banner {
             font-family: 'Rye', serif;
-            font-size: 46px;
-            line-height: 1;
+            font-size: 38px;
             letter-spacing: 5px;
-            color: var(--ink-red);
+            color: var(--gold-bright);
             text-transform: uppercase;
+            line-height: 1;
+            text-shadow:
+                0 2px 0 #8f1618,
+                0 4px 12px rgba(0, 0, 0, 0.95),
+                0 0 20px rgba(255, 120, 0, 0.7);
             white-space: nowrap;
         }
 
-        .title-karaoke {
-            background: var(--ink-black);
-            color: #ffe699;
+        .title-karaoke-showdown {
+            background: linear-gradient(90deg, rgba(163, 28, 30, 0.95) 0%, rgba(211, 47, 47, 0.95) 50%, rgba(163, 28, 30, 0.95) 100%);
+            border: 2px solid var(--gold-bright);
+            color: #ffffff;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 52px;
-            letter-spacing: 6px;
-            padding: 6px 36px;
-            border-radius: 6px;
+            font-size: 44px;
+            letter-spacing: 5px;
+            padding: 3px 34px;
+            border-radius: 999px;
             text-transform: uppercase;
             margin-top: 6px;
+            box-shadow:
+                0 6px 20px rgba(0, 0, 0, 0.8),
+                0 0 25px rgba(255, 100, 20, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
             white-space: nowrap;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
         }
 
-        /* Section 3: Clean Date & Time Stamp */
-        .date-block {
+        /* Center Breathing Window - Allows Artwork to Shine Through */
+        .artwork-window {
+            flex: 1;
             width: 100%;
-            border-top: 3px solid var(--border-dark);
-            border-bottom: 3px solid var(--border-dark);
-            padding: 16px 20px;
+            min-height: 80px;
+        }
+
+        /* Bottom Section: Date, Best Dressed, Highlights, Address */
+        .bottom-cluster {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
-            background: rgba(163, 28, 30, 0.05);
+            gap: 10px;
         }
 
-        .date-day {
-            font-family: 'Chakra Petch', sans-serif;
-            font-weight: 900;
-            font-size: 32px;
-            letter-spacing: 4px;
-            color: var(--ink-red);
-            text-transform: uppercase;
-            line-height: 1.1;
-            white-space: nowrap;
-        }
-
-        .date-time {
-            font-family: 'Playfair Display', serif;
-            font-size: 16px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: var(--ink-black);
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        /* Section 4: Standout BEST DRESSED Feature */
-        .best-dressed-block {
+        /* High-Impact Date & Time Card */
+        .date-plaque {
             width: 100%;
-            border: 3.5px solid var(--ink-red);
-            background: #fff8eb;
+            background: rgba(18, 7, 2, 0.88);
+            border: 2px solid var(--gold-bright);
             border-radius: 8px;
-            padding: 18px 24px;
+            padding: 8px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-            box-sizing: border-box;
+            gap: 2px;
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.9),
+                0 0 20px rgba(255, 180, 40, 0.25),
+                inset 0 1px 0 rgba(255, 240, 180, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
-        .bd-title {
-            font-family: 'Rye', serif;
-            font-size: 33px;
-            letter-spacing: 2px;
-            color: var(--ink-red);
+        .date-day-text {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 900;
+            font-size: 28px;
+            letter-spacing: 3.5px;
+            color: #ffe685;
             text-transform: uppercase;
             line-height: 1.1;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
             white-space: nowrap;
         }
 
-        .bd-sub {
-            font-family: 'Chakra Petch', sans-serif;
-            font-weight: 800;
-            font-size: 16px;
-            letter-spacing: 3.5px;
-            color: var(--ink-subtle);
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .bd-bounty {
+        .date-time-text {
             font-family: 'Playfair Display', serif;
             font-size: 15px;
             font-weight: 900;
-            letter-spacing: 1.5px;
-            color: var(--ink-black);
-            text-transform: uppercase;
-            margin-top: 4px;
-            white-space: nowrap;
-        }
-
-        /* Section 5: Highlights List */
-        .highlights-row {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            width: 100%;
-            font-family: 'Playfair Display', serif;
-            font-size: 14.5px;
-            font-weight: 800;
             letter-spacing: 2px;
-            color: var(--ink-subtle);
+            color: #ffffff;
             text-transform: uppercase;
+            text-shadow: 0 2px 6px #000;
             white-space: nowrap;
-            padding: 4px 0;
         }
 
-        /* Section 6: Clean Address & Booking Footer */
-        .footer-block {
+        /* THE WOW FACTOR: Mega Best Dressed Bounty Plaque */
+        .best-dressed-spotlight {
             width: 100%;
-            border-top: 2.5px solid var(--border-dark);
-            padding-top: 14px;
+            background: linear-gradient(135deg, rgba(82, 17, 10, 0.95) 0%, rgba(138, 22, 18, 0.96) 50%, rgba(82, 17, 10, 0.95) 100%);
+            border: 3px solid var(--gold-bright);
+            border-radius: 10px;
+            padding: 10px 18px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 2px;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.95),
+                0 0 35px rgba(255, 180, 30, 0.45),
+                inset 0 1px 0 rgba(255, 240, 180, 0.5);
+            box-sizing: border-box;
         }
 
-        .address-text {
+        .bd-tagline {
             font-family: 'Playfair Display', serif;
-            font-size: 18px;
+            font-size: 12px;
             font-weight: 900;
             letter-spacing: 2.5px;
-            color: var(--ink-black);
+            color: var(--gold-bright);
             text-transform: uppercase;
             white-space: nowrap;
         }
 
-        .contact-text {
+        .bd-headline {
+            font-family: 'Rye', serif;
+            font-size: 34px;
+            letter-spacing: 2.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+            line-height: 1.1;
+            text-shadow:
+                0 2px 0 #630e06,
+                0 4px 10px rgba(0, 0, 0, 0.9),
+                0 0 20px rgba(255, 200, 50, 0.7);
+            white-space: nowrap;
+        }
+
+        .bd-categories {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 900;
+            font-size: 15px;
+            letter-spacing: 3px;
+            color: var(--gold-bright);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .bd-bounty-badge {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-top: 1px;
+            white-space: nowrap;
+        }
+
+        /* Highlights Row */
+        .party-highlights-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            font-family: 'Playfair Display', serif;
+            font-size: 13.5px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffd88a;
+            text-transform: uppercase;
+            text-shadow: 0 2px 6px #000;
+            white-space: nowrap;
+        }
+
+        /* Bottom Venue Address & Table Booking Footer */
+        .bottom-venue-strip {
+            width: 100%;
+            border-top: 2px solid rgba(255, 213, 79, 0.45);
+            padding-top: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .address-line {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 2.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 2px 8px #000;
+            white-space: nowrap;
+        }
+
+        .booking-line {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 800;
-            font-size: 13.5px;
-            letter-spacing: 2.5px;
-            color: var(--ink-subtle);
+            font-size: 12.5px;
+            letter-spacing: 2px;
+            color: var(--gold-bright);
             text-transform: uppercase;
+            text-shadow: 0 2px 6px #000;
             white-space: nowrap;
         }
 
-        .free-entry-tag {
+        .free-admission-callout {
             font-family: 'Rye', serif;
-            font-size: 16px;
+            font-size: 14px;
             letter-spacing: 3px;
-            color: var(--ink-red);
+            color: #ff8a80;
             text-transform: uppercase;
-            margin-top: 3px;
+            text-shadow: 0 2px 8px #000;
             white-space: nowrap;
         }
 
@@ -346,7 +447,7 @@
                 border: none !important;
                 box-shadow: none !important;
                 border-radius: 0 !important;
-                padding: 14mm !important;
+                padding: 12mm !important;
             }
             @page {
                 size: A3 portrait;
@@ -364,52 +465,66 @@
         <a class="btn btn-outline" href="admin.html">⚙️ ADMIN PANEL</a>
     </div>
 
-    <!-- Clean, High-Impact A3 Wild West Event Poster -->
+    <!-- Cinematic Wild West A3 Event Poster -->
     <div class="poster-wrapper">
-        <div class="poster-border">
+        <!-- Top & Bottom Gradient Vignettes for Maximum Contrast -->
+        <div class="poster-overlay-top"></div>
+        <div class="poster-overlay-bottom"></div>
 
-            <!-- 1. Saloon Header -->
-            <div class="header-block">
-                <div class="venue-name">COASTERS TAVERN & SALOON</div>
-                <div class="venue-sub">REDWOOD • CHRISTCHURCH</div>
+        <!-- Gold Border Frame with Corner Studs -->
+        <div class="poster-frame">
+            <div class="corner-rivet cr-tl"></div>
+            <div class="corner-rivet cr-tr"></div>
+            <div class="corner-rivet cr-bl"></div>
+            <div class="corner-rivet cr-br"></div>
+
+            <!-- Top Header & Hero Title Group -->
+            <div class="top-header">
+                <div class="herald-saloon-name">COASTERS TAVERN & SALOON</div>
+                <div class="herald-location">REDWOOD • CHRISTCHURCH</div>
+
+                <div class="event-hero-title">
+                    <div class="title-wild-west">WILD WEST</div>
+                    <div class="title-nye-banner">★ NEW YEAR'S EVE ★</div>
+                    <div class="title-karaoke-showdown">KARAOKE PARTY SHOWDOWN</div>
+                </div>
             </div>
 
-            <!-- 2. Main Title -->
-            <div class="title-block">
-                <div class="title-wild-west">WILD WEST</div>
-                <div class="title-nye">★ NEW YEAR'S EVE ★</div>
-                <div class="title-karaoke">KARAOKE PARTY SHOWDOWN</div>
-            </div>
+            <!-- Breathing Center Window for Sunset & Firework Artwork -->
+            <div class="artwork-window"></div>
 
-            <!-- 3. Date & Time -->
-            <div class="date-block">
-                <div class="date-day">THURSDAY • 31ST DECEMBER 2026</div>
-                <div class="date-time">DOORS OPEN AT 8:00 PM TILL LATE</div>
-            </div>
+            <!-- Bottom Cluster: Date, Best Dressed, Highlights, Address -->
+            <div class="bottom-cluster">
+                <!-- Date & Saloon Time Plaque -->
+                <div class="date-plaque">
+                    <div class="date-day-text">THURSDAY • 31ST DECEMBER 2026</div>
+                    <div class="date-time-text">SALOON DOORS OPEN AT 8:00 PM TILL LATE</div>
+                </div>
 
-            <!-- 4. Standout BEST DRESSED Feature -->
-            <div class="best-dressed-block">
-                <div class="bd-title">PRIZES FOR BEST DRESSED!</div>
-                <div class="bd-sub">COWBOYS • COWGIRLS • OUTLAWS • SHERIFFS</div>
-                <div class="bd-bounty">★ $100 IN BAR TAB BOUNTIES & SPOT PRIZES ★</div>
-            </div>
+                <!-- Mega "Best Dressed" Bounty Spotlight -->
+                <div class="best-dressed-spotlight">
+                    <div class="bd-tagline">★ DRESS TO IMPRESS IN YER FINEST WESTERN ATTIRE ★</div>
+                    <div class="bd-headline">PRIZES FOR BEST DRESSED!</div>
+                    <div class="bd-categories">COWBOYS • COWGIRLS • OUTLAWS • SHERIFFS</div>
+                    <div class="bd-bounty-badge">★ $100 IN BAR TAB BOUNTIES & SPOT PRIZES ★</div>
+                </div>
 
-            <!-- 5. Highlights Row -->
-            <div class="highlights-row">
-                <span>★ LIVE KARAOKE</span>
-                <span>•</span>
-                <span>ICE COLD BEERS</span>
-                <span>•</span>
-                <span>MIDNIGHT TOAST ★</span>
-            </div>
+                <!-- Highlights Row -->
+                <div class="party-highlights-strip">
+                    <span>★ LIVE KARAOKE</span>
+                    <span>•</span>
+                    <span>ICE COLD BEERS</span>
+                    <span>•</span>
+                    <span>MIDNIGHT FIREWORKS ★</span>
+                </div>
 
-            <!-- 6. Address & Contact -->
-            <div class="footer-block">
-                <div class="address-text">1 DANIELS ROAD, REDWOOD, CHRISTCHURCH</div>
-                <div class="contact-text">TABLE BOOKINGS & WALK-INS WELCOME • PH: (03) 352 9083</div>
-                <div class="free-entry-tag">★ 100% FREE ADMISSION ALL NIGHT ★</div>
+                <!-- Address & Bookings Footer -->
+                <div class="bottom-venue-strip">
+                    <div class="address-line">1 DANIELS ROAD, REDWOOD, CHRISTCHURCH</div>
+                    <div class="booking-line">TABLE BOOKINGS & WALK-INS WELCOME • PH: (03) 352 9083</div>
+                    <div class="free-admission-callout">★ 100% FREE ADMISSION ALL NIGHT ★</div>
+                </div>
             </div>
-
         </div>
     </div>
 
