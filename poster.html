@@ -39,8 +39,13 @@
         /* Top Action Bar */
         .controls-bar {
             display: flex;
-            gap: 16px;
-            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            width: 100%;
+            max-width: 960px;
             z-index: 100;
         }
 
@@ -101,6 +106,18 @@
         .btn-big:hover {
             background: linear-gradient(180deg, #f39c12 0%, #e67e22 100%);
             box-shadow: 0 8px 24px rgba(230, 126, 34, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-print {
+            background: linear-gradient(180deg, #b86e10 0%, #7e4605 100%);
+            color: #ffe066;
+            border: 2px solid #ffb703;
+        }
+
+        .btn-print:hover {
+            background: linear-gradient(180deg, #d48217 0%, #9e5907 100%);
+            box-shadow: 0 8px 24px rgba(255, 183, 3, 0.6);
             transform: translateY(-2px);
         }
 
@@ -453,41 +470,43 @@
             white-space: nowrap;
         }
 
-        /* Print Media Setup (A3 Portrait Standard) */
+        /* Print Media Setup (A3 Portrait Standard 297mm x 420mm) */
         @media print {
+            @page {
+                size: 297mm 420mm;
+                margin: 0;
+            }
             *, *::before, *::after {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
                 color-adjust: exact !important;
+                box-sizing: border-box !important;
             }
             html, body {
-                background: #0b0401 !important;
-                padding: 0 !important;
+                width: 297mm !important;
+                height: 420mm !important;
                 margin: 0 !important;
-                width: 100% !important;
-                height: 100% !important;
+                padding: 0 !important;
+                background: #0b0401 !important;
                 overflow: hidden !important;
             }
             .controls-bar {
                 display: none !important;
             }
             .poster-wrapper {
-                max-width: 100% !important;
-                width: 100vw !important;
-                height: 100vh !important;
-                max-height: 100vh !important;
-                aspect-ratio: auto !important;
-                border: none !important;
+                width: 297mm !important;
+                height: 420mm !important;
+                max-width: 297mm !important;
+                max-height: 420mm !important;
+                aspect-ratio: 297 / 420 !important;
+                margin: 0 auto !important;
+                padding: 10mm !important;
                 box-shadow: none !important;
+                border: none !important;
                 border-radius: 0 !important;
-                padding: 6mm !important;
+                page-break-after: avoid !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
-                box-sizing: border-box !important;
-            }
-            @page {
-                size: A3 portrait;
-                margin: 0;
             }
         }
     </style>
@@ -498,7 +517,7 @@
     <div class="controls-bar">
         <a class="btn btn-big" href="poster-big.html">🧩 4x3 MULTI-PAGE HUGE POSTER</a>
         <button class="btn btn-save" id="saveImgBtn" onclick="savePosterImage()">💾 SAVE IMAGE (PNG)</button>
-        <button class="btn" onclick="window.print()">🖨️ PRINT / SAVE AS PDF (A3)</button>
+        <button class="btn btn-print" id="printBtn" onclick="printPoster()">🖨️ PRINT / SAVE AS PDF (A3)</button>
         <a class="btn btn-outline" href="index.html">← RETURN TO LIVE DISPLAY</a>
         <a class="btn btn-outline" href="admin.html">⚙️ ADMIN PANEL</a>
     </div>
@@ -569,29 +588,77 @@
                 btn.innerHTML = '⏳ GENERATING HIGH-RES POSTER...';
                 btn.disabled = true;
 
-                // Ensure background image is loaded
                 const poster = document.getElementById('posterWrapper');
                 const canvas = await html2canvas(poster, {
-                    scale: 2, // 2x high resolution
+                    scale: 2, // 2x high resolution (1560x2208)
                     useCORS: true,
                     allowTaint: true,
                     backgroundColor: '#0b0401',
                     logging: false
                 });
 
-                const link = document.createElement('a');
-                link.download = 'coasters-tavern-wild-west-nye-poster.png';
-                link.href = canvas.toDataURL('image/png');
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                // Preferred Blob download with fallback
+                if (canvas.toBlob) {
+                    canvas.toBlob((blob) => {
+                        if (!blob) {
+                            fallbackDataUrlDownload(canvas);
+                            return;
+                        }
+                        const blobUrl = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.style.display = 'none';
+                        link.href = blobUrl;
+                        link.download = 'coasters-tavern-wild-west-nye-poster.png';
+                        document.body.appendChild(link);
+                        link.click();
+
+                        setTimeout(() => {
+                            document.body.removeChild(link);
+                            URL.revokeObjectURL(blobUrl);
+                            btn.innerHTML = '✅ POSTER DOWNLOADED!';
+                            setTimeout(() => {
+                                btn.innerHTML = originalText;
+                                btn.disabled = false;
+                            }, 2500);
+                        }, 500);
+                    }, 'image/png');
+                } else {
+                    fallbackDataUrlDownload(canvas);
+                }
             } catch (err) {
                 console.error('Save poster error:', err);
-                alert('Could not render PNG automatically. Please use the "PRINT / SAVE AS PDF" button to save as PDF or image.');
-            } finally {
+                alert('Could not render PNG automatically. Please use the "PRINT / SAVE AS PDF" button.');
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }
+        }
+
+        function fallbackDataUrlDownload(canvas) {
+            const btn = document.getElementById('saveImgBtn');
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.style.display = 'none';
+            link.href = dataUrl;
+            link.download = 'coasters-tavern-wild-west-nye-poster.png';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => {
+                document.body.removeChild(link);
+                if (btn) {
+                    btn.innerHTML = '✅ POSTER DOWNLOADED!';
+                    setTimeout(() => {
+                        btn.innerHTML = '💾 SAVE IMAGE (PNG)';
+                        btn.disabled = false;
+                    }, 2500);
+                }
+            }, 500);
+        }
+
+        function printPoster() {
+            window.focus();
+            setTimeout(() => {
+                window.print();
+            }, 120);
         }
 
         // Keyboard shortcuts
@@ -604,7 +671,7 @@
                 savePosterImage();
             } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
                 e.preventDefault();
-                window.print();
+                printPoster();
             }
         });
     </script>
