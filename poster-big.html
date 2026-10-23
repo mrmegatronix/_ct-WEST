@@ -15,6 +15,7 @@
             --gold-border: #fca311;
             --crimson: #d90429;
             --dark-bg: #0b0401;
+            --poster-scale: 4;
         }
 
         * {
@@ -406,8 +407,8 @@
             position: relative;
             width: 100%;
             height: 100%;
-            border: 2px solid rgba(255, 224, 102, 0.55);
-            padding: 20px 22px;
+            border: calc(2.5px * var(--poster-scale)) solid rgba(255, 224, 102, 0.55);
+            padding: calc(20px * var(--poster-scale)) calc(22px * var(--poster-scale));
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -419,48 +420,48 @@
 
         .corner-rivet {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: calc(12px * var(--poster-scale));
+            height: calc(12px * var(--poster-scale));
             background: radial-gradient(circle, #fff3b0 25%, #d49a37 60%, #522704 100%);
             border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
+            box-shadow: 0 calc(2px * var(--poster-scale)) calc(6px * var(--poster-scale)) rgba(0, 0, 0, 0.95);
         }
-        .cr-tl { top: 6px; left: 6px; }
-        .cr-tr { top: 6px; right: 6px; }
-        .cr-bl { bottom: 6px; left: 6px; }
-        .cr-br { bottom: 6px; right: 6px; }
+        .cr-tl { top: calc(6px * var(--poster-scale)); left: calc(6px * var(--poster-scale)); }
+        .cr-tr { top: calc(6px * var(--poster-scale)); right: calc(6px * var(--poster-scale)); }
+        .cr-bl { bottom: calc(6px * var(--poster-scale)); left: calc(6px * var(--poster-scale)); }
+        .cr-br { bottom: calc(6px * var(--poster-scale)); right: calc(6px * var(--poster-scale)); }
 
         .top-presenter-strip {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
+            gap: calc(2px * var(--poster-scale));
         }
 
         .venue-herald {
             font-family: 'Rye', serif;
-            font-size: 27px;
-            letter-spacing: 4px;
+            font-size: calc(27px * var(--poster-scale));
+            letter-spacing: calc(4px * var(--poster-scale));
             color: var(--gold-bright);
             text-transform: uppercase;
             text-shadow:
-                0 2px 0 #542203,
-                0 4px 10px rgba(0, 0, 0, 0.9),
-                0 0 22px rgba(255, 200, 50, 0.6);
+                0 calc(2px * var(--poster-scale)) 0 #542203,
+                0 calc(4px * var(--poster-scale)) calc(10px * var(--poster-scale)) rgba(0, 0, 0, 0.9),
+                0 0 calc(22px * var(--poster-scale)) rgba(255, 200, 50, 0.6);
             line-height: 1.1;
             white-space: nowrap;
         }
 
         .venue-herald-sub {
             font-family: 'Chakra Petch', sans-serif;
-            font-size: 13.5px;
+            font-size: calc(13.5px * var(--poster-scale));
             font-weight: 800;
-            letter-spacing: 3.5px;
+            letter-spacing: calc(3.5px * var(--poster-scale));
             color: #ffffff;
-            text-shadow: 0 2px 6px #000;
+            text-shadow: 0 calc(2px * var(--poster-scale)) calc(6px * var(--poster-scale)) #000;
             text-transform: uppercase;
-            margin-bottom: 6px;
+            margin-bottom: calc(6px * var(--poster-scale));
             white-space: nowrap;
         }
 
@@ -473,65 +474,65 @@
 
         .title-wild-west {
             font-family: 'Rye', serif;
-            font-size: 58px;
-            letter-spacing: 7px;
+            font-size: calc(58px * var(--poster-scale));
+            letter-spacing: calc(7px * var(--poster-scale));
             line-height: 0.95;
             color: #ffffff;
             text-transform: uppercase;
             text-shadow:
-                0 3px 0 #6e1c07,
-                0 6px 14px rgba(0, 0, 0, 0.95),
-                0 0 35px rgba(255, 180, 50, 0.7);
+                0 calc(3px * var(--poster-scale)) 0 #6e1c07,
+                0 calc(6px * var(--poster-scale)) calc(14px * var(--poster-scale)) rgba(0, 0, 0, 0.95),
+                0 0 calc(35px * var(--poster-scale)) rgba(255, 180, 50, 0.7);
             white-space: nowrap;
         }
 
         .title-nye-sub {
             font-family: 'Playfair Display', serif;
-            font-size: 26px;
+            font-size: calc(26px * var(--poster-scale));
             font-weight: 900;
-            letter-spacing: 6px;
+            letter-spacing: calc(6px * var(--poster-scale));
             color: #ffe685;
             text-transform: uppercase;
             text-shadow:
-                0 2px 0 #4d1803,
-                0 4px 12px rgba(0, 0, 0, 0.9),
-                0 0 20px rgba(255, 215, 0, 0.5);
-            margin: 2px 0 6px;
+                0 calc(2px * var(--poster-scale)) 0 #4d1803,
+                0 calc(4px * var(--poster-scale)) calc(12px * var(--poster-scale)) rgba(0, 0, 0, 0.9),
+                0 0 calc(20px * var(--poster-scale)) rgba(255, 215, 0, 0.5);
+            margin: calc(2px * var(--poster-scale)) 0 calc(6px * var(--poster-scale));
             white-space: nowrap;
         }
 
         .karaoke-event-banner {
             background: linear-gradient(90deg, transparent 0%, rgba(180, 20, 10, 0.92) 18%, rgba(220, 30, 20, 0.97) 50%, rgba(180, 20, 10, 0.92) 82%, transparent 100%);
-            border-top: 2px solid var(--gold-bright);
-            border-bottom: 2px solid var(--gold-bright);
-            padding: 6px 20px;
+            border-top: calc(2px * var(--poster-scale)) solid var(--gold-bright);
+            border-bottom: calc(2px * var(--poster-scale)) solid var(--gold-bright);
+            padding: calc(6px * var(--poster-scale)) calc(20px * var(--poster-scale));
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9);
+            gap: calc(12px * var(--poster-scale));
+            box-shadow: 0 calc(6px * var(--poster-scale)) calc(20px * var(--poster-scale)) rgba(0, 0, 0, 0.9);
         }
 
         .karaoke-banner-text {
             font-family: 'Rye', serif;
-            font-size: 24px;
-            letter-spacing: 2.5px;
+            font-size: calc(24px * var(--poster-scale));
+            letter-spacing: calc(2.5px * var(--poster-scale));
             color: #ffffff;
             text-transform: uppercase;
-            text-shadow: 0 2px 6px #000, 0 0 15px rgba(255, 240, 180, 0.7);
+            text-shadow: 0 calc(2px * var(--poster-scale)) calc(6px * var(--poster-scale)) #000, 0 0 calc(15px * var(--poster-scale)) rgba(255, 240, 180, 0.7);
             white-space: nowrap;
         }
 
         .karaoke-mic-icon {
-            font-size: 20px;
-            filter: drop-shadow(0 0 8px #ffd54f);
+            font-size: calc(22px * var(--poster-scale));
+            filter: drop-shadow(0 0 calc(8px * var(--poster-scale)) #ffd54f);
         }
 
         .artwork-center-window {
             flex: 1;
             width: 100%;
-            min-height: 60px;
+            min-height: calc(60px * var(--poster-scale));
         }
 
         .bottom-event-section {
@@ -539,23 +540,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: calc(12px * var(--poster-scale));
         }
 
         .event-date-card {
             width: 100%;
             background: rgba(18, 7, 2, 0.9);
-            border: 2px solid var(--gold-bright);
-            border-radius: 8px;
-            padding: 7px 14px;
+            border: calc(2px * var(--poster-scale)) solid var(--gold-bright);
+            border-radius: calc(8px * var(--poster-scale));
+            padding: calc(7px * var(--poster-scale)) calc(14px * var(--poster-scale));
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
+            gap: calc(2px * var(--poster-scale));
             box-shadow:
-                0 8px 24px rgba(0, 0, 0, 0.9),
-                0 0 20px rgba(255, 180, 40, 0.25),
-                inset 0 1px 0 rgba(255, 240, 180, 0.3);
+                0 calc(8px * var(--poster-scale)) calc(24px * var(--poster-scale)) rgba(0, 0, 0, 0.9),
+                0 0 calc(20px * var(--poster-scale)) rgba(255, 180, 40, 0.25),
+                inset 0 calc(1px * var(--poster-scale)) 0 rgba(255, 240, 180, 0.3);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
         }
@@ -563,48 +564,48 @@
         .event-date-headline {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            font-size: 30px;
-            letter-spacing: 3.5px;
+            font-size: calc(30px * var(--poster-scale));
+            letter-spacing: calc(3.5px * var(--poster-scale));
             color: #ffe685;
             text-transform: uppercase;
             line-height: 1.1;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+            text-shadow: 0 calc(2px * var(--poster-scale)) calc(8px * var(--poster-scale)) rgba(0, 0, 0, 0.95);
             white-space: nowrap;
         }
 
         .event-time-headline {
             font-family: 'Chakra Petch', sans-serif;
-            font-size: 23px;
+            font-size: calc(23px * var(--poster-scale));
             font-weight: 900;
-            letter-spacing: 3.5px;
+            letter-spacing: calc(3.5px * var(--poster-scale));
             color: #ffe066;
             text-transform: uppercase;
-            text-shadow: 0 2px 8px #000, 0 0 16px rgba(255, 224, 102, 0.5);
+            text-shadow: 0 calc(2px * var(--poster-scale)) calc(8px * var(--poster-scale)) #000, 0 0 calc(16px * var(--poster-scale)) rgba(255, 224, 102, 0.5);
             white-space: nowrap;
         }
 
         .best-dressed-spotlight {
             width: 100%;
             background: linear-gradient(135deg, rgba(82, 17, 10, 0.95) 0%, rgba(142, 24, 20, 0.97) 50%, rgba(82, 17, 10, 0.95) 100%);
-            border: 3px solid var(--gold-bright);
-            border-radius: 10px;
-            padding: 9px 16px;
+            border: calc(3px * var(--poster-scale)) solid var(--gold-bright);
+            border-radius: calc(10px * var(--poster-scale));
+            padding: calc(9px * var(--poster-scale)) calc(16px * var(--poster-scale));
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
+            gap: calc(2px * var(--poster-scale));
             box-shadow:
-                0 10px 30px rgba(0, 0, 0, 0.95),
-                0 0 35px rgba(255, 180, 30, 0.45),
-                inset 0 1px 0 rgba(255, 240, 180, 0.5);
+                0 calc(10px * var(--poster-scale)) calc(30px * var(--poster-scale)) rgba(0, 0, 0, 0.95),
+                0 0 calc(35px * var(--poster-scale)) rgba(255, 180, 30, 0.45),
+                inset 0 calc(1px * var(--poster-scale)) 0 rgba(255, 240, 180, 0.5);
             box-sizing: border-box;
         }
 
         .bd-tagline {
             font-family: 'Playfair Display', serif;
-            font-size: 13.5px;
+            font-size: calc(13.5px * var(--poster-scale));
             font-weight: 900;
-            letter-spacing: 2.5px;
+            letter-spacing: calc(2.5px * var(--poster-scale));
             color: var(--gold-bright);
             text-transform: uppercase;
             white-space: nowrap;
@@ -612,23 +613,23 @@
 
         .bd-title {
             font-family: 'Rye', serif;
-            font-size: 38px;
-            letter-spacing: 3px;
+            font-size: calc(38px * var(--poster-scale));
+            letter-spacing: calc(3px * var(--poster-scale));
             color: #ffffff;
             text-transform: uppercase;
             line-height: 1.1;
             text-shadow:
-                0 2px 0 #630e06,
-                0 4px 10px rgba(0, 0, 0, 0.9),
-                0 0 20px rgba(255, 200, 50, 0.7);
+                0 calc(2px * var(--poster-scale)) 0 #630e06,
+                0 calc(4px * var(--poster-scale)) calc(10px * var(--poster-scale)) rgba(0, 0, 0, 0.9),
+                0 0 calc(20px * var(--poster-scale)) rgba(255, 200, 50, 0.7);
             white-space: nowrap;
         }
 
         .bd-categories {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            font-size: 16px;
-            letter-spacing: 3px;
+            font-size: calc(16px * var(--poster-scale));
+            letter-spacing: calc(3px * var(--poster-scale));
             color: var(--gold-bright);
             text-transform: uppercase;
             white-space: nowrap;
@@ -636,44 +637,44 @@
 
         .bd-bounty {
             font-family: 'Playfair Display', serif;
-            font-size: 15px;
+            font-size: calc(15px * var(--poster-scale));
             font-weight: 900;
-            letter-spacing: 1.5px;
+            letter-spacing: calc(1.5px * var(--poster-scale));
             color: #ffffff;
             text-transform: uppercase;
-            margin-top: 1px;
+            margin-top: calc(1px * var(--poster-scale));
             white-space: nowrap;
         }
 
         .venue-footer-block {
             width: 100%;
-            border-top: 2px solid rgba(255, 224, 102, 0.45);
-            padding-top: 8px;
+            border-top: calc(2px * var(--poster-scale)) solid rgba(255, 224, 102, 0.45);
+            padding-top: calc(8px * var(--poster-scale));
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: calc(4px * var(--poster-scale));
         }
 
         .address-text {
             font-family: 'Playfair Display', serif;
-            font-size: 19px;
+            font-size: calc(19px * var(--poster-scale));
             font-weight: 900;
-            letter-spacing: 2.5px;
+            letter-spacing: calc(2.5px * var(--poster-scale));
             color: #ffffff;
             text-transform: uppercase;
-            text-shadow: 0 2px 8px #000;
+            text-shadow: 0 calc(2px * var(--poster-scale)) calc(8px * var(--poster-scale)) #000;
             white-space: nowrap;
         }
 
         .booking-text {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 800;
-            font-size: 14.5px;
-            letter-spacing: 2px;
+            font-size: calc(14.5px * var(--poster-scale));
+            letter-spacing: calc(2px * var(--poster-scale));
             color: var(--gold-bright);
             text-transform: uppercase;
-            text-shadow: 0 2px 6px #000;
+            text-shadow: 0 calc(2px * var(--poster-scale)) calc(6px * var(--poster-scale)) #000;
             white-space: nowrap;
         }
 
@@ -910,6 +911,7 @@
                     stage.style.height = `${currentRows * 100}%`;
                     stage.style.left = `-${c * 100}%`;
                     stage.style.top = `-${r * 100}%`;
+                    stage.style.setProperty('--poster-scale', currentCols);
                     stage.innerHTML = masterTemplate;
 
                     viewport.appendChild(stage);
