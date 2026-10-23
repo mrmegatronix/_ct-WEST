@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Rye&display=swap" rel="stylesheet">
+    <script src="html2canvas.min.js"></script>
     <style>
         :root {
             --gold-bright: #ffe066;
@@ -77,6 +78,18 @@
         .btn-outline:hover {
             background: rgba(60, 26, 10, 0.95);
             color: #fff;
+        }
+
+        .btn-save {
+            background: linear-gradient(180deg, #27ae60 0%, #1e8449 100%);
+            color: #ffffff;
+            border: 2px solid #58d68d;
+        }
+
+        .btn-save:hover {
+            background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%);
+            box-shadow: 0 8px 24px rgba(46, 204, 113, 0.6);
+            transform: translateY(-2px);
         }
 
         /* A3 Portrait Event Poster Canvas (297mm x 420mm -> 1 : 1.414) */
@@ -446,21 +459,35 @@
 
         /* Print Media Setup (A3 Portrait Standard) */
         @media print {
-            body {
-                background: none !important;
+            *, *::before, *::after {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            html, body {
+                background: #0b0401 !important;
                 padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                overflow: hidden !important;
             }
             .controls-bar {
                 display: none !important;
             }
             .poster-wrapper {
                 max-width: 100% !important;
-                width: 100% !important;
-                height: 100% !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                max-height: 100vh !important;
+                aspect-ratio: auto !important;
                 border: none !important;
                 box-shadow: none !important;
                 border-radius: 0 !important;
-                padding: 12mm !important;
+                padding: 6mm !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                box-sizing: border-box !important;
             }
             @page {
                 size: A3 portrait;
@@ -473,13 +500,14 @@
 
     <!-- Action Bar -->
     <div class="controls-bar">
-        <button class="btn" onclick="window.print()">🖨️ PRINT / SAVE POSTER (A3)</button>
+        <button class="btn btn-save" id="saveImgBtn" onclick="savePosterImage()">💾 SAVE IMAGE (PNG)</button>
+        <button class="btn" onclick="window.print()">🖨️ PRINT / SAVE AS PDF (A3)</button>
         <a class="btn btn-outline" href="index.html">← RETURN TO LIVE DISPLAY</a>
         <a class="btn btn-outline" href="admin.html">⚙️ ADMIN PANEL</a>
     </div>
 
     <!-- The Wild West New Year's Eve Karaoke Event Poster -->
-    <div class="poster-wrapper">
+    <div class="poster-wrapper" id="posterWrapper">
         <!-- Top & Bottom Gradient Shadows for Sharp Contrast -->
         <div class="poster-overlay-top"></div>
         <div class="poster-overlay-bottom"></div>
@@ -545,5 +573,53 @@
         </div>
     </div>
 
+    <!-- Poster Save & Print Script -->
+    <script>
+        async function savePosterImage() {
+            const btn = document.getElementById('saveImgBtn');
+            const originalText = btn.innerHTML;
+            try {
+                btn.innerHTML = '⏳ GENERATING HIGH-RES POSTER...';
+                btn.disabled = true;
+
+                // Ensure background image is loaded
+                const poster = document.getElementById('posterWrapper');
+                const canvas = await html2canvas(poster, {
+                    scale: 2, // 2x high resolution
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#0b0401',
+                    logging: false
+                });
+
+                const link = document.createElement('a');
+                link.download = 'coasters-tavern-wild-west-nye-poster.png';
+                link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (err) {
+                console.error('Save poster error:', err);
+                alert('Could not render PNG automatically. Please use the "PRINT / SAVE AS PDF" button to save as PDF or image.');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Keyboard shortcuts
+        window.addEventListener('keydown', (e) => {
+            const tag = (e.target && e.target.tagName) || '';
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+                e.preventDefault();
+                savePosterImage();
+            } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
+    </script>
 </body>
 </html>
