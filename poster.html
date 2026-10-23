@@ -92,6 +92,18 @@
             transform: translateY(-2px);
         }
 
+        .btn-big {
+            background: linear-gradient(180deg, #e67e22 0%, #d35400 100%);
+            color: #ffffff;
+            border: 2px solid #f39c12;
+        }
+
+        .btn-big:hover {
+            background: linear-gradient(180deg, #f39c12 0%, #e67e22 100%);
+            box-shadow: 0 8px 24px rgba(230, 126, 34, 0.6);
+            transform: translateY(-2px);
+        }
+
         /* A3 Portrait Event Poster Canvas (297mm x 420mm -> 1 : 1.414) */
         .poster-wrapper {
             position: relative;
@@ -315,7 +327,7 @@
         .event-date-headline {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            font-size: 28px;
+            font-size: 30px;
             letter-spacing: 3.5px;
             color: #ffe685;
             text-transform: uppercase;
@@ -325,13 +337,13 @@
         }
 
         .event-time-headline {
-            font-family: 'Playfair Display', serif;
-            font-size: 15px;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 23px;
             font-weight: 900;
-            letter-spacing: 2px;
-            color: #ffffff;
+            letter-spacing: 3.5px;
+            color: #ffe066;
             text-transform: uppercase;
-            text-shadow: 0 2px 6px #000;
+            text-shadow: 0 2px 8px #000, 0 0 16px rgba(255, 224, 102, 0.5);
             white-space: nowrap;
         }
 
@@ -355,7 +367,7 @@
 
         .bd-tagline {
             font-family: 'Playfair Display', serif;
-            font-size: 12px;
+            font-size: 13.5px;
             font-weight: 900;
             letter-spacing: 2.5px;
             color: var(--gold-bright);
@@ -365,8 +377,8 @@
 
         .bd-title {
             font-family: 'Rye', serif;
-            font-size: 34px;
-            letter-spacing: 2.5px;
+            font-size: 38px;
+            letter-spacing: 3px;
             color: #ffffff;
             text-transform: uppercase;
             line-height: 1.1;
@@ -380,7 +392,7 @@
         .bd-categories {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 900;
-            font-size: 14.5px;
+            font-size: 16px;
             letter-spacing: 3px;
             color: var(--gold-bright);
             text-transform: uppercase;
@@ -389,7 +401,7 @@
 
         .bd-bounty {
             font-family: 'Playfair Display', serif;
-            font-size: 13.5px;
+            font-size: 15px;
             font-weight: 900;
             letter-spacing: 1.5px;
             color: #ffffff;
@@ -403,31 +415,30 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            font-family: 'Playfair Display', serif;
-            font-size: 13.5px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #ffd88a;
+            font-family: 'Rye', serif;
+            font-size: 24px;
+            letter-spacing: 4px;
+            color: #ffe066;
             text-transform: uppercase;
-            text-shadow: 0 2px 6px #000;
+            text-shadow: 0 2px 8px #000, 0 0 20px rgba(255, 215, 0, 0.5);
             white-space: nowrap;
+            padding: 2px 0;
         }
 
         /* Venue Address & Booking Footer */
         .venue-footer-block {
             width: 100%;
             border-top: 2px solid rgba(255, 224, 102, 0.45);
-            padding-top: 7px;
+            padding-top: 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 3px;
+            gap: 4px;
         }
 
         .address-text {
             font-family: 'Playfair Display', serif;
-            font-size: 16px;
+            font-size: 19px;
             font-weight: 900;
             letter-spacing: 2.5px;
             color: #ffffff;
@@ -439,7 +450,7 @@
         .booking-text {
             font-family: 'Chakra Petch', sans-serif;
             font-weight: 800;
-            font-size: 12.5px;
+            font-size: 14.5px;
             letter-spacing: 2px;
             color: var(--gold-bright);
             text-transform: uppercase;
@@ -500,6 +511,7 @@
 
     <!-- Action Bar -->
     <div class="controls-bar">
+        <a class="btn btn-big" href="poster-big.html">🧩 4x3 MULTI-PAGE HUGE POSTER</a>
         <button class="btn btn-save" id="saveImgBtn" onclick="savePosterImage()">💾 SAVE IMAGE (PNG)</button>
         <button class="btn" onclick="window.print()">🖨️ PRINT / SAVE AS PDF (A3)</button>
         <a class="btn btn-outline" href="index.html">← RETURN TO LIVE DISPLAY</a>
@@ -543,7 +555,7 @@
                 <!-- Date & Event Times -->
                 <div class="event-date-card">
                     <div class="event-date-headline">THURSDAY • 31ST DECEMBER 2026</div>
-                    <div class="event-time-headline">DJ CHIC FROM 8PM</div>
+                    <div class="event-time-headline">DJ CHICK FROM 8PM</div>
                 </div>
 
                 <!-- Mega BEST DRESSED Feature -->
@@ -556,18 +568,13 @@
 
                 <!-- Karaoke Party Highlights -->
                 <div class="karaoke-features-strip">
-                    <span>★ NON-STOP KARAOKE</span>
-                    <span>•</span>
-                    <span>ICE COLD BEERS</span>
-                    <span>•</span>
-                    <span>MIDNIGHT TOAST & CHEERS ★</span>
+                    <span>★ NON-STOP KARAOKE ★</span>
                 </div>
 
                 <!-- Venue Address & Bookings Footer -->
                 <div class="venue-footer-block">
-                    <div class="address-text">1 DANIELS ROAD, REDWOOD, CHRISTCHURCH</div>
-                    <div class="booking-text">TABLE BOOKINGS & WALK-INS WELCOME • PH: (03) 352 0210</div>
-                    <div class="free-admission-pill">★ 100% FREE ADMISSION ALL NIGHT ★</div>
+                    <div class="address-text">1 DANIELS ROAD, REDWOOD • PH: (03) 352 0210</div>
+                    <div class="booking-text">TABLE BOOKINGS & WALK-INS WELCOME • FREE ADMISSION ALL NIGHT</div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUGE 4x3 MULTI-PAGE NYE POSTER | Coasters Tavern Redwood</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Rye&display=swap" rel="stylesheet">
+    <script src="html2canvas.min.js"></script>
+    <style>
+        :root {
+            --gold-bright: #ffe066;
+            --gold-burnished: #ffb703;
+            --gold-border: #fca311;
+            --crimson: #d90429;
+            --dark-bg: #0b0401;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #120904;
+            color: #f7ede2;
+            font-family: 'Playfair Display', serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 16px 60px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Action Bar & Control Settings */
+        .controls-header {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(22, 10, 4, 0.95);
+            border: 2px solid var(--gold-border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 170, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            z-index: 100;
+        }
+
+        .header-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 12px;
+        }
+
+        .huge-poster-title {
+            font-family: 'Rye', serif;
+            font-size: 24px;
+            color: var(--gold-bright);
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px #000;
+        }
+
+        .huge-poster-sub {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 13px;
+            color: #dcd0c2;
+            letter-spacing: 1px;
+        }
+
+        .btn-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(180deg, #d49a37 0%, #996317 100%);
+            color: #140801;
+            font-family: 'Rye', serif;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: 2px solid #ffd88a;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.75);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.15s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 180, 50, 0.5);
+            background: linear-gradient(180deg, #e8ad46 0%, #ad7320 100%);
+        }
+
+        .btn-print {
+            background: linear-gradient(180deg, #e67e22 0%, #d35400 100%);
+            color: #ffffff;
+            border-color: #f39c12;
+            font-weight: 900;
+        }
+
+        .btn-print:hover {
+            background: linear-gradient(180deg, #f39c12 0%, #e67e22 100%);
+            box-shadow: 0 8px 24px rgba(230, 126, 34, 0.6);
+        }
+
+        .btn-save {
+            background: linear-gradient(180deg, #27ae60 0%, #1e8449 100%);
+            color: #ffffff;
+            border: 2px solid #58d68d;
+        }
+
+        .btn-save:hover {
+            background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%);
+            box-shadow: 0 8px 24px rgba(46, 204, 113, 0.6);
+        }
+
+        .btn-outline {
+            background: rgba(35, 15, 6, 0.85);
+            color: #ffd88a;
+            border: 2px solid #b87f2b;
+        }
+
+        .btn-outline:hover {
+            background: rgba(60, 26, 10, 0.95);
+            color: #fff;
+        }
+
+        /* Grid Controls Toolbar */
+        .grid-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 13px;
+            color: #ffe685;
+            font-weight: 700;
+        }
+
+        .toggle-btn {
+            background: rgba(45, 20, 8, 0.9);
+            color: #ffd88a;
+            border: 1px solid #b87f2b;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 800;
+            font-size: 12px;
+            transition: all 0.15s ease;
+        }
+
+        .toggle-btn.active {
+            background: #d49a37;
+            color: #120701;
+            border-color: #ffe066;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Assembly Guide Box */
+        .assembly-guide-card {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(26, 12, 5, 0.85);
+            border: 2px dashed rgba(255, 215, 0, 0.45);
+            border-radius: 8px;
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .guide-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 13px;
+        }
+
+        .guide-steps span {
+            color: #f7ede2;
+        }
+
+        .guide-steps strong {
+            color: var(--gold-bright);
+        }
+
+        .mini-grid-preview {
+            display: grid;
+            gap: 4px;
+            padding: 6px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 6px;
+        }
+
+        .mini-cell {
+            background: rgba(212, 154, 55, 0.25);
+            border: 1px solid #d49a37;
+            color: #ffd88a;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            width: 32px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Tiled Pages Container */
+        #tilesContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Individual Printable Tile Page */
+        .tile-page {
+            position: relative;
+            width: 100%;
+            max-width: 780px;
+            aspect-ratio: 210 / 297; /* Standard A4 Portrait */
+            background: #000;
+            border: 3px solid #d49a37;
+            border-radius: 4px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+            box-sizing: border-box;
+            page-break-after: always;
+            break-after: page;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        /* The Viewport that clips the master poster */
+        .tile-viewport {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Master Poster Canvas inside viewport */
+        .tile-poster-stage {
+            position: absolute;
+            background-color: var(--dark-bg);
+            background-image: url('poster_karaoke_bg.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Corner Cut Marks / Crosshairs */
+        .corner-crop-mark {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-color: #ffd54f;
+            border-style: solid;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.85;
+        }
+        .crop-tl { top: 6px; left: 6px; border-width: 2px 0 0 2px; }
+        .crop-tr { top: 6px; right: 6px; border-width: 2px 2px 0 0; }
+        .crop-bl { bottom: 6px; left: 6px; border-width: 0 0 2px 2px; }
+        .crop-br { bottom: 6px; right: 6px; border-width: 0 2px 2px 0; }
+
+        /* Tile Info Badge */
+        .tile-badge {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: rgba(10, 4, 1, 0.92);
+            color: var(--gold-bright);
+            border: 1px solid var(--gold-burnished);
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            padding: 3px 10px;
+            border-radius: 4px;
+            z-index: 60;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            pointer-events: none;
+        }
+
+        /* Glue / Overlap Margin Strip */
+        .overlap-strip-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 24px;
+            height: 100%;
+            border-left: 2px dashed rgba(255, 215, 0, 0.6);
+            background: rgba(255, 215, 0, 0.12);
+            z-index: 55;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .overlap-strip-right span {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            color: #ffe066;
+            letter-spacing: 2px;
+        }
+
+        .overlap-strip-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 24px;
+            border-top: 2px dashed rgba(255, 215, 0, 0.6);
+            background: rgba(255, 215, 0, 0.12);
+            z-index: 55;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .overlap-strip-bottom span {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            color: #ffe066;
+            letter-spacing: 2px;
+        }
+
+        /* ========================================================= */
+        /* POSTER INTERNAL ELEMENTS (IDENTICAL TO MASTER POSTER)      */
+        /* ========================================================= */
+        .poster-overlay-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 38%;
+            background: linear-gradient(180deg, rgba(8, 3, 1, 0.96) 0%, rgba(10, 4, 1, 0.84) 52%, rgba(12, 5, 2, 0.25) 82%, transparent 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .poster-overlay-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 42%;
+            background: linear-gradient(0deg, rgba(6, 2, 1, 0.98) 0%, rgba(9, 3, 1, 0.92) 55%, rgba(12, 5, 2, 0.3) 85%, transparent 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .poster-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(255, 224, 102, 0.55);
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+            z-index: 3;
+        }
+
+        .corner-rivet {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #fff3b0 25%, #d49a37 60%, #522704 100%);
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
+        }
+        .cr-tl { top: 6px; left: 6px; }
+        .cr-tr { top: 6px; right: 6px; }
+        .cr-bl { bottom: 6px; left: 6px; }
+        .cr-br { bottom: 6px; right: 6px; }
+
+        .top-presenter-strip {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .venue-herald {
+            font-family: 'Rye', serif;
+            font-size: 27px;
+            letter-spacing: 4px;
+            color: var(--gold-bright);
+            text-transform: uppercase;
+            text-shadow:
+                0 2px 0 #542203,
+                0 4px 10px rgba(0, 0, 0, 0.9),
+                0 0 22px rgba(255, 200, 50, 0.6);
+            line-height: 1.1;
+            white-space: nowrap;
+        }
+
+        .venue-herald-sub {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 13.5px;
+            font-weight: 800;
+            letter-spacing: 3.5px;
+            color: #ffffff;
+            text-shadow: 0 2px 6px #000;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            white-space: nowrap;
+        }
+
+        .hero-title-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .title-wild-west {
+            font-family: 'Rye', serif;
+            font-size: 58px;
+            letter-spacing: 7px;
+            line-height: 0.95;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow:
+                0 3px 0 #6e1c07,
+                0 6px 14px rgba(0, 0, 0, 0.95),
+                0 0 35px rgba(255, 180, 50, 0.7);
+            white-space: nowrap;
+        }
+
+        .title-nye-sub {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 6px;
+            color: #ffe685;
+            text-transform: uppercase;
+            text-shadow:
+                0 2px 0 #4d1803,
+                0 4px 12px rgba(0, 0, 0, 0.9),
+                0 0 20px rgba(255, 215, 0, 0.5);
+            margin: 2px 0 6px;
+            white-space: nowrap;
+        }
+
+        .karaoke-event-banner {
+            background: linear-gradient(90deg, transparent 0%, rgba(180, 20, 10, 0.92) 18%, rgba(220, 30, 20, 0.97) 50%, rgba(180, 20, 10, 0.92) 82%, transparent 100%);
+            border-top: 2px solid var(--gold-bright);
+            border-bottom: 2px solid var(--gold-bright);
+            padding: 6px 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9);
+        }
+
+        .karaoke-banner-text {
+            font-family: 'Rye', serif;
+            font-size: 24px;
+            letter-spacing: 2.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 2px 6px #000, 0 0 15px rgba(255, 240, 180, 0.7);
+            white-space: nowrap;
+        }
+
+        .karaoke-mic-icon {
+            font-size: 20px;
+            filter: drop-shadow(0 0 8px #ffd54f);
+        }
+
+        .artwork-center-window {
+            flex: 1;
+            width: 100%;
+            min-height: 60px;
+        }
+
+        .bottom-event-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .event-date-card {
+            width: 100%;
+            background: rgba(18, 7, 2, 0.9);
+            border: 2px solid var(--gold-bright);
+            border-radius: 8px;
+            padding: 7px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.9),
+                0 0 20px rgba(255, 180, 40, 0.25),
+                inset 0 1px 0 rgba(255, 240, 180, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .event-date-headline {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 900;
+            font-size: 30px;
+            letter-spacing: 3.5px;
+            color: #ffe685;
+            text-transform: uppercase;
+            line-height: 1.1;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+            white-space: nowrap;
+        }
+
+        .event-time-headline {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: 3.5px;
+            color: #ffe066;
+            text-transform: uppercase;
+            text-shadow: 0 2px 8px #000, 0 0 16px rgba(255, 224, 102, 0.5);
+            white-space: nowrap;
+        }
+
+        .best-dressed-spotlight {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(82, 17, 10, 0.95) 0%, rgba(142, 24, 20, 0.97) 50%, rgba(82, 17, 10, 0.95) 100%);
+            border: 3px solid var(--gold-bright);
+            border-radius: 10px;
+            padding: 9px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.95),
+                0 0 35px rgba(255, 180, 30, 0.45),
+                inset 0 1px 0 rgba(255, 240, 180, 0.5);
+            box-sizing: border-box;
+        }
+
+        .bd-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 13.5px;
+            font-weight: 900;
+            letter-spacing: 2.5px;
+            color: var(--gold-bright);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .bd-title {
+            font-family: 'Rye', serif;
+            font-size: 38px;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-transform: uppercase;
+            line-height: 1.1;
+            text-shadow:
+                0 2px 0 #630e06,
+                0 4px 10px rgba(0, 0, 0, 0.9),
+                0 0 20px rgba(255, 200, 50, 0.7);
+            white-space: nowrap;
+        }
+
+        .bd-categories {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 900;
+            font-size: 16px;
+            letter-spacing: 3px;
+            color: var(--gold-bright);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .bd-bounty {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-top: 1px;
+            white-space: nowrap;
+        }
+
+        .karaoke-features-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Rye', serif;
+            font-size: 24px;
+            letter-spacing: 4px;
+            color: #ffe066;
+            text-transform: uppercase;
+            text-shadow: 0 2px 8px #000, 0 0 20px rgba(255, 215, 0, 0.5);
+            white-space: nowrap;
+            padding: 2px 0;
+        }
+
+        .venue-footer-block {
+            width: 100%;
+            border-top: 2px solid rgba(255, 224, 102, 0.45);
+            padding-top: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .address-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: 2.5px;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 2px 8px #000;
+            white-space: nowrap;
+        }
+
+        .booking-text {
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 800;
+            font-size: 14.5px;
+            letter-spacing: 2px;
+            color: var(--gold-bright);
+            text-transform: uppercase;
+            text-shadow: 0 2px 6px #000;
+            white-space: nowrap;
+        }
+
+        /* Master Poster Template (Hidden from screen view, used to stamp tiles) */
+        #masterPosterTemplate {
+            display: none;
+        }
+
+        /* ========================================================= */
+        /* PRINT STYLES: SEAMLESS MULTI-PAGE PRINT                   */
+        /* ========================================================= */
+        @media print {
+            *, *::before, *::after {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            html, body {
+                background: #000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            .controls-header,
+            .assembly-guide-card {
+                display: none !important;
+            }
+
+            #tilesContainer {
+                display: block !important;
+                width: 100% !important;
+                max-width: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                gap: 0 !important;
+            }
+
+            .tile-page {
+                width: 100vw !important;
+                height: 100vh !important;
+                max-width: none !important;
+                max-height: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                border: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Master Hidden Template for Cloning -->
+    <div id="masterPosterTemplate">
+        <div class="poster-overlay-top"></div>
+        <div class="poster-overlay-bottom"></div>
+        <div class="poster-frame">
+            <div class="corner-rivet cr-tl"></div>
+            <div class="corner-rivet cr-tr"></div>
+            <div class="corner-rivet cr-bl"></div>
+            <div class="corner-rivet cr-br"></div>
+
+            <div class="top-presenter-strip">
+                <div class="venue-herald">COASTERS TAVERN</div>
+                <div class="venue-herald-sub">REDWOOD • CHRISTCHURCH</div>
+
+                <div class="hero-title-group">
+                    <div class="title-wild-west">WILD WEST</div>
+                    <div class="title-nye-sub">★ NEW YEAR'S EVE ★</div>
+                    <div class="karaoke-event-banner">
+                        <span class="karaoke-mic-icon">🤠 🎤</span>
+                        <span class="karaoke-banner-text">KARAOKE PARTY SHOWDOWN!</span>
+                        <span class="karaoke-mic-icon">🎤 🤠</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="artwork-center-window"></div>
+
+            <div class="bottom-event-section">
+                <div class="event-date-card">
+                    <div class="event-date-headline">THURSDAY • 31ST DECEMBER 2026</div>
+                    <div class="event-time-headline">DJ CHICK FROM 8PM</div>
+                </div>
+
+                <div class="best-dressed-spotlight">
+                    <div class="bd-tagline">★ DRESS TO IMPRESS IN YER FINEST WESTERN ATTIRE ★</div>
+                    <div class="bd-title">PRIZES FOR BEST DRESSED!</div>
+                    <div class="bd-categories">COWBOYS • COWGIRLS • OUTLAWS • SHERIFFS</div>
+                    <div class="bd-bounty">★ BAR TAB PRIZES & SPOT REWARDS ★</div>
+                </div>
+
+                <div class="karaoke-features-strip">
+                    <span>★ NON-STOP KARAOKE ★</span>
+                </div>
+
+                <div class="venue-footer-block">
+                    <div class="address-text">1 DANIELS ROAD, REDWOOD • PH: (03) 352 0210</div>
+                    <div class="booking-text">TABLE BOOKINGS & WALK-INS WELCOME • FREE ADMISSION ALL NIGHT</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls Header -->
+    <header class="controls-header">
+        <div class="header-title-row">
+            <div>
+                <h1 class="huge-poster-title">🧩 HUGE 4x3 MULTI-PAGE POSTER</h1>
+                <p class="huge-poster-sub">PRINT SEAMLESS TILES ON A4 / A3 & STITCH TOGETHER FOR A MASSIVE WALL POSTER</p>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-print" onclick="window.print()">🖨️ PRINT ALL 12 TILES</button>
+                <button class="btn btn-save" id="saveAllTilesBtn" onclick="saveAllTilesZip()">💾 DOWNLOAD ALL 12 TILES (PNG)</button>
+                <a class="btn btn-outline" href="poster.html">← SINGLE A3 POSTER</a>
+                <a class="btn btn-outline" href="index.html">LIVE DISPLAY</a>
+                <a class="btn btn-outline" href="admin.html">ADMIN</a>
+            </div>
+        </div>
+
+        <div class="grid-toolbar">
+            <div class="toggle-group">
+                <span>LAYOUT GRID:</span>
+                <button class="toggle-btn active" id="btnGrid4x3" onclick="setGridLayout(4, 3)">4 COLS × 3 ROWS (12 PAGES)</button>
+                <button class="toggle-btn" id="btnGrid3x4" onclick="setGridLayout(3, 4)">3 COLS × 4 ROWS (PORTRAIT GIANT)</button>
+            </div>
+
+            <div class="toggle-group">
+                <span>SEAMLESS STITCHING GUIDES:</span>
+                <button class="toggle-btn active" id="btnOverlapToggle" onclick="toggleOverlapGuide()">10MM GLUE TABS: ON</button>
+                <button class="toggle-btn active" id="btnCropMarksToggle" onclick="toggleCropMarks()">CROP MARKS: ON</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Assembly Guide Card -->
+    <section class="assembly-guide-card">
+        <div class="guide-steps">
+            <span><strong>STEP 1:</strong> Click <strong>🖨️ PRINT ALL 12 TILES</strong> (Select 100% Scale / Margins: None in Print Dialog).</span>
+            <span><strong>STEP 2:</strong> Lay out the 12 sheets matching the numbered grid layout below.</span>
+            <span><strong>STEP 3:</strong> Trim along the corner crosshair marks, or use the 10mm glue tabs to overlap & tape the sheets together from the rear.</span>
+        </div>
+        <div class="mini-grid-preview" id="miniGridPreview">
+            <!-- Dynamic mini cells rendered by JS -->
+        </div>
+    </section>
+
+    <!-- Dynamic Tiled Pages Container -->
+    <main id="tilesContainer">
+        <!-- Generated by JavaScript -->
+    </main>
+
+    <script>
+        let currentCols = 4;
+        let currentRows = 3;
+        let showOverlap = true;
+        let showCropMarks = true;
+
+        const masterTemplate = document.getElementById('masterPosterTemplate').innerHTML;
+
+        function renderTiles() {
+            const container = document.getElementById('tilesContainer');
+            const miniGrid = document.getElementById('miniGridPreview');
+            container.innerHTML = '';
+            miniGrid.innerHTML = '';
+
+            miniGrid.style.gridTemplateColumns = `repeat(${currentCols}, 1fr)`;
+
+            let pageNumber = 1;
+            const totalPages = currentCols * currentRows;
+
+            for (let r = 0; r < currentRows; r++) {
+                for (let c = 0; c < currentCols; c++) {
+                    const pageNum = pageNumber++;
+
+                    // Mini cell
+                    const miniCell = document.createElement('div');
+                    miniCell.className = 'mini-cell';
+                    miniCell.textContent = pageNum;
+                    miniGrid.appendChild(miniCell);
+
+                    // Tile Page Element
+                    const pageDiv = document.createElement('div');
+                    pageDiv.className = 'tile-page';
+                    pageDiv.id = `tilePage_${pageNum}`;
+
+                    // Tile Badge
+                    const badge = document.createElement('div');
+                    badge.className = 'tile-badge';
+                    badge.textContent = `PAGE ${pageNum}/${totalPages} [R${r + 1}:C${c + 1}]`;
+                    pageDiv.appendChild(badge);
+
+                    // Corner Crop Marks
+                    if (showCropMarks) {
+                        const cropTL = document.createElement('div'); cropTL.className = 'corner-crop-mark crop-tl'; pageDiv.appendChild(cropTL);
+                        const cropTR = document.createElement('div'); cropTR.className = 'corner-crop-mark crop-tr'; pageDiv.appendChild(cropTR);
+                        const cropBL = document.createElement('div'); cropBL.className = 'corner-crop-mark crop-bl'; pageDiv.appendChild(cropBL);
+                        const cropBR = document.createElement('div'); cropBR.className = 'corner-crop-mark crop-br'; pageDiv.appendChild(cropBR);
+                    }
+
+                    // Overlap Tabs (Right edge for cols < currentCols - 1; Bottom edge for rows < currentRows - 1)
+                    if (showOverlap) {
+                        if (c < currentCols - 1) {
+                            const rightTab = document.createElement('div');
+                            rightTab.className = 'overlap-strip-right';
+                            rightTab.innerHTML = '<span>GLUE / TAPE OVERLAP</span>';
+                            pageDiv.appendChild(rightTab);
+                        }
+                        if (r < currentRows - 1) {
+                            const bottomTab = document.createElement('div');
+                            bottomTab.className = 'overlap-strip-bottom';
+                            bottomTab.innerHTML = '<span>GLUE / TAPE OVERLAP</span>';
+                            pageDiv.appendChild(bottomTab);
+                        }
+                    }
+
+                    // Tile Viewport
+                    const viewport = document.createElement('div');
+                    viewport.className = 'tile-viewport';
+
+                    // Cloned Master Stage
+                    const stage = document.createElement('div');
+                    stage.className = 'tile-poster-stage';
+                    stage.style.width = `${currentCols * 100}%`;
+                    stage.style.height = `${currentRows * 100}%`;
+                    stage.style.left = `-${c * 100}%`;
+                    stage.style.top = `-${r * 100}%`;
+                    stage.innerHTML = masterTemplate;
+
+                    viewport.appendChild(stage);
+                    pageDiv.appendChild(viewport);
+                    container.appendChild(pageDiv);
+                }
+            }
+        }
+
+        function setGridLayout(cols, rows) {
+            currentCols = cols;
+            currentRows = rows;
+            document.getElementById('btnGrid4x3').classList.toggle('active', cols === 4 && rows === 3);
+            document.getElementById('btnGrid3x4').classList.toggle('active', cols === 3 && rows === 4);
+            renderTiles();
+        }
+
+        function toggleOverlapGuide() {
+            showOverlap = !showOverlap;
+            const btn = document.getElementById('btnOverlapToggle');
+            btn.classList.toggle('active', showOverlap);
+            btn.textContent = showOverlap ? '10MM GLUE TABS: ON' : '10MM GLUE TABS: OFF';
+            renderTiles();
+        }
+
+        function toggleCropMarks() {
+            showCropMarks = !showCropMarks;
+            const btn = document.getElementById('btnCropMarksToggle');
+            btn.classList.toggle('active', showCropMarks);
+            btn.textContent = showCropMarks ? 'CROP MARKS: ON' : 'CROP MARKS: OFF';
+            renderTiles();
+        }
+
+        // Download all tiles sequentially as high-res PNG images
+        async function saveAllTilesZip() {
+            const btn = document.getElementById('saveAllTilesBtn');
+            const originalText = btn.innerHTML;
+            try {
+                btn.disabled = true;
+                const totalPages = currentCols * currentRows;
+
+                for (let i = 1; i <= totalPages; i++) {
+                    btn.innerHTML = `⏳ RENDERING TILE ${i}/${totalPages}...`;
+                    const tileEl = document.getElementById(`tilePage_${i}`);
+                    if (!tileEl) continue;
+
+                    const canvas = await html2canvas(tileEl, {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        backgroundColor: '#0b0401',
+                        logging: false
+                    });
+
+                    const link = document.createElement('a');
+                    link.download = `coasters-nye-poster-tile-${i}-of-${totalPages}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    // Short pause to ensure browser handles consecutive downloads
+                    await new Promise(r => setTimeout(r, 450));
+                }
+
+                btn.innerHTML = '✅ ALL 12 TILES DOWNLOADED!';
+                setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 3000);
+            } catch (err) {
+                console.error('Download error:', err);
+                alert('Could not render all tiles automatically. Please use "PRINT ALL 12 TILES" to print or save as multi-page PDF.');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderTiles();
+        });
+
+        // Keyboard shortcuts
+        window.addEventListener('keydown', (e) => {
+            const tag = (e.target && e.target.tagName) || '';
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
+                e.preventDefault();
+                window.print();
+            } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+                e.preventDefault();
+                saveAllTilesZip();
+            }
+        });
+    </script>
+</body>
+</html>
